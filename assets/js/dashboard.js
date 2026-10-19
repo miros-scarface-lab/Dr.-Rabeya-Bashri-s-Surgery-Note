@@ -896,10 +896,22 @@ function initEventListeners() {
         window.siteContentService.applySiteContentToPage();
       }
 
-      const toastMsg = res.savedToDisk
-        ? "🎉 Website content published! Changes saved permanently to website files."
-        : (res.savedToCloud ? "🎉 Website content published! Saved permanently to Supabase cloud." : "🎉 Website content published! Changes are now live.");
-      showToast(toastMsg, "success");
+      let toastMsg = "";
+      let toastType = "success";
+
+      if (res.savedToDisk && res.savedToCloud) {
+        toastMsg = "🎉 Website content published! Saved permanently to disk and Supabase cloud.";
+      } else if (res.savedToCloud) {
+        toastMsg = "🎉 Website content published! Saved permanently to Supabase cloud database.";
+      } else if (res.savedToDisk) {
+        toastMsg = "🎉 Website content published! Saved permanently to website files.";
+      } else if (res.cloudError) {
+        toastMsg = "⚠️ Saved in this browser, but cloud sync is pending: Run supabase_schema.sql in Supabase to sync across all devices.";
+        toastType = "warning";
+      } else {
+        toastMsg = "🎉 Website content published! Changes are active in this browser.";
+      }
+      showToast(toastMsg, toastType);
     } catch (err) {
       console.error("Error saving CMS content:", err);
       showToast("Failed to save content: " + err.message, "error");
@@ -942,6 +954,22 @@ function initEventListeners() {
       showToast("Reset failed: " + err.message, "error");
     }
   });
+
+  // Copy Supabase SQL Schema to Clipboard
+  document.getElementById('btnCopySqlSchema')?.addEventListener('click', async () => {
+    try {
+      const res = await fetch('./supabase_schema.sql');
+      if (res.ok) {
+        const sqlText = await res.text();
+        await navigator.clipboard.writeText(sqlText);
+        showToast("📋 supabase_schema.sql copied to clipboard! Paste it in Supabase SQL editor.", "success");
+      } else {
+        throw new Error("Could not load supabase_schema.sql");
+      }
+    } catch (e) {
+      showToast("Please copy supabase_schema.sql from your project folder: " + e.message, "info");
+    }
+  });
 }
 
 /**
@@ -950,6 +978,24 @@ function initEventListeners() {
 async function populateCmsEditorForm() {
   if (!window.siteContentService) return;
   const content = await window.siteContentService.getSiteContent();
+
+  // Check Supabase site_content table status and show notice banner if needed
+  const sb = window.getSupabase ? window.getSupabase() : null;
+  const pendingBanner = document.getElementById('cmsCloudPendingBanner');
+  if (sb && pendingBanner) {
+    try {
+      const { error } = await sb.from('site_content').select('id').limit(1);
+      if (error && (error.code === 'PGRST205' || (error.message && error.message.includes('not find')))) {
+        pendingBanner.style.display = 'flex';
+      } else {
+        pendingBanner.style.display = 'none';
+      }
+    } catch (e) {
+      pendingBanner.style.display = 'flex';
+    }
+  } else if (pendingBanner) {
+    pendingBanner.style.display = 'none';
+  }
 
   // Section 1: Doctor Profile & Contact
   setVal('cms_doctor_name', content.doctor?.name);

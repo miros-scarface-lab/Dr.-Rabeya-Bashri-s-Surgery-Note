@@ -598,8 +598,23 @@
             </div>
           </div>
 
-          <div style="background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: var(--radius-md); padding: 0.75rem 1rem; margin-bottom: 1.5rem; font-size: 0.85rem; color: #065F46; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
-            <span>💾 <strong>Permanent Storage Active:</strong> When you click "Save &amp; Publish", changes are written directly to <code>site_content.json</code> and website files on disk, ensuring your edits persist permanently across reloads and deployments.</span>
+          <div style="background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: var(--radius-md); padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 0.85rem; color: #065F46; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+            <span>💾 <strong>Permanent Storage Active:</strong> When you click "Save &amp; Publish", changes are written directly to your local vault, <code>site_content.json</code>, and website files, ensuring your edits persist permanently across reloads and deployments.</span>
+          </div>
+
+          <!-- Supabase Cloud Setup Notice (shown if site_content table not found in Supabase) -->
+          <div id="cmsCloudPendingBanner" style="display: none; background: #FFFBEB; border: 1px solid #FCD34D; border-radius: var(--radius-md); padding: 0.85rem 1rem; margin-bottom: 1.5rem; font-size: 0.85rem; color: #92400E; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
+            <div>
+              <strong>⚠️ Cloud Sync Notice:</strong> Supabase credentials are connected, but the <code>site_content</code> database table has not been created yet in Supabase. Your edits are currently active in this browser. To save permanently to the cloud for all visitors worldwide, run the SQL script in your Supabase SQL editor.
+            </div>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <a href="https://supabase.com/dashboard/project/hlfpjiblwghuxmwqnlqx/sql/new" target="_blank" rel="noopener" class="btn btn-sm btn-primary" style="font-size: 0.775rem;">
+                Open Supabase SQL Editor &rarr;
+              </a>
+              <button type="button" id="btnCopySqlSchema" class="btn btn-sm btn-secondary" style="font-size: 0.775rem;">
+                📋 Copy SQL Script
+              </button>
+            </div>
           </div>
 
           <form id="cmsContentForm">

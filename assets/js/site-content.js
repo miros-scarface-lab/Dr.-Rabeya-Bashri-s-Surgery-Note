@@ -104,7 +104,35 @@ const DEFAULT_SITE_CONTENT = {
  * Load saved content from Supabase, permanent site_content.json on disk, or localStorage
  */
 async function getSiteContent() {
-  // 1. Cloud storage (Supabase) if connected
+  let result = deepMerge({}, DEFAULT_SITE_CONTENT);
+
+  // 1. Static site_content.json from repository/disk baseline
+  try {
+    const res = await fetch('./site_content.json?v=' + Date.now(), { cache: 'no-store' });
+    if (res.ok) {
+      const fileData = await res.json();
+      if (fileData && typeof fileData === 'object') {
+        result = deepMerge(result, fileData);
+      }
+    }
+  } catch (e) {
+    // Expected on file:/// or offline
+  }
+
+  // 2. User edits saved locally in this browser (preserved and never wiped out by static file)
+  const localData = localStorage.getItem('site_content_data');
+  if (localData) {
+    try {
+      const parsed = JSON.parse(localData);
+      if (parsed && typeof parsed === 'object') {
+        result = deepMerge(result, parsed);
+      }
+    } catch (e) {
+      console.warn("Could not parse local site content cache:", e);
+    }
+  }
+
+  // 3. Cloud storage (Supabase) if connected (authoritative across all visitors/devices)
   const sb = window.getSupabase ? window.getSupabase() : null;
   if (sb) {
     try {
@@ -114,59 +142,33 @@ async function getSiteContent() {
         .eq('id', 'main')
         .single();
 
-      if (!error && data && data.content) {
-        return deepMerge(DEFAULT_SITE_CONTENT, data.content);
+      if (!error && data && data.content && typeof data.content === 'object') {
+        result = deepMerge(result, data.content);
+        // Cache verified cloud version
+        localStorage.setItem('site_content_data', JSON.stringify(result));
       }
     } catch (e) {
-      console.warn("Notice: Fetching site content from local vault:", e);
+      console.warn("Notice: Fetching site content from local/disk:", e);
     }
   }
 
-  // 2. Permanent disk file (site_content.json) - works on localhost server & Netlify production
-  try {
-    const res = await fetch('./site_content.json?v=' + Date.now(), { cache: 'no-store' });
-    if (res.ok) {
-      const fileData = await res.json();
-      if (fileData && typeof fileData === 'object') {
-        // Cache to localStorage for instantaneous offline loading
-        localStorage.setItem('site_content_data', JSON.stringify(fileData));
-        return deepMerge(DEFAULT_SITE_CONTENT, fileData);
-      }
-    }
-  } catch (e) {
-    // If opening via file:/// protocol or offline, proceed to localStorage
-  }
-
-  // 3. Browser localStorage cache
-  const localData = localStorage.getItem('site_content_data');
-  if (localData) {
-    try {
-      const parsed = JSON.parse(localData);
-      if (parsed.chambers && parsed.chambers.chamber1_name && (parsed.chambers.chamber1_name.includes("Central Women") || parsed.chambers.chamber1_name.includes("Square"))) {
-        parsed.chambers = { ...DEFAULT_SITE_CONTENT.chambers };
-        parsed.hero = { ...parsed.hero, stat4_num: "1", stat4_label: "Dinajpur Medical College, Hospital" };
-        localStorage.setItem('site_content_data', JSON.stringify(parsed));
-      }
-      return deepMerge(DEFAULT_SITE_CONTENT, parsed);
-    } catch (e) {
-      return { ...DEFAULT_SITE_CONTENT };
-    }
-  }
-
-  return { ...DEFAULT_SITE_CONTENT };
+  return result;
 }
 
 /**
  * Save updated content permanently to disk, Supabase & localStorage
  */
 async function saveSiteContent(content) {
-  // 1. Save to localStorage immediately
+  content._updated_at = new Date().toISOString();
+
+  // 1. Save to localStorage immediately (instant browser vault)
   localStorage.setItem('site_content_data', JSON.stringify(content));
 
   let savedToDisk = false;
   let savedToCloud = false;
+  let cloudError = null;
 
-  // 2. Save permanently to disk via local server API (updates site_content.json & site-content.js)
+  // 2. Save permanently to disk via local server API (if python server.py is running)
   try {
     const apiRes = await fetch('/api/save-content', {
       method: 'POST',
@@ -180,7 +182,7 @@ async function saveSiteContent(content) {
       }
     }
   } catch (e) {
-    // Expected when running on pure static host without backend
+    // Normal when running purely on static host without local python server
   }
 
   // 3. Save to Supabase cloud database if connected
@@ -198,20 +200,32 @@ async function saveSiteContent(content) {
       if (!error) {
         savedToCloud = true;
       } else {
+        cloudError = error.message || error.code || "Failed to update Supabase table";
         console.warn("Supabase content sync notice:", error);
       }
     } catch (err) {
+      cloudError = err.message || "Failed to reach Supabase";
       console.warn("Supabase content sync warning:", err);
     }
+  }
+
+  let message = "";
+  if (savedToDisk && savedToCloud) {
+    message = "Saved permanently to disk and Supabase cloud.";
+  } else if (savedToDisk) {
+    message = "Saved permanently to website disk files.";
+  } else if (savedToCloud) {
+    message = "Saved permanently to Supabase cloud database.";
+  } else {
+    message = "Saved to browser vault.";
   }
 
   return { 
     success: true, 
     savedToDisk, 
     savedToCloud,
-    message: savedToDisk 
-      ? "Saved permanently to disk and website files." 
-      : (savedToCloud ? "Saved permanently to Supabase cloud database." : "Saved to browser vault. Connect Supabase for cloud sync.")
+    cloudError,
+    message
   };
 }
 
