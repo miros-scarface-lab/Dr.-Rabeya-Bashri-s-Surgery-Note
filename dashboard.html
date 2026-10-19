@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Surgeon's Admin Panel &amp; Data Reservation Suite | Dr. Rabeya Basri</title>
+  <meta name="robots" content="noindex, nofollow">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="assets/css/styles.css">
+  
+  <!-- Supabase JS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body class="dashboard-layout">
+
+  <!-- Dashboard Top Header Bar -->
+  <header class="dashboard-header">
+    <div class="container-wide">
+      <div class="dashboard-header-inner">
+        <!-- Brand & Logbook Title -->
+        <div style="display: flex; align-items: center; gap: 0.85rem;">
+          <a href="dashboard.html" class="brand-link">
+            <div class="brand-icon" style="width: 40px; height: 40px;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M12 2v20M2 12h20M7 7l10 10M17 7L7 17"></path>
+              </svg>
+            </div>
+            <div class="brand-text">
+              <span class="brand-name" style="font-size: 1.1rem;">Dr. Rabeya Basri</span>
+              <span class="brand-sub">Admin Panel &amp; Clinical Data Vault</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Doctor Profile & Logout -->
+        <div class="dashboard-actions">
+          <a href="index.html" class="btn btn-ghost btn-sm" target="_blank" title="View Public Practice Website">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+            <span>Public Website</span>
+          </a>
+
+          <button id="btnOpenAddSurgery" class="btn btn-primary btn-sm">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>Add Surgery / Case</span>
+          </button>
+
+          <!-- Doctor Profile Chip -->
+          <div class="doctor-profile-chip" style="margin-left: 0.5rem;">
+            <div class="doctor-chip-avatar" id="doctorHeaderAvatar">RB</div>
+            <div class="doctor-chip-meta" style="display: none; @media(min-width: 640px) { display: flex; }">
+              <span class="doctor-chip-name" id="doctorHeaderName">Dr. Rabeya Basri</span>
+              <span class="doctor-chip-role" id="doctorHeaderEmail">Logged In</span>
+            </div>
+          </div>
+
+          <button id="btnLogoutDoctor" class="btn btn-ghost btn-sm" title="Sign Out">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+              <polyline points="16 17 21 12 16 7"></polyline>
+              <line x1="21" y1="12" x2="9" y2="12"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Admin Panel Secondary Navigation Tabs -->
+  <nav class="admin-nav-bar" aria-label="Admin Navigation Tabs">
+    <div class="container-wide">
+      <div class="admin-tabs-wrapper">
+        <button class="admin-tab-btn active" data-tab="tab-overview">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          <span>Overview &amp; Counters</span>
+        </button>
+
+        <button class="admin-tab-btn" data-tab="tab-records">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+          <span>Surgical Data Registry</span>
+          <span class="admin-tab-badge" id="tabBadgeSurgeriesCount">0</span>
+        </button>
+
+        <button class="admin-tab-btn" data-tab="tab-appointments">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          <span>Patient Appointments</span>
+          <span class="admin-tab-badge" id="tabBadgeApptsCount">0</span>
+        </button>
+
+        <button class="admin-tab-btn" data-tab="tab-vault">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <span>Data Reservation &amp; Vault</span>
+        </button>
+
+        <button class="admin-tab-btn" data-tab="tab-settings">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+          <span>Admin Settings</span>
+        </button>
+
+        <button class="admin-tab-btn" data-tab="tab-cms">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 20h9"></path>
+            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+          </svg>
+          <span>🎨 Website Content Editor</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Notice Banner for Supabase Setup & Demo Status -->
+  <div id="configNoticeBanner" style="display: none; background: #FFFBEB; border-bottom: 1px solid #FDE68A; padding: 0.65rem 1.5rem; font-size: 0.85rem; color: #92400E;">
+    <div class="container-wide" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <span>⚡ <strong>Evaluation Demo Mode Active:</strong> You are currently preserving records locally. Connect your real Supabase keys to synchronize to the cloud.</span>
+      </div>
+      <button id="btnConfigureSupabase" class="btn btn-sm btn-secondary" style="padding: 0.25rem 0.65rem; font-size: 0.775rem;">
+        Connect Supabase Keys
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Dashboard Container -->
+  <main class="dashboard-main">
+    <div class="container-wide">
+
+      <!-- Mandatory Medical Privacy Safeguard Banner -->
+      <div class="privacy-notice-box" style="margin-bottom: 1.75rem;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0110 0v4"></path>
+        </svg>
+        <div>
+          <strong>PERSONAL CLINICAL DATA RESERVATION &amp; CONFIDENTIALITY (Dr. Rabeya Basri Vault):</strong><br>
+          Under strict medical ethics and data protection rules, patient personal identifying information (names, phones, addresses) is never stored in surgical notes. All preserved cases are anonymized under sequential Case IDs (e.g. <code>2026-0001</code>).
+        </div>
+      </div>
+
+      <!-- ==============================================================================
+           TAB 1: OVERVIEW & COUNTERS
+           ============================================================================== -->
+      <div class="admin-tab-pane active" id="tab-overview">
+
+        <!-- Hero Lifetime Patients Counter Card -->
+        <div class="counter-card-hero">
+          <div>
+            <div class="hero-counter-title">✨ Total Patients Served Counter</div>
+            <div class="hero-counter-number">
+              <span id="statHeroTotalPatients">4,507</span>
+              <span style="font-size: 1.5rem; font-weight: 600; opacity: 0.85;">Patients</span>
+            </div>
+            <div class="hero-counter-sub">
+              Career clinical milestone combining historical patient care with live database surgeries &amp; patient visits.
+            </div>
+          </div>
+
+          <div class="hero-mini-grid">
+            <div class="hero-mini-stat">
+              <div class="hero-mini-num" id="statHeroSurgeriesCount">0</div>
+              <div class="hero-mini-label">Surgeries Reserved</div>
+            </div>
+            <div class="hero-mini-stat">
+              <div class="hero-mini-num" id="statHeroBabiesCount">0</div>
+              <div class="hero-mini-label">Babies Delivered</div>
+            </div>
+            <div class="hero-mini-stat">
+              <div class="hero-mini-num" id="statHeroGynaeCount">0</div>
+              <div class="hero-mini-label">Gynecologic Cases</div>
+            </div>
+            <div class="hero-mini-stat">
+              <div class="hero-mini-num" id="statHeroSafetyRate">99.4%</div>
+              <div class="hero-mini-label">Success &amp; Safety</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Date Metrics Counter Cards Grid -->
+        <div class="stats-grid">
+          <!-- 1. Today's Surgeries -->
+          <div class="stat-card">
+            <div class="stat-meta">
+              <span class="stat-label">Today's Cases</span>
+              <span class="stat-value" id="statToday">0</span>
+            </div>
+            <div class="stat-icon pink">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 14 14"></polyline>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 2. This Week -->
+          <div class="stat-card">
+            <div class="stat-meta">
+              <span class="stat-label">This Week</span>
+              <span class="stat-value" id="statWeek">0</span>
+            </div>
+            <div class="stat-icon teal">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 3. This Month -->
+          <div class="stat-card">
+            <div class="stat-meta">
+              <span class="stat-label">This Month</span>
+              <span class="stat-value" id="statMonth">0</span>
+            </div>
+            <div class="stat-icon green">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 4. This Year -->
+          <div class="stat-card">
+            <div class="stat-meta">
+              <span class="stat-label">This Year</span>
+              <span class="stat-value" id="statYear">0</span>
+            </div>
+            <div class="stat-icon purple">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 5. Complication Rate -->
+          <div class="stat-card">
+            <div class="stat-meta">
+              <span class="stat-label">Complication Rate</span>
+              <span class="stat-value" id="statComplicationRate" style="color: #0E7490;">0.0%</span>
+            </div>
+            <div class="stat-icon teal">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Analytics Charts Grid -->
+        <div class="charts-grid charts-grid-main">
+          <!-- Chart 1: Monthly Surgical Volume Trend -->
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3 class="chart-title">Surgical Volume Trend</h3>
+              <span class="badge badge-primary">Monthly Timeline</span>
+            </div>
+            <div class="chart-canvas-wrapper">
+              <canvas id="volumeTrendChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Chart 2: Procedure Breakdown -->
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3 class="chart-title">Procedure Breakdown</h3>
+              <span class="badge badge-secondary">All Time</span>
+            </div>
+            <div class="chart-canvas-wrapper">
+              <canvas id="procedureBreakdownChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="charts-grid charts-grid-sub">
+          <!-- Chart 3: Emergency vs Elective -->
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3 class="chart-title">Urgency Ratio</h3>
+              <span class="badge badge-purple">Elective vs Emergency</span>
+            </div>
+            <div class="chart-canvas-wrapper">
+              <canvas id="urgencyChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Chart 4: Outcomes & Complications -->
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3 class="chart-title">Clinical Outcomes</h3>
+              <span class="badge badge-success">Quality Assurance</span>
+            </div>
+            <div class="chart-canvas-wrapper">
+              <canvas id="outcomeChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ==============================================================================
+           TAB 2: SURGICAL DATA REGISTRY & CASES
+           ============================================================================== -->
+      <div class="admin-tab-pane" id="tab-records">
+        <div class="records-section">
+          <!-- Table Toolbar & Filters -->
+          <div class="records-header">
+            <div class="records-title-row">
+              <div>
+                <h2 class="records-title">Surgical Registry &amp; Procedure Log</h2>
+                <div style="font-size: 0.825rem; color: var(--slate-500); margin-top: 0.2rem;" id="filteredRecordsCount">
+                  Loading records...
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <button id="btnExportCsv" class="btn btn-outline-secondary btn-sm" title="Export Filtered List to CSV">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  <span>Export to Excel CSV</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Multi-criteria Filter Bar -->
+            <div class="filters-toolbar">
+              <div class="search-input-box">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="searchInput" class="form-control" placeholder="Search Case ID, procedure, hospital, notes...">
+              </div>
+
+              <select id="categoryFilter" class="filter-select">
+                <option value="all">All Categories</option>
+                <option value="Obstetric">Obstetric</option>
+                <option value="Gynecologic">Gynecologic</option>
+                <option value="General">General</option>
+              </select>
+
+              <select id="procedureFilter" class="filter-select">
+                <option value="all">All Procedures</option>
+              </select>
+
+              <select id="urgencyFilter" class="filter-select">
+                <option value="all">All Urgency</option>
+                <option value="Elective">Elective</option>
+                <option value="Emergency">Emergency</option>
+              </select>
+
+              <select id="outcomeFilter" class="filter-select">
+                <option value="all">All Outcomes</option>
+                <option value="Successful">Successful</option>
+                <option value="Complication">Complication</option>
+                <option value="Referred">Referred</option>
+              </select>
+
+              <!-- Date Range Inputs -->
+              <input type="date" id="startDateFilter" class="filter-select" title="From Date">
+              <input type="date" id="endDateFilter" class="filter-select" title="To Date">
+
+              <button id="btnFilterToday" class="btn btn-ghost btn-sm" style="font-size: 0.8rem;">Today</button>
+              <button id="btnFilterThisMonth" class="btn btn-ghost btn-sm" style="font-size: 0.8rem;">This Month</button>
+              <button id="btnFilterClear" class="btn btn-ghost btn-sm" style="font-size: 0.8rem; color: #EF4444;">Reset</button>
+            </div>
+          </div>
+
+          <!-- Table Loading Spinner -->
+          <div id="tableLoadingIndicator" style="display: none; padding: 2rem; text-align: center; color: var(--slate-500);">
+            <span>Loading surgical entries...</span>
+          </div>
+
+          <!-- Table Responsive Container -->
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Case ID</th>
+                  <th>Date &amp; Time</th>
+                  <th>Procedure</th>
+                  <th>Category &amp; Details</th>
+                  <th>Hospital</th>
+                  <th>Outcome</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="surgeriesTableBody">
+                <!-- Dynamically rendered via dashboard.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==============================================================================
+           TAB 3: PATIENT APPOINTMENTS & INQUIRIES
+           ============================================================================== -->
+      <div class="admin-tab-pane" id="tab-appointments">
+        <div class="records-section">
+          <div class="records-header">
+            <div class="records-title-row">
+              <div>
+                <h2 class="records-title">Patient Appointments &amp; Consultation Requests</h2>
+                <div style="font-size: 0.825rem; color: var(--slate-500); margin-top: 0.2rem;">
+                  Public booking requests submitted through your website chambers and contact forms.
+                </div>
+              </div>
+              <button id="btnRefreshAppointments" class="btn btn-outline-secondary btn-sm">
+                🔄 Refresh Appointments
+              </button>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Patient Name</th>
+                  <th>Contact Phone</th>
+                  <th>Preferred Date</th>
+                  <th>Chamber Location</th>
+                  <th>Requested Service</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="appointmentsTableBody">
+                <!-- Rendered dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==============================================================================
+           TAB 4: DATA RESERVATION & BACKUP VAULT
+           ============================================================================== -->
+      <div class="admin-tab-pane" id="tab-vault">
+        <div class="vault-card">
+          <h2 style="font-size: 1.35rem; font-weight: 800; color: var(--slate-900); margin-bottom: 0.5rem;">
+            🔒 Personal Data Reservation &amp; Vault Center
+          </h2>
+          <p style="font-size: 0.95rem; color: var(--slate-600); margin-bottom: 2rem;">
+            Preserve and protect your clinical logbook. You can export complete machine-readable archives or spreadsheet reports anytime.
+          </p>
+
+          <div class="vault-grid">
+            <!-- Action 1: Export Complete JSON Archive -->
+            <div class="vault-action-box">
+              <div style="width: 50px; height: 50px; border-radius: var(--radius-md); background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+              </div>
+              <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--slate-900); margin-bottom: 0.5rem;">
+                Download Full JSON Backup Vault
+              </h3>
+              <p style="font-size: 0.85rem; color: var(--slate-600); margin-bottom: 1.25rem;">
+                Downloads every surgery, neonatal metric, complication note, and appointment into a portable JSON archive file.
+              </p>
+              <button id="btnDownloadJsonBackup" class="btn btn-primary btn-sm">
+                Download JSON Vault Archive
+              </button>
+            </div>
+
+            <!-- Action 2: Import / Restore JSON Backup -->
+            <div class="vault-action-box">
+              <div style="width: 50px; height: 50px; border-radius: var(--radius-md); background: var(--secondary-light); color: var(--secondary); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="17 8 12 3 7 8"></polyline>
+                  <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+              </div>
+              <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--slate-900); margin-bottom: 0.5rem;">
+                Restore / Import Backup File
+              </h3>
+              <p style="font-size: 0.85rem; color: var(--slate-600); margin-bottom: 1.25rem;">
+                Upload a previously downloaded JSON vault file to restore your preserved surgical cases.
+              </p>
+              <input type="file" id="importJsonFileInput" accept=".json" style="display: none;">
+              <button id="btnTriggerJsonImport" class="btn btn-outline-secondary btn-sm">
+                Select Backup File to Restore
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==============================================================================
+           TAB 5: ADMIN SETTINGS & PRACTICE CONFIGURATION
+           ============================================================================== -->
+      <div class="admin-tab-pane" id="tab-settings">
+        <div class="vault-card">
+          <h2 style="font-size: 1.35rem; font-weight: 800; color: var(--slate-900); margin-bottom: 0.5rem;">
+            ⚙️ Admin Practice Settings &amp; Patient Counter Configuration
+          </h2>
+          <p style="font-size: 0.95rem; color: var(--slate-600); margin-bottom: 2rem;">
+            Customize your doctor profile and calibrate your career patient counter.
+          </p>
+
+          <form id="adminSettingsForm" style="max-width: 600px;">
+            <div class="form-group">
+              <label class="form-label" for="settingDoctorName">Doctor's Official Name</label>
+              <input type="text" id="settingDoctorName" class="form-control" value="Dr. Rabeya Basri" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="settingCareerPatientsBase">
+                Baseline Career Patients Served (Prior to digital registry)
+              </label>
+              <input type="number" id="settingCareerPatientsBase" class="form-control" min="0" value="4500" required>
+              <div class="form-hint">
+                This number is added to your active database surgeries and patient visits to produce your total lifetime patients served counter.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="settingClinicEmail">Clinical Notification Email</label>
+              <input type="email" id="settingClinicEmail" class="form-control" value="dr.rabeyabasri@example.com">
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">
+              Save Admin Settings
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- ==============================================================================
+           TAB 6: DYNAMIC WEBSITE CONTENT & SECTION EDITOR (CMS)
+           ============================================================================== -->
+      <div class="admin-tab-pane" id="tab-cms">
+        <div class="vault-card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--slate-200);">
+            <div>
+              <h2 style="font-size: 1.45rem; font-weight: 800; color: var(--slate-900);">
+                🎨 Live Website Content &amp; Section Editor
+              </h2>
+              <p style="font-size: 0.95rem; color: var(--slate-600); margin-top: 0.25rem;">
+                Edit any text, headings, statistics, credentials, or chamber schedules across your entire website. Changes update instantly!
+              </p>
+            </div>
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <a href="index.html" target="_blank" class="btn btn-outline-secondary btn-sm">
+                👁️ View Live Website
+              </a>
+              <button type="button" id="btnExportCmsJson" class="btn btn-outline-primary btn-sm" title="Download permanent site_content.json file">
+                📥 Download Backup (JSON)
+              </button>
+              <button type="button" id="btnResetCmsDefaults" class="btn btn-ghost btn-sm" style="color: #EF4444;">
+                🔄 Reset to Defaults
+              </button>
+            </div>
+          </div>
+
+          <div style="background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: var(--radius-md); padding: 0.75rem 1rem; margin-bottom: 1.5rem; font-size: 0.85rem; color: #065F46; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+            <span>💾 <strong>Permanent Storage Active:</strong> When you click "Save &amp; Publish", changes are written directly to <code>site_content.json</code> and website files on disk, ensuring your edits persist permanently across reloads and deployments.</span>
+          </div>
+
+          <form id="cmsContentForm">
+            <!-- 1. Doctor Profile & Header Brand -->
+            <div style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.5rem;">
+              <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--slate-900); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                <span>🩺</span> Section 1: Doctor Profile &amp; Contact Information
+              </h3>
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Doctor's Official Name</label>
+                  <input type="text" id="cms_doctor_name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Specialty Title / Subtitle</label>
+                  <input type="text" id="cms_doctor_title" class="form-control" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Degrees &amp; Certifications</label>
+                <input type="text" id="cms_doctor_degrees" class="form-control" required>
+              </div>
+              <div class="form-row form-row-3">
+                <div class="form-group">
+                  <label class="form-label">BMDC Registration No.</label>
+                  <input type="text" id="cms_doctor_bmdc_reg" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Primary Appointment Phone</label>
+                  <input type="text" id="cms_doctor_primary_phone" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Alternate Phone / Serial Desk</label>
+                  <input type="text" id="cms_doctor_alt_phone" class="form-control">
+                </div>
+              </div>
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Clinical Notification Email</label>
+                  <input type="email" id="cms_doctor_email" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Emergency 24/7 OT Hotline</label>
+                  <input type="text" id="cms_doctor_emergency_hotline" class="form-control">
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Homepage Hero Banner & Credentials -->
+            <div style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.5rem;">
+              <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--slate-900); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                <span>✨</span> Section 2: Homepage Hero Banner &amp; Statistics
+              </h3>
+              <div class="form-group">
+                <label class="form-label">Hero Badge / Pill Tag</label>
+                <input type="text" id="cms_hero_pill_text" class="form-control">
+              </div>
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Main Heading Line 1</label>
+                  <input type="text" id="cms_hero_title_main" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Main Heading Line 2 (Highlighted Gradient Text)</label>
+                  <input type="text" id="cms_hero_title_highlight" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Hero Description / Subtitle</label>
+                <textarea id="cms_hero_subtitle" class="form-control" style="min-height: 80px;"></textarea>
+              </div>
+              <div style="font-weight: 700; font-size: 0.85rem; color: var(--slate-800); margin: 1rem 0 0.5rem;">Hero Credential Counters:</div>
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Stat 1 (e.g. 15+ &amp; Experience)</label>
+                  <div style="display: flex; gap: 0.5rem;">
+                    <input type="text" id="cms_hero_stat1_num" class="form-control" style="max-width: 100px;">
+                    <input type="text" id="cms_hero_stat1_label" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Stat 2 (e.g. 4,500+ &amp; Deliveries)</label>
+                  <div style="display: flex; gap: 0.5rem;">
+                    <input type="text" id="cms_hero_stat2_num" class="form-control" style="max-width: 100px;">
+                    <input type="text" id="cms_hero_stat2_label" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Stat 3 (e.g. 99.4% &amp; Safety)</label>
+                  <div style="display: flex; gap: 0.5rem;">
+                    <input type="text" id="cms_hero_stat3_num" class="form-control" style="max-width: 100px;">
+                    <input type="text" id="cms_hero_stat3_label" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Stat 4 (e.g. 4 &amp; Hospitals)</label>
+                  <div style="display: flex; gap: 0.5rem;">
+                    <input type="text" id="cms_hero_stat4_num" class="form-control" style="max-width: 100px;">
+                    <input type="text" id="cms_hero_stat4_label" class="form-control">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. About Page Biography & Philosophy -->
+            <div style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.5rem;">
+              <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--slate-900); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                <span>📖</span> Section 3: About Page Biography &amp; Philosophy
+              </h3>
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label class="form-label">About Page Banner Badge / Tag</label>
+                  <input type="text" id="cms_about_banner_tag" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Biography Heading (Main Headline)</label>
+                  <input type="text" id="cms_about_bio_heading" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Biography Paragraph 1</label>
+                <textarea id="cms_about_bio_p1" class="form-control" style="min-height: 90px;"></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Biography Paragraph 2</label>
+                <textarea id="cms_about_bio_p2" class="form-control" style="min-height: 90px;"></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Biography Paragraph 3</label>
+                <textarea id="cms_about_bio_p3" class="form-control" style="min-height: 90px;"></textarea>
+              </div>
+              <div class="form-row form-row-2" style="margin-top: 1rem;">
+                <div class="form-group">
+                  <label class="form-label">Philosophy Pillar 1 (Title &amp; Desc)</label>
+                  <input type="text" id="cms_about_pillar1_title" class="form-control" style="margin-bottom: 0.5rem;">
+                  <textarea id="cms_about_pillar1_desc" class="form-control" style="min-height: 70px;"></textarea>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Philosophy Pillar 2 (Title &amp; Desc)</label>
+                  <input type="text" id="cms_about_pillar2_title" class="form-control" style="margin-bottom: 0.5rem;">
+                  <textarea id="cms_about_pillar2_desc" class="form-control" style="min-height: 70px;"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. Website Main Headlines & Page Banners -->
+            <div style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.5rem;">
+              <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--slate-900); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                <span>📢</span> Section 4: Main Headlines &amp; Page Banners
+              </h3>
+              <p style="font-size: 0.85rem; color: var(--slate-600); margin-bottom: 1.25rem;">
+                Customize the main section headlines, badge tags, and subheadings across all pages of your website.
+              </p>
+
+              <!-- Group A: Specialties & Services Headlines -->
+              <div style="background: var(--white); border: 1px solid var(--slate-200); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1rem;">
+                <div style="font-weight: 700; color: var(--primary); margin-bottom: 0.75rem;">Homepage Clinical Specialties Section Headlines</div>
+                <div class="form-row form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Specialties Section Title (Main Headline)</label>
+                    <input type="text" id="cms_specialties_title" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Specialties Badge / Tag</label>
+                    <input type="text" id="cms_specialties_tag" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                  <label class="form-label">Specialties Section Subtitle / Description</label>
+                  <textarea id="cms_specialties_desc" class="form-control" style="min-height: 60px;"></textarea>
+                </div>
+              </div>
+
+              <!-- Group B: Credentials & Qualifications Headlines -->
+              <div style="background: var(--white); border: 1px solid var(--slate-200); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1rem;">
+                <div style="font-weight: 700; color: var(--secondary); margin-bottom: 0.75rem;">Qualifications &amp; Hospital Attachments Section Headlines</div>
+                <div class="form-row form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Credentials Section Title (Main Headline)</label>
+                    <input type="text" id="cms_credentials_title" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Credentials Badge / Tag</label>
+                    <input type="text" id="cms_credentials_tag" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                  <label class="form-label">Credentials Section Description</label>
+                  <textarea id="cms_credentials_desc" class="form-control" style="min-height: 60px;"></textarea>
+                </div>
+              </div>
+
+              <!-- Group C: Appointment Booking Section Headlines -->
+              <div style="background: var(--white); border: 1px solid var(--slate-200); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1rem;">
+                <div style="font-weight: 700; color: var(--slate-800); margin-bottom: 0.75rem;">Online Appointment Booking Section Headlines</div>
+                <div class="form-row form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Appointment Section Title (Main Headline)</label>
+                    <input type="text" id="cms_appointment_title" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Appointment Badge / Tag</label>
+                    <input type="text" id="cms_appointment_tag" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                  <label class="form-label">Appointment Subtitle / Instructions</label>
+                  <input type="text" id="cms_appointment_subtitle" class="form-control">
+                </div>
+              </div>
+
+              <!-- Group D: Services Page Banner Headlines -->
+              <div style="background: var(--white); border: 1px solid var(--slate-200); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1rem;">
+                <div style="font-weight: 700; color: var(--primary); margin-bottom: 0.75rem;">Services Page Banner Headlines</div>
+                <div class="form-row form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Services Page Main Title</label>
+                    <input type="text" id="cms_services_banner_title" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Services Page Badge / Tag</label>
+                    <input type="text" id="cms_services_banner_tag" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                  <label class="form-label">Services Page Description</label>
+                  <textarea id="cms_services_banner_desc" class="form-control" style="min-height: 60px;"></textarea>
+                </div>
+              </div>
+
+              <!-- Group E: Contact & Chambers Page Banner Headlines -->
+              <div style="background: var(--white); border: 1px solid var(--slate-200); border-radius: var(--radius-md); padding: 1.25rem;">
+                <div style="font-weight: 700; color: var(--secondary); margin-bottom: 0.75rem;">Chamber &amp; Contact Page Banner Headlines</div>
+                <div class="form-row form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Contact Page Main Title</label>
+                    <input type="text" id="cms_chambers_banner_title" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Contact Page Badge / Tag</label>
+                    <input type="text" id="cms_chambers_banner_tag" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                  <label class="form-label">Contact Page Description</label>
+                  <textarea id="cms_chambers_banner_desc" class="form-control" style="min-height: 60px;"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5. Chambers, Visiting Hours & Contact Schedules (Dynamic Add / Remove) -->
+            <div style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.5rem;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
+                <div>
+                  <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--slate-900); margin: 0; display: flex; align-items: center; gap: 0.5rem;">
+                    <span>🏥</span> Section 5: Chamber Locations &amp; Visiting Hours
+                  </h3>
+                  <div style="font-size: 0.85rem; color: var(--slate-500); margin-top: 0.25rem;">
+                    Add or remove chamber locations as needed. Changes sync across booking dropdowns, schedules, and footer.
+                  </div>
+                </div>
+                <button type="button" id="btnAddChamberRow" class="btn btn-primary btn-sm" style="display: flex; align-items: center; gap: 0.4rem; font-weight: 600;">
+                  <span>➕</span> Add New Chamber
+                </button>
+              </div>
+
+              <!-- Dynamic Chambers Container -->
+              <div id="cmsChambersContainer" style="display: flex; flex-direction: column; gap: 1rem;">
+                <!-- Populated dynamically via JS -->
+              </div>
+
+              <button type="button" id="btnAddChamberRowBottom" class="btn btn-outline-primary" style="width: 100%; border-style: dashed; padding: 0.85rem; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 1rem;">
+                <span>➕</span> Add Another Chamber Location
+              </button>
+            </div>
+
+            <!-- 6. Footer & Copyright -->
+            <div style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 2rem;">
+              <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--slate-900); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                <span>🌐</span> Section 6: Footer &amp; Copyright Notice
+              </h3>
+              <div class="form-group">
+                <label class="form-label">Footer About Text</label>
+                <textarea id="cms_footer_about_text" class="form-control" style="min-height: 70px;"></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Copyright Notice Line</label>
+                <input type="text" id="cms_footer_copyright_text" class="form-control">
+              </div>
+            </div>
+
+            <!-- Submit Button Bar -->
+            <div style="display: flex; gap: 1rem; align-items: center; justify-content: flex-end; position: sticky; bottom: 1rem; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); padding: 1rem 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--slate-200); box-shadow: var(--shadow-xl);">
+              <span style="font-size: 0.85rem; color: var(--slate-500);">Unsaved changes will not appear on public site until saved.</span>
+              <button type="submit" id="btnSaveCmsContent" class="btn btn-primary btn-lg">
+                💾 Save &amp; Publish All Website Changes
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ==============================================================================
+       ADD / EDIT SURGERY MODAL
+       ============================================================================== -->
+  <div class="modal-backdrop" id="surgeryModal">
+    <div class="modal-dialog modal-dialog-lg">
+      <div class="modal-header">
+        <h3 class="modal-title" id="surgeryModalTitle">Add Surgical Procedure Note</h3>
+        <button class="modal-close-btn" data-close-modal="surgeryModal" aria-label="Close modal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="privacy-notice-box" style="margin-bottom: 1.25rem; font-size: 0.8rem; padding: 0.65rem 0.85rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0110 0v4"></path>
+          </svg>
+          <div>
+            <strong>Confidentiality Assurance:</strong> Case records are anonymized. Do not enter patient names or identifiers.
+          </div>
+        </div>
+
+        <form id="surgeryForm">
+          <!-- Row 1: Case ID, Date, Time -->
+          <div class="form-row form-row-3">
+            <div class="form-group">
+              <label class="form-label" for="formCaseId">Case ID <span class="required">*</span></label>
+              <div style="display: flex; gap: 0.35rem;">
+                <input type="text" id="formCaseId" class="form-control" placeholder="e.g. 2026-0001" required>
+                <button type="button" id="btnRefreshCaseId" class="btn-icon" title="Generate Next Case ID">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="23 4 23 10 17 10"></polyline>
+                    <polyline points="1 20 1 14 7 14"></polyline>
+                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="formSurgeryDate">Surgery Date <span class="required">*</span></label>
+              <input type="date" id="formSurgeryDate" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="formSurgeryTime">Surgery Time</label>
+              <input type="time" id="formSurgeryTime" class="form-control">
+            </div>
+          </div>
+
+          <!-- Row 2: Procedure Type, Category, Urgency -->
+          <div class="form-row form-row-3">
+            <div class="form-group">
+              <label class="form-label" for="formProcedureType">Procedure Type <span class="required">*</span></label>
+              <select id="formProcedureType" class="form-control" required>
+                <optgroup label="Obstetric Procedures">
+                  <option value="Cesarean Section (LSCS)">Cesarean Section (LSCS)</option>
+                  <option value="Normal Vaginal Delivery (NVD)">Normal Vaginal Delivery (NVD)</option>
+                  <option value="Assisted Vaginal Delivery (Ventouse/Forceps)">Assisted Vaginal Delivery</option>
+                  <option value="Cesarean Section (LSCS) - Twins">Cesarean Section (LSCS) - Twins</option>
+                  <option value="Ectopic Pregnancy Salpingectomy">Ectopic Pregnancy Salpingectomy</option>
+                  <option value="Cervical Encirclage (McDonald Stitch)">Cervical Encirclage (McDonald Stitch)</option>
+                  <option value="Other Obstetric Surgery">Other Obstetric Surgery</option>
+                </optgroup>
+
+                <optgroup label="Gynecologic Surgeries">
+                  <option value="Total Abdominal Hysterectomy (TAH)">Total Abdominal Hysterectomy (TAH)</option>
+                  <option value="Vaginal Hysterectomy (VH / Pelvic Floor Repair)">Vaginal Hysterectomy (VH / Repair)</option>
+                  <option value="Laparoscopic Assisted Vaginal Hysterectomy (LAVH)">Laparoscopic Vaginal Hysterectomy (LAVH)</option>
+                  <option value="Laparoscopic Total Hysterectomy (TLH)">Total Laparoscopic Hysterectomy (TLH)</option>
+                  <option value="Abdominal Myomectomy">Abdominal Myomectomy (Fibroid Excision)</option>
+                  <option value="Laparoscopic Myomectomy">Laparoscopic Myomectomy</option>
+                  <option value="Laparoscopic Ovarian Cystectomy">Laparoscopic Ovarian Cystectomy</option>
+                  <option value="Laparotomy / Ovarian Mass Excision">Laparotomy / Ovarian Mass Excision</option>
+                  <option value="Diagnostic Laparoscopy & Chromopertubation">Diagnostic Laparoscopy (Infertility)</option>
+                  <option value="Dilatation and Curettage (D&C / MVA)">D&amp;C / MVA</option>
+                  <option value="Tubal Ligation / Sterilization">Tubal Ligation / Sterilization</option>
+                  <option value="Other Gynecologic Surgery">Other Gynecologic Surgery</option>
+                </optgroup>
+
+                <optgroup label="General Procedures">
+                  <option value="Exploratory Laparotomy (General/Gynae)">Exploratory Laparotomy</option>
+                  <option value="Appendectomy in Pregnancy">Appendectomy in Pregnancy</option>
+                  <option value="Other General Surgery">Other General Surgery</option>
+                </optgroup>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="formCategory">Category <span class="required">*</span></label>
+              <select id="formCategory" class="form-control" required>
+                <option value="Obstetric">Obstetric</option>
+                <option value="Gynecologic">Gynecologic</option>
+                <option value="General">General</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="formUrgency">Urgency <span class="required">*</span></label>
+              <select id="formUrgency" class="form-control" required>
+                <option value="Elective">Elective</option>
+                <option value="Emergency">Emergency</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Dynamic Delivery & Neonatal Metrics Box (Shown for Deliveries/Obstetric) -->
+          <div id="deliveryFieldsSection" class="delivery-details-section">
+            <div class="delivery-details-header">
+              👶 Delivery &amp; Neonatal Outcome Metrics
+            </div>
+
+            <div class="form-row form-row-3">
+              <div class="form-group">
+                <label class="form-label" for="formBabyCount">Number of Babies</label>
+                <select id="formBabyCount" class="form-control">
+                  <option value="1">Single (1)</option>
+                  <option value="2">Twins (2)</option>
+                  <option value="3">Triplets (3+)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="formBabyGender">Baby Gender</label>
+                <select id="formBabyGender" class="form-control">
+                  <option value="Female">Female</option>
+                  <option value="Male">Male</option>
+                  <option value="Male & Female (Twins)">Male &amp; Female (Twins)</option>
+                  <option value="Both Female (Twins)">Both Female (Twins)</option>
+                  <option value="Both Male (Twins)">Both Male (Twins)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="formBirthWeight">Birth Weight (kg)</label>
+                <input type="number" step="0.01" min="0.5" max="7.0" id="formBirthWeight" class="form-control" placeholder="e.g. 3.25">
+              </div>
+            </div>
+
+            <div class="form-row form-row-3" style="margin-top: 0.5rem;">
+              <div class="form-group">
+                <label class="form-label" for="formApgarScore">Apgar Score (1 min / 5 min)</label>
+                <input type="text" id="formApgarScore" class="form-control" placeholder="e.g. 8/9 or 9/10">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="formMotherAgeGroup">Mother's Age Group</label>
+                <select id="formMotherAgeGroup" class="form-control">
+                  <option value="<20">&lt; 20 years</option>
+                  <option value="20-25" selected>20 - 25 years</option>
+                  <option value="26-30">26 - 30 years</option>
+                  <option value="31-35">31 - 35 years</option>
+                  <option value="36-40">36 - 40 years</option>
+                  <option value=">40">&gt; 40 years</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="formPreviousCSections">Previous C-Sections</label>
+                <select id="formPreviousCSections" class="form-control">
+                  <option value="0">0 (First Delivery / Primary)</option>
+                  <option value="1">1 Previous C-Section</option>
+                  <option value="2">2 Previous C-Sections</option>
+                  <option value="3">3+ Previous C-Sections</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 3: Anesthesia, Duration, Outcome -->
+          <div class="form-row form-row-3">
+            <div class="form-group">
+              <label class="form-label" for="formAnesthesia">Anesthesia Type</label>
+              <select id="formAnesthesia" class="form-control">
+                <option value="Spinal">Spinal Anesthesia</option>
+                <option value="Epidural">Epidural Analgesia</option>
+                <option value="General">General Anesthesia</option>
+                <option value="Local">Local Anesthesia</option>
+                <option value="Sedation">Sedation</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="formDuration">Duration (Minutes)</label>
+              <input type="number" min="5" max="600" id="formDuration" class="form-control" placeholder="e.g. 45">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="formOutcome">Clinical Outcome <span class="required">*</span></label>
+              <select id="formOutcome" class="form-control" required>
+                <option value="Successful">Successful</option>
+                <option value="Complication">Complication</option>
+                <option value="Referred">Referred</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Conditional Complication Details Box -->
+          <div class="form-group" id="complicationDetailsGroup" style="display: none;">
+            <label class="form-label" for="formComplicationDetails" style="color: #B45309;">
+              Complication Details &amp; Management <span class="required">*</span>
+            </label>
+            <input type="text" id="formComplicationDetails" class="form-control" placeholder="Describe intraoperative/postoperative issue...">
+          </div>
+
+          <!-- Hospital / Facility Name -->
+          <div class="form-group">
+            <label class="form-label" for="formHospitalName">Hospital / OT Facility <span class="required">*</span></label>
+            <input type="text" id="formHospitalName" class="form-control" list="hospitalSuggestions" placeholder="Dinajpur Medical College, Hospital" value="Dinajpur Medical College, Hospital" required>
+            <datalist id="hospitalSuggestions">
+              <option value="Dinajpur Medical College, Hospital">
+            </datalist>
+          </div>
+
+          <!-- Notes / Surgical Findings -->
+          <div class="form-group">
+            <label class="form-label" for="formNotes">Surgeon's Operative Notes &amp; Findings</label>
+            <textarea id="formNotes" class="form-control" placeholder="Indication, incision, blood loss, findings, placenta delivery, drain..."></textarea>
+          </div>
+
+          <div class="modal-footer" style="padding-left: 0; padding-right: 0; margin-bottom: -0.5rem;">
+            <button type="button" class="btn btn-ghost" data-close-modal="surgeryModal">Cancel</button>
+            <button type="submit" id="surgeryModalSubmitBtn" class="btn btn-primary">
+              Save Surgical Record
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==============================================================================
+       VIEW DETAILS MODAL
+       ============================================================================== -->
+  <div class="modal-backdrop" id="detailsModal">
+    <div class="modal-dialog modal-dialog-lg">
+      <div class="modal-header">
+        <h3 class="modal-title">Surgical Note Overview</h3>
+        <button class="modal-close-btn" data-close-modal="detailsModal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body" id="surgeryDetailsContent"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" onclick="window.print()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
+          </svg>
+          Print Operative Note
+        </button>
+        <button type="button" class="btn btn-ghost btn-sm" data-close-modal="detailsModal">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==============================================================================
+       DELETE CONFIRMATION MODAL
+       ============================================================================== -->
+  <div class="modal-backdrop" id="deleteModal">
+    <div class="modal-dialog" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 class="modal-title" style="color: #DC2626;">Confirm Deletion</h3>
+        <button class="modal-close-btn" data-close-modal="deleteModal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.95rem; color: var(--slate-700); margin-bottom: 0.5rem;">
+          Are you sure you want to permanently delete this surgical entry?
+        </p>
+        <div style="font-weight: 700; color: var(--slate-900); background: var(--slate-100); padding: 0.75rem 1rem; border-radius: var(--radius-sm);" id="deleteTargetCaseId">
+          -
+        </div>
+        <p style="font-size: 0.8rem; color: #DC2626; margin-top: 0.75rem;">
+          ⚠️ This action cannot be reversed.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-ghost" data-close-modal="deleteModal">Cancel</button>
+        <button type="button" id="btnExecuteDelete" class="btn btn-danger">
+          Yes, Delete Record
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==============================================================================
+       SUPABASE CREDENTIALS CONFIG MODAL
+       ============================================================================== -->
+  <div class="modal-backdrop" id="supabaseConfigModal">
+    <div class="modal-dialog" style="max-width: 520px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Supabase Credentials Setup</h3>
+        <button class="modal-close-btn" data-close-modal="supabaseConfigModal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.875rem; color: var(--slate-600); margin-bottom: 1.25rem;">
+          Paste your Supabase Project URL and Public Anonymous Key from your Supabase Dashboard (<span style="font-family: monospace;">Project Settings &rarr; API</span>).
+        </p>
+        <form id="supabaseConfigForm">
+          <div class="form-group">
+            <label class="form-label" for="cfgSupabaseUrl">Supabase Project URL</label>
+            <input type="url" id="cfgSupabaseUrl" class="form-control" placeholder="https://your-project.supabase.co" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cfgSupabaseAnonKey">Supabase Anon Public Key</label>
+            <input type="text" id="cfgSupabaseAnonKey" class="form-control" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6..." required>
+          </div>
+          <div class="modal-footer" style="padding-left: 0; padding-right: 0; margin-bottom: -0.5rem;">
+            <button type="button" class="btn btn-ghost" data-close-modal="supabaseConfigModal">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Credentials</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="assets/js/supabase-config.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/db.js"></script>
+  <script src="assets/js/site-content.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+</body>
+</html>

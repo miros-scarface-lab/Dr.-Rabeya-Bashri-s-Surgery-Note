@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Rabeya Basri | Consultant Obstetrician, Gynecologist & Laparoscopic Surgeon</title>
+  <meta name="description" content="Official clinical website of Dr. Rabeya Basri - Consultant Obstetrician & Gynecologist specializing in C-sections, normal deliveries, and advanced gynecologic surgeries.">
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+  
+  <!-- Supabase JS CDN (Official) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <!-- Site Navigation Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <!-- Brand / Doctor Name -->
+        <a href="index.html" class="brand-link" id="siteBrandLink">
+          <div class="brand-icon">
+            <!-- Medical Cross / Mother-Child Icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v20M2 12h20M7 7l10 10M17 7L7 17"></path>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <!-- [PLACEHOLDER: DOCTOR'S NAME] -->
+            <span class="brand-name" data-cms="doctor.name">Dr. Rabeya Basri</span>
+            <span class="brand-sub" data-cms="doctor.title">Obstetrics &amp; Gynecology Surgeon</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="desktop-nav" aria-label="Main Navigation">
+          <a href="index.html" class="nav-link active">Home</a>
+          <a href="about.html" class="nav-link">About &amp; Credentials</a>
+          <a href="services.html" class="nav-link">Surgical Services</a>
+          <a href="contact.html" class="nav-link">Contact &amp; Chambers</a>
+        </nav>
+
+        <!-- Header Actions: Portal & Mobile Toggle -->
+        <div class="header-actions">
+          <a href="login.html" class="btn-doctor-portal" title="Doctor Secure Login">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0110 0v4"></path>
+            </svg>
+            <span>Doctor Portal</span>
+          </a>
+          <a href="contact.html" class="btn btn-primary btn-sm" style="display: none;" id="headerBookBtn">Book Visit</a>
+          
+          <button class="mobile-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav-drawer" id="mobileNavDrawer">
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="about.html" class="nav-link">About &amp; Credentials</a>
+      <a href="services.html" class="nav-link">Surgical Services</a>
+      <a href="contact.html" class="nav-link">Contact &amp; Chambers</a>
+      <a href="login.html" class="btn btn-secondary" style="margin-top: 0.5rem; justify-content: center;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0110 0v4"></path>
+        </svg>
+        Doctor Portal Login
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-grid">
+        <!-- Hero Left: Content -->
+        <div class="hero-content">
+          <div class="hero-pill">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+            <span data-cms="hero.pill_text">Compassionate Maternal &amp; Women's Surgical Care</span>
+          </div>
+
+          <!-- [PLACEHOLDER: DOCTOR'S DETAILS] -->
+          <h1 class="hero-title">
+            <span data-cms="hero.title_main">Gentle Deliveries,</span> <br>
+            <span class="text-highlight" data-cms="hero.title_highlight">Excellence in Surgery.</span>
+          </h1>
+
+          <p class="hero-subtitle" data-cms="hero.subtitle">
+            Specializing in high-safety Cesarean sections, painless normal deliveries, advanced laparoscopic procedures, and comprehensive gynecologic surgical care with over 15 years of dedicated medical service.
+          </p>
+
+          <div class="hero-actions">
+            <a href="contact.html" class="btn btn-primary btn-lg">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              Schedule Consultation
+            </a>
+            <a href="services.html" class="btn btn-outline-secondary btn-lg">
+              View Procedures
+            </a>
+          </div>
+
+          <!-- Clinical Credentials Highlights -->
+          <div class="hero-credentials-row">
+            <div class="hero-stat-item">
+              <span class="hero-stat-num" data-cms="hero.stat1_num">15+</span>
+              <span class="hero-stat-label" data-cms="hero.stat1_label">Years Clinical Experience</span>
+            </div>
+            <div class="hero-stat-item">
+              <span class="hero-stat-num" data-cms="hero.stat2_num">4,500+</span>
+              <span class="hero-stat-label" data-cms="hero.stat2_label">Deliveries &amp; Surgeries</span>
+            </div>
+            <div class="hero-stat-item">
+              <span class="hero-stat-num" data-cms="hero.stat3_num">99.4%</span>
+              <span class="hero-stat-label" data-cms="hero.stat3_label">Safety &amp; Success Record</span>
+            </div>
+            <div class="hero-stat-item">
+              <span class="hero-stat-num" data-cms="hero.stat4_num">4</span>
+              <span class="hero-stat-label" data-cms="hero.stat4_label">Affiliated Hospitals</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Right: Doctor Portrait Card -->
+        <div class="hero-visual">
+          <div class="doctor-portrait-card">
+            <!-- [PLACEHOLDER: DOCTOR'S PHOTO] -->
+            <div class="doctor-placeholder-tag" title="Photo Customization Guide">
+              <span>📷 Replace photo in assets/images/doctor.jpg</span>
+            </div>
+            
+            <div class="doctor-image-wrapper">
+              <img 
+                src="assets/images/doctor-portrait.jpg" 
+                alt="Dr. Rabeya Basri - Consultant Obstetrician & Gynecologist Surgeon" 
+                class="doctor-photo-img"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+              >
+              <!-- Stylized Silhouette Fallback if image file is moved or deleted -->
+              <svg class="doctor-avatar-svg" style="display: none;" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="100" cy="70" r="42" fill="#D85A7F" fill-opacity="0.25" stroke="#D85A7F" stroke-width="3"/>
+                <path d="M72 65C72 45 84 32 100 32C116 32 128 45 128 65C128 75 125 90 100 90C75 90 72 75 72 65Z" fill="#D85A7F" fill-opacity="0.8"/>
+                <circle cx="100" cy="74" r="28" fill="#FCE7F3"/>
+                <path d="M40 220C40 160 65 140 100 140C135 140 160 160 160 220" fill="#0E7490" fill-opacity="0.2"/>
+                <path d="M60 140L80 220M140 140L120 220" stroke="#0E7490" stroke-width="3" stroke-linecap="round"/>
+                <path d="M85 140C85 175 115 175 115 140" stroke="#D85A7F" stroke-width="3" fill="none"/>
+                <circle cx="100" cy="180" r="8" fill="#0E7490"/>
+              </svg>
+            </div>
+
+            <!-- Floating Doctor Profile Badge -->
+            <div class="doctor-badge-floating">
+              <div>
+                <!-- [PLACEHOLDER: DOCTOR'S NAME AND TITLE] -->
+                <div class="badge-info-name" data-cms="doctor.name">Dr. Rabeya Basri</div>
+                <div class="badge-info-role" data-cms="doctor.degrees">FCPS (OBGYN), MS, Laparoscopy</div>
+              </div>
+              <span class="badge badge-success" data-cms="hero.badge_status">Accepting Patients</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Surgical Specialties & Clinical Services Section -->
+  <section class="section" id="specialties">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-cms="specialties.tag">Clinical Expertise</span>
+        <h2 class="section-title" data-cms="specialties.title">Specialized Surgical &amp; Obstetric Care</h2>
+        <p class="section-desc" data-cms="specialties.desc">
+          Providing evidence-based, compassionate surgical and obstetric care tailored to every stage of a woman's life.
+        </p>
+      </div>
+
+      <div class="cards-grid">
+        <!-- Service 1: Normal Delivery -->
+        <div class="service-card">
+          <div class="service-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+            </svg>
+          </div>
+          <h3 class="service-title">Normal &amp; Painless Delivery</h3>
+          <p class="service-text">
+            Prioritizing natural birth whenever safe. Experienced in painless epidural labor management, continuous fetal heart monitoring, and gentle birth techniques.
+          </p>
+          <ul class="service-features-list">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Painless Epidural Labor Support</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Continuous Fetal Monitoring</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Trial of Labor After Cesarean (VBAC)</li>
+          </ul>
+          <a href="services.html#delivery" class="btn btn-outline-primary btn-sm" style="margin-top: auto;">Learn More &rarr;</a>
+        </div>
+
+        <!-- Service 2: Cesarean Section -->
+        <div class="service-card">
+          <div class="service-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+          </div>
+          <h3 class="service-title">Cesarean Delivery (LSCS)</h3>
+          <p class="service-text">
+            Expertise in elective and emergency C-sections, repeat surgeries (previous 1, 2, or 3 C-sections), twin births, and high-risk maternal conditions.
+          </p>
+          <ul class="service-features-list">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Aesthetic Pfannenstiel Incision</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Repeat &amp; Complex C-Sections</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Twin &amp; Breech Deliveries</li>
+          </ul>
+          <a href="services.html#csection" class="btn btn-outline-primary btn-sm" style="margin-top: auto;">Learn More &rarr;</a>
+        </div>
+
+        <!-- Service 3: Gynecologic Surgeries -->
+        <div class="service-card">
+          <div class="service-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+            </svg>
+          </div>
+          <h3 class="service-title">Gynecological Surgeries</h3>
+          <p class="service-text">
+            Specialized surgical management for uterine fibroids, abnormal uterine bleeding, adenomyosis, ovarian cysts, and pelvic organ prolapse.
+          </p>
+          <ul class="service-features-list">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Total Abdominal Hysterectomy (TAH)</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Vaginal Hysterectomy &amp; Pelvic Repair</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Uterus-Sparing Myomectomy</li>
+          </ul>
+          <a href="services.html#gynecology" class="btn btn-outline-primary btn-sm" style="margin-top: auto;">Learn More &rarr;</a>
+        </div>
+
+        <!-- Service 4: Laparoscopic Surgeries -->
+        <div class="service-card">
+          <div class="service-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+          </div>
+          <h3 class="service-title">Minimally Invasive Laparoscopy</h3>
+          <p class="service-text">
+            Keyhole surgical approaches resulting in smaller scars, minimal postoperative discomfort, and significantly faster recovery times.
+          </p>
+          <ul class="service-features-list">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Laparoscopic Ovarian Cystectomy</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Ectopic Pregnancy Surgery</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Diagnostic Laparoscopy for Infertility</li>
+          </ul>
+          <a href="services.html#laparoscopy" class="btn btn-outline-primary btn-sm" style="margin-top: auto;">Learn More &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Doctor Qualifications & Affiliations Section -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-cms="credentials.tag">Credentials &amp; Training</span>
+        <h2 class="section-title" data-cms="credentials.title">Medical Qualifications &amp; Hospital Attachments</h2>
+        <p class="section-desc" data-cms="credentials.desc">
+          Certified by apex medical bodies with specialized higher fellowship training in gynecologic operative surgery and maternal medicine.
+        </p>
+      </div>
+
+      <div class="qualifications-grid">
+        <!-- Academic Degrees -->
+        <div class="qual-card">
+          <div class="qual-header">
+            <div class="qual-header-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--slate-900);">Academic Degrees &amp; Fellowships</h3>
+              <div style="font-size: 0.825rem; color: var(--slate-500);">Verified Professional Certifications</div>
+            </div>
+          </div>
+
+          <div class="qual-timeline">
+            <!-- [PLACEHOLDER: DOCTOR QUALIFICATIONS] -->
+            <div class="timeline-item">
+              <div class="timeline-year">Fellowship</div>
+              <div class="timeline-title">FCPS in Obstetrics &amp; Gynecology</div>
+              <div class="timeline-sub">Bangladesh College of Physicians and Surgeons (BCPS)</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">Postgraduate Degree</div>
+              <div class="timeline-title">MS (Master of Surgery) in Gynae &amp; Obs</div>
+              <div class="timeline-sub">Bangabandhu Sheikh Mujib Medical University (BSMMU)</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">Specialized Training</div>
+              <div class="timeline-title">Fellowship in Minimally Invasive Laparoscopic Surgery</div>
+              <div class="timeline-sub">Advanced Training in Operative Gynaecological Endoscopy</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">Graduation</div>
+              <div class="timeline-title">MBBS (Bachelor of Medicine &amp; Surgery)</div>
+              <div class="timeline-sub">Dhaka Medical College, Registered with BMDC</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hospital Affiliations & Visiting Chambers -->
+        <div class="qual-card">
+          <div class="qual-header">
+            <div class="qual-header-icon" style="background: var(--primary-light); color: var(--primary);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </div>
+            <div>
+              <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--slate-900);">Hospital Attachments &amp; Chambers</h3>
+              <div style="font-size: 0.825rem; color: var(--slate-500);">Equipped with Modern Operation Theatres &amp; NICU</div>
+            </div>
+          </div>
+
+          <div class="qual-timeline" id="homepageChambersTimeline" data-cms-chambers-timeline>
+            <!-- [PLACEHOLDER: HOSPITAL ATTACHMENTS] -->
+            <div class="timeline-item">
+              <div class="timeline-year">Consultant Surgeon</div>
+              <div class="timeline-title" data-cms="chambers.chamber1_name">Dinajpur Medical College, Hospital</div>
+              <div class="timeline-sub">Department of Obstetrics &amp; Gynecology • <span data-cms="chambers.chamber1_days">Saturday – Thursday</span> (<span data-cms="chambers.chamber1_hours">9:00 AM - 2:30 PM</span>)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Appointment Section -->
+  <section class="section" id="appointment">
+    <div class="container">
+      <div class="contact-layout">
+        <!-- Contact Info Box -->
+        <div class="contact-info-panel">
+          <div class="contact-info-header">
+            <h3 data-cms="appointment.title">Book a Consultation</h3>
+            <p data-cms="appointment.subtitle">Schedule an in-person chamber consultation, antenatal checkup, or surgical pre-operative discussion.</p>
+          </div>
+
+          <div class="contact-details-list">
+            <div class="contact-detail-item">
+              <div class="contact-detail-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+              </div>
+              <div>
+                <div class="contact-detail-label">Chamber Appointment Helpline</div>
+                <!-- [PLACEHOLDER: PHONE] -->
+                <div class="contact-detail-val" data-cms="doctor.primary_phone">+880 1700-000000 / +880 1800-000000</div>
+              </div>
+            </div>
+
+            <div class="contact-detail-item">
+              <div class="contact-detail-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <div>
+                <div class="contact-detail-label">Doctor's Clinical Email</div>
+                <!-- [PLACEHOLDER: EMAIL] -->
+                <div class="contact-detail-val" data-cms="doctor.email">dr.rabeya.chamber@example.com</div>
+              </div>
+            </div>
+
+            <div class="contact-detail-item">
+              <div class="contact-detail-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <div>
+                <div class="contact-detail-label">Chamber Hours</div>
+                <div class="contact-detail-val">Saturday – Thursday: 5:00 PM – 9:00 PM (Friday by appointment)</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="background: rgba(255,255,255,0.12); padding: 1.25rem; border-radius: var(--radius-md); font-size: 0.85rem; line-height: 1.5;">
+            <strong>🚨 Emergency Obstetric Notice:</strong> For immediate emergency delivery, sudden labor pain, or hemorrhage, please go directly to Dinajpur Medical College, Hospital Emergency OT triage counter.
+          </div>
+        </div>
+
+        <!-- Appointment Form Card -->
+        <div class="contact-form-card">
+          <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--slate-900); margin-bottom: 0.35rem;" data-cms="appointment.title">
+            Request an Appointment
+          </h3>
+          <p style="font-size: 0.875rem; color: var(--slate-500); margin-bottom: 1.5rem;" data-cms="appointment.subtitle">
+            Our chamber assistant will confirm your serial and arrival time slot via phone.
+          </p>
+
+          <form id="appointmentForm">
+            <div class="form-row form-row-2">
+              <div class="form-group">
+                <label class="form-label">Patient's Full Name <span class="required">*</span></label>
+                <input type="text" name="patient_name" class="form-control" placeholder="e.g. Mrs. Fatema Begum" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Contact Phone Number <span class="required">*</span></label>
+                <input type="tel" name="patient_phone" class="form-control" placeholder="e.g. +880 17XXXXXXXXX" required>
+              </div>
+            </div>
+
+            <div class="form-row form-row-2">
+              <div class="form-group">
+                <label class="form-label">Preferred Date <span class="required">*</span></label>
+                <input type="date" name="preferred_date" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Select Chamber Location</label>
+                <select name="chamber_location" class="form-control">
+                  <option value="Dinajpur Medical College, Hospital">Dinajpur Medical College, Hospital</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Service / Reason for Visit</label>
+              <select name="service_type" class="form-control">
+                <option value="Antenatal Care / Pregnancy Checkup">Antenatal Care / Pregnancy Checkup</option>
+                <option value="Normal Delivery Consultation">Normal Delivery Planning &amp; Advice</option>
+                <option value="Cesarean Section Discussion">Cesarean Section Pre-Operative Consultation</option>
+                <option value="Gynecologic Surgery (Hysterectomy/Myomectomy)">Gynecological Surgery Consultation</option>
+                <option value="Laparoscopic Surgery Workup">Laparoscopic Surgery Workup</option>
+                <option value="Other Consultation">General Gynecologic Concern</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Additional Medical Notes (Optional)</label>
+              <textarea name="message" class="form-control" placeholder="Mention gestational week, previous surgeries, or symptoms..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+              Submit Appointment Request
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand Info -->
+        <div class="footer-brand">
+          <!-- [PLACEHOLDER: DOCTOR'S BRAND] -->
+          <h4 data-cms="footer.brand_title">Dr. Rabeya Basri</h4>
+          <p data-cms="footer.about_text">Consultant Obstetrician, Gynecologist &amp; Laparoscopic Surgeon dedicated to compassionate, high-safety healthcare for women.</p>
+          <div style="margin-top: 1rem; font-size: 0.825rem; color: var(--slate-400);">
+            BMDC Reg. No: <span data-cms="doctor.bmdc_reg">A-XXXXX</span>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h5 class="footer-links-title">Quick Navigation</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About the Doctor</a></li>
+            <li><a href="services.html">Surgical Services</a></li>
+            <li><a href="contact.html">Chamber Timings &amp; Contact</a></li>
+            <li><a href="login.html">Doctor Admin Portal</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact & Emergency -->
+        <div>
+          <h5 class="footer-links-title">Emergency &amp; Chambers</h5>
+          <ul class="footer-links">
+            <li>📞 Hotline: <span data-cms="doctor.emergency_hotline">+880 1700-000000</span></li>
+            <li>✉️ <span data-cms="doctor.email">dr.rabeyabasri@example.com</span></li>
+            <li>🏥 <span data-cms="chambers.chamber1_name">Dinajpur Medical College, Hospital</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; <span id="currentYearSpan">2026</span> <span data-cms="footer.copyright_text">Dr. Rabeya Basri. All medical rights reserved.</span>
+        </div>
+        <div style="display: flex; gap: 1rem;">
+          <a href="login.html" style="color: #94A3B8;">Doctor Admin Login &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="assets/js/supabase-config.js"></script>
+  <script src="assets/js/site-content.js"></script>
+  <script src="assets/js/db.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.getElementById('currentYearSpan').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

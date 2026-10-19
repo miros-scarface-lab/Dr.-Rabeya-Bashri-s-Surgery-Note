@@ -1,0 +1,92 @@
+{
+  "doctor": {
+    "name": "Dr. Rabeya Basri",
+    "title": "Obstetrics & Gynecology Surgeon",
+    "subtitle": "Consultant Obstetrician, Gynecologist & Laparoscopic Surgeon",
+    "degrees": "MBBS, FCPS (OBGYN), MS (Gynae & Obs), Fellowship in Laparoscopy",
+    "bmdc_reg": "A-XXXXX",
+    "experience_years": "15+",
+    "primary_phone": "+880 1700-000000",
+    "alt_phone": "+880 1800-000000",
+    "email": "dr.rabeyabasri@example.com",
+    "photo_url": "assets/images/doctor-portrait.jpg",
+    "emergency_hotline": "+880 1700-000000"
+  },
+  "hero": {
+    "pill_text": "Compassionate Maternal & Women's Surgical Care",
+    "title_main": "Gentle Deliveries,",
+    "title_highlight": "Excellence in Surgery.",
+    "subtitle": "Specializing in high-safety Cesarean sections, painless normal deliveries, advanced laparoscopic procedures, and comprehensive gynecologic surgical care with over 15 years of dedicated medical service.",
+    "stat1_num": "15+",
+    "stat1_label": "Years Clinical Experience",
+    "stat2_num": "4,500+",
+    "stat2_label": "Deliveries & Surgeries",
+    "stat3_num": "99.4%",
+    "stat3_label": "Safety & Success Record",
+    "stat4_num": "1",
+    "stat4_label": "Dinajpur Medical College, Hospital",
+    "badge_status": "Accepting Patients"
+  },
+  "specialties": {
+    "tag": "Clinical Expertise",
+    "title": "Specialized Surgical & Obstetric Care",
+    "desc": "Providing evidence-based, compassionate surgical and obstetric care tailored to every stage of a woman's life."
+  },
+  "credentials": {
+    "tag": "Credentials & Training",
+    "title": "Medical Qualifications & Hospital Attachments",
+    "desc": "Certified by apex medical bodies with specialized higher fellowship training in gynecologic operative surgery and maternal medicine."
+  },
+  "about": {
+    "banner_tag": "Surgeon Biography & Background",
+    "page_title": "Dr. Rabeya Basri",
+    "page_subtitle": "MBBS, FCPS (Obstetrics & Gynecology), MS (Gynae & Obs)\nFellowship in Minimally Invasive Laparoscopic Surgery",
+    "bio_heading": "Dedicated to Safe Deliveries & Advanced Gynecological Care",
+    "bio_p1": "Dr. Rabeya Basri is an experienced Consultant Obstetrician and Gynecologist with over 15 years of surgical excellence in maternal-fetal medicine and operative gynecology. Having completed her FCPS from the Bangladesh College of Physicians and Surgeons (BCPS) and Master of Surgery (MS), she has dedicated her career to providing compassionate, evidence-based care to women across all stages of life.",
+    "bio_p2": "Dr. Rabeya has performed thousands of successful surgical deliveries, including routine and high-risk Cesarean sections, complex repeat C-sections (previous 2 and 3 scars), and multi-fetal pregnancies. She is a strong advocate for natural and painless delivery, ensuring mothers receive the highest standard of labor support, epidural analgesia, and fetal monitoring.",
+    "bio_p3": "In gynecological surgery, she is recognized for her expertise in uterine preservation techniques (abdominal and laparoscopic myomectomy for fibroids), laparoscopic ovarian cystectomies, and minimally invasive hysterectomies. Her surgical philosophy is rooted in meticulous technique, minimal blood loss, cosmetic incision closure, and rapid postoperative recovery.",
+    "pillar1_title": "🌸 Gentle Birth Advocacy",
+    "pillar1_desc": "Encouraging natural and painless labor whenever clinically safe for mother and baby.",
+    "pillar2_title": "🔬 Precision Surgery",
+    "pillar2_desc": "Minimally invasive keyhole techniques for faster recovery and reduced pain."
+  },
+  "services": {
+    "banner_tag": "Clinical Procedures & Care",
+    "banner_title": "Surgical & Obstetric Services",
+    "banner_desc": "From gentle childbirth to advanced laparoscopic operative gynecology, delivering world-class surgical precision and empathetic care."
+  },
+  "appointment": {
+    "tag": "Direct Scheduling",
+    "title": "Request an Appointment",
+    "subtitle": "Schedule an in-person chamber consultation, antenatal checkup, or surgical pre-operative discussion."
+  },
+  "chambers_page": {
+    "banner_tag": "Appointments & Locations",
+    "banner_title": "Chamber Schedule & Contact",
+    "banner_desc": "Find chamber visiting hours or request an appointment online."
+  },
+  "chambersList": [
+    {
+      "id": "chamber-1",
+      "name": "Dinajpur Medical College, Hospital",
+      "badge": "Primary Hospital & Chamber",
+      "address": "Department of Obstetrics & Gynecology, Dinajpur Medical College, Hospital, Dinajpur",
+      "days": "Saturday – Thursday",
+      "hours": "9:00 AM – 2:30 PM & Evening Chamber",
+      "phone": "+880 1700-000000"
+    }
+  ],
+  "chambers": {
+    "chamber1_name": "Dinajpur Medical College, Hospital",
+    "chamber1_badge": "Primary Hospital & Chamber",
+    "chamber1_address": "Department of Obstetrics & Gynecology, Dinajpur Medical College, Hospital, Dinajpur",
+    "chamber1_days": "Saturday – Thursday",
+    "chamber1_hours": "9:00 AM – 2:30 PM & Evening Chamber",
+    "chamber1_phone": "+880 1700-000000"
+  },
+  "footer": {
+    "brand_title": "Dr. Rabeya Basri",
+    "about_text": "Consultant Obstetrician, Gynecologist & Laparoscopic Surgeon dedicated to compassionate, high-safety healthcare for women.",
+    "copyright_text": "Dr. Rabeya Basri. All medical rights reserved."
+  }
+}

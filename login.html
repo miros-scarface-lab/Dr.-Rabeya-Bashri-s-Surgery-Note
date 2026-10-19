@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Surgeon's Admin Login | Dr. Rabeya Basri</title>
+  <meta name="description" content="Secure login for Dr. Rabeya Basri's private surgical logbook and clinical data reservation dashboard.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="assets/css/styles.css">
+  
+  <!-- Supabase JS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="login-page-wrapper">
+
+  <div class="login-card">
+    <!-- Brand / Security Icon -->
+    <div class="login-header">
+      <div class="login-icon-box">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0110 0v4"></path>
+        </svg>
+      </div>
+      <h1 class="login-title">Surgeon's Admin Portal</h1>
+      <p class="login-subtitle"><span data-cms="doctor.name">Dr. Rabeya Basri</span> • Clinical Data Reservation Suite</p>
+    </div>
+
+    <!-- Alert if Supabase is unconfigured -->
+    <div id="unconfiguredAlert" class="config-missing-alert" style="display: none;">
+      <div style="font-weight: 700; margin-bottom: 0.25rem;">ℹ️ Evaluation Demo Mode Ready</div>
+      <div>Supabase credentials are not connected yet. You can sign in with any email/password to explore in Demo Mode, or configure your Supabase keys.</div>
+    </div>
+
+    <!-- Error Alert Box -->
+    <div id="loginErrorAlert" style="display: none; background: #FEF2F2; border: 1px solid #FECACA; color: #991B1B; padding: 0.75rem 1rem; border-radius: var(--radius-md); font-size: 0.85rem; margin-bottom: 1.25rem;"></div>
+
+    <!-- Login Form -->
+    <form id="doctorLoginForm">
+      <div class="form-group">
+        <label class="form-label" for="loginEmail">Doctor's Registered Email</label>
+        <input 
+          type="email" 
+          id="loginEmail" 
+          class="form-control" 
+          placeholder="e.g. dr.rabeyabasri@example.com" 
+          required 
+          autocomplete="email"
+        >
+      </div>
+
+      <div class="form-group">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+          <label class="form-label" for="loginPassword" style="margin-bottom: 0;">Password</label>
+          <a href="#" id="btnForgotPassword" style="font-size: 0.775rem; color: var(--secondary); font-weight: 600;">Forgot?</a>
+        </div>
+        <input 
+          type="password" 
+          id="loginPassword" 
+          class="form-control" 
+          placeholder="••••••••" 
+          required 
+          autocomplete="current-password"
+        >
+      </div>
+
+      <button type="submit" id="loginSubmitBtn" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 0.5rem;">
+        Sign In to Admin Data Vault
+      </button>
+    </form>
+
+    <!-- Quick Demo Mode Fill Button -->
+    <div style="margin-top: 1.25rem; text-align: center;">
+      <button type="button" id="btnFillDemo" style="font-size: 0.825rem; color: var(--secondary); font-weight: 600; text-decoration: underline; background: none; border: none; cursor: pointer;">
+        ⚡ Instant Demo Access (Pre-fill Doctor Credentials)
+      </button>
+    </div>
+
+    <!-- Security & Privacy Safeguard Note -->
+    <div style="margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid var(--slate-200); text-align: center; font-size: 0.775rem; color: var(--slate-500); line-height: 1.5;">
+      🔒 <strong>Doctor-Only Secure Area</strong><br>
+      Strict Medical De-identification: Case IDs only, no patient names stored. Protected by Supabase Row Level Security.
+    </div>
+
+    <div style="margin-top: 1rem; text-align: center;">
+      <a href="index.html" style="font-size: 0.85rem; color: var(--slate-600);">&larr; Return to Public Website</a>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="assets/js/supabase-config.js"></script>
+  <script src="assets/js/site-content.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      // If already logged in, redirect straight to dashboard
+      await window.authService.redirectIfAuthenticated('dashboard.html');
+
+      // Check if Supabase keys are default
+      const alertBox = document.getElementById('unconfiguredAlert');
+      if (alertBox && !window.isSupabaseConfigured()) {
+        alertBox.style.display = 'block';
+      }
+
+      // Quick Demo Fill
+      document.getElementById('btnFillDemo')?.addEventListener('click', () => {
+        document.getElementById('loginEmail').value = 'dr.rabeyabasri@example.com';
+        document.getElementById('loginPassword').value = 'Doctor@2026';
+      });
+
+      // Handle Login Form
+      const form = document.getElementById('doctorLoginForm');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById('loginEmail').value.trim();
+        const password = document.getElementById('loginPassword').value;
+        const submitBtn = document.getElementById('loginSubmitBtn');
+        const errorAlert = document.getElementById('loginErrorAlert');
+
+        errorAlert.style.display = 'none';
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Verifying Credentials...';
+
+        try {
+          const res = await window.authService.loginDoctor(email, password);
+          if (res.error) throw res.error;
+
+          // Success -> Redirect to dashboard
+          window.location.href = 'dashboard.html';
+        } catch (err) {
+          console.error("Login failed:", err);
+          errorAlert.textContent = err.message || "Failed to sign in. Please verify your credentials.";
+          errorAlert.style.display = 'block';
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Sign In to Surgical Logbook';
+        }
+      });
+
+      // Forgot Password Handler
+      document.getElementById('btnForgotPassword')?.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('loginEmail').value.trim();
+        if (!email) {
+          alert("Please enter your registered email in the email field first.");
+          return;
+        }
+
+        const res = await window.authService.requestPasswordReset(email);
+        if (res.error) {
+          alert("Password reset notice: " + res.error.message);
+        } else {
+          alert("A password reset link has been dispatched to " + email);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
