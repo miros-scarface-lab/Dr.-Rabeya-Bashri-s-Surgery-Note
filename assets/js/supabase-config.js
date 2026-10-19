@@ -11,8 +11,8 @@
 // Global configuration object
 window.APP_CONFIG = {
   // Replace these strings with your Supabase credentials
-  SUPABASE_URL: "https://YOUR_SUPABASE_PROJECT_ID.supabase.co",
-  SUPABASE_ANON_KEY: "YOUR_SUPABASE_ANON_PUBLIC_KEY",
+  SUPABASE_URL: "https://hlfpjiblwghuxmwqnlqx.supabase.co",
+  SUPABASE_ANON_KEY: "sb_publishable_NDj4YwUSxvCIDoFWzxfeBQ_g-4KRMKu",
 
   // Doctor Practice Metadata (Change these to match your practice)
   DOCTOR_NAME: "Dr. Rabeya Basri",
