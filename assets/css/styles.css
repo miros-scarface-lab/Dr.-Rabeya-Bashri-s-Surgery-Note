@@ -1928,3 +1928,143 @@ textarea.form-control {
     box-shadow: none !important;
   }
 }
+
+/* ==========================================================================
+   Organized CMS Sub-Navigation & Editor Styling
+   ========================================================================== */
+.cms-subnav-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0.5rem 0.25rem 1rem 0.25rem;
+  border-bottom: 2px solid var(--slate-100);
+  margin-bottom: 1.5rem;
+  scrollbar-width: thin;
+}
+
+.cms-subnav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.15rem;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--slate-600);
+  background: var(--slate-100);
+  border: 1px solid var(--slate-200);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.cms-subnav-btn:hover {
+  background: var(--slate-200);
+  color: var(--slate-900);
+}
+
+.cms-subnav-btn.active {
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(216, 90, 127, 0.25);
+}
+
+.cms-search-wrapper {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.cms-search-input {
+  width: 100%;
+  padding: 0.85rem 1.25rem 0.85rem 2.85rem;
+  font-size: 0.95rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--slate-300);
+  background: var(--white);
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.cms-search-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(216, 90, 127, 0.15);
+  outline: none;
+}
+
+.cms-search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--slate-400);
+  pointer-events: none;
+}
+
+.cms-section-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cms-section-card {
+  background: var(--slate-50);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.cms-section-card:hover {
+  border-color: var(--slate-300);
+}
+
+.cms-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--slate-200);
+}
+
+.cms-section-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--slate-900);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.cms-section-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.cms-group-box {
+  background: var(--white);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.cms-group-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--slate-800);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+

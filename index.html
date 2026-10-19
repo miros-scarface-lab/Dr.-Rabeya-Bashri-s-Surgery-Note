@@ -43,7 +43,7 @@
           <a href="index.html" class="nav-link active">Home</a>
           <a href="about.html" class="nav-link">About &amp; Credentials</a>
           <a href="services.html" class="nav-link">Surgical Services</a>
-          <a href="contact.html" class="nav-link">Contact &amp; Chambers</a>
+          <a href="#appointment" class="nav-link">Book Appointment</a>
         </nav>
 
         <!-- Header Actions: Portal & Mobile Toggle -->
@@ -55,7 +55,7 @@
             </svg>
             <span>Doctor Portal</span>
           </a>
-          <a href="contact.html" class="btn btn-primary btn-sm" style="display: none;" id="headerBookBtn">Book Visit</a>
+          <a href="#appointment" class="btn btn-primary btn-sm" id="headerBookBtn">Book Visit</a>
           
           <button class="mobile-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu" aria-expanded="false">
             <span></span>
@@ -71,7 +71,7 @@
       <a href="index.html" class="nav-link active">Home</a>
       <a href="about.html" class="nav-link">About &amp; Credentials</a>
       <a href="services.html" class="nav-link">Surgical Services</a>
-      <a href="contact.html" class="nav-link">Contact &amp; Chambers</a>
+      <a href="#appointment" class="nav-link">Book Appointment</a>
       <a href="login.html" class="btn btn-secondary" style="margin-top: 0.5rem; justify-content: center;">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
@@ -106,17 +106,17 @@
           </p>
 
           <div class="hero-actions">
-            <a href="contact.html" class="btn btn-primary btn-lg">
+            <a href="#appointment" class="btn btn-primary btn-lg">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                 <line x1="16" y1="2" x2="16" y2="6"></line>
                 <line x1="8" y1="2" x2="8" y2="6"></line>
                 <line x1="3" y1="10" x2="21" y2="10"></line>
               </svg>
-              Schedule Consultation
+              <span data-cms="hero.btn_primary">Schedule Consultation</span>
             </a>
             <a href="services.html" class="btn btn-outline-secondary btn-lg">
-              View Procedures
+              <span data-cms="hero.btn_secondary">View Surgical Procedures</span>
             </a>
           </div>
 
@@ -202,8 +202,8 @@
               <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
             </svg>
           </div>
-          <h3 class="service-title">Normal &amp; Painless Delivery</h3>
-          <p class="service-text">
+          <h3 class="service-title" data-cms="specialties.card1_title">Normal &amp; Painless Delivery</h3>
+          <p class="service-text" data-cms="specialties.card1_desc">
             Prioritizing natural birth whenever safe. Experienced in painless epidural labor management, continuous fetal heart monitoring, and gentle birth techniques.
           </p>
           <ul class="service-features-list">
@@ -223,8 +223,8 @@
               <line x1="12" y1="16" x2="12.01" y2="16"></line>
             </svg>
           </div>
-          <h3 class="service-title">Cesarean Delivery (LSCS)</h3>
-          <p class="service-text">
+          <h3 class="service-title" data-cms="specialties.card2_title">Cesarean Delivery (LSCS)</h3>
+          <p class="service-text" data-cms="specialties.card2_desc">
             Expertise in elective and emergency C-sections, repeat surgeries (previous 1, 2, or 3 C-sections), twin births, and high-risk maternal conditions.
           </p>
           <ul class="service-features-list">
@@ -242,8 +242,8 @@
               <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
             </svg>
           </div>
-          <h3 class="service-title">Gynecological Surgeries</h3>
-          <p class="service-text">
+          <h3 class="service-title" data-cms="specialties.card3_title">Gynecological Surgeries</h3>
+          <p class="service-text" data-cms="specialties.card3_desc">
             Specialized surgical management for uterine fibroids, abnormal uterine bleeding, adenomyosis, ovarian cysts, and pelvic organ prolapse.
           </p>
           <ul class="service-features-list">
@@ -262,8 +262,8 @@
               <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
             </svg>
           </div>
-          <h3 class="service-title">Minimally Invasive Laparoscopy</h3>
-          <p class="service-text">
+          <h3 class="service-title" data-cms="specialties.card4_title">Minimally Invasive Laparoscopy</h3>
+          <p class="service-text" data-cms="specialties.card4_desc">
             Keyhole surgical approaches resulting in smaller scars, minimal postoperative discomfort, and significantly faster recovery times.
           </p>
           <ul class="service-features-list">
@@ -299,8 +299,8 @@
               </svg>
             </div>
             <div>
-              <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--slate-900);">Academic Degrees &amp; Fellowships</h3>
-              <div style="font-size: 0.825rem; color: var(--slate-500);">Verified Professional Certifications</div>
+              <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--slate-900);" data-cms="credentials.qual_header">Academic Degrees &amp; Fellowships</h3>
+              <div style="font-size: 0.825rem; color: var(--slate-500);" data-cms="credentials.qual_sub">Verified Professional Certifications</div>
             </div>
           </div>
 
@@ -308,23 +308,23 @@
             <!-- [PLACEHOLDER: DOCTOR QUALIFICATIONS] -->
             <div class="timeline-item">
               <div class="timeline-year">Fellowship</div>
-              <div class="timeline-title">FCPS in Obstetrics &amp; Gynecology</div>
-              <div class="timeline-sub">Bangladesh College of Physicians and Surgeons (BCPS)</div>
+              <div class="timeline-title" data-cms="credentials.q1_title">FCPS in Obstetrics &amp; Gynecology</div>
+              <div class="timeline-sub" data-cms="credentials.q1_sub">Bangladesh College of Physicians and Surgeons (BCPS)</div>
             </div>
             <div class="timeline-item">
               <div class="timeline-year">Postgraduate Degree</div>
-              <div class="timeline-title">MS (Master of Surgery) in Gynae &amp; Obs</div>
-              <div class="timeline-sub">Bangabandhu Sheikh Mujib Medical University (BSMMU)</div>
+              <div class="timeline-title" data-cms="credentials.q2_title">MS (Master of Surgery) in Gynae &amp; Obs</div>
+              <div class="timeline-sub" data-cms="credentials.q2_sub">Bangabandhu Sheikh Mujib Medical University (BSMMU)</div>
             </div>
             <div class="timeline-item">
               <div class="timeline-year">Specialized Training</div>
-              <div class="timeline-title">Fellowship in Minimally Invasive Laparoscopic Surgery</div>
-              <div class="timeline-sub">Advanced Training in Operative Gynaecological Endoscopy</div>
+              <div class="timeline-title" data-cms="credentials.q3_title">Fellowship in Minimally Invasive Laparoscopic Surgery</div>
+              <div class="timeline-sub" data-cms="credentials.q3_sub">Advanced Training in Operative Gynaecological Endoscopy</div>
             </div>
             <div class="timeline-item">
               <div class="timeline-year">Graduation</div>
-              <div class="timeline-title">MBBS (Bachelor of Medicine &amp; Surgery)</div>
-              <div class="timeline-sub">Dhaka Medical College, Registered with BMDC</div>
+              <div class="timeline-title" data-cms="credentials.q4_title">MBBS (Bachelor of Medicine &amp; Surgery)</div>
+              <div class="timeline-sub" data-cms="credentials.q4_sub">Dhaka Medical College, Registered with BMDC</div>
             </div>
           </div>
         </div>
@@ -339,8 +339,8 @@
               </svg>
             </div>
             <div>
-              <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--slate-900);">Hospital Attachments &amp; Chambers</h3>
-              <div style="font-size: 0.825rem; color: var(--slate-500);">Equipped with Modern Operation Theatres &amp; NICU</div>
+              <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--slate-900);" data-cms="credentials.hosp_header">Hospital Attachments &amp; Chambers</h3>
+              <div style="font-size: 0.825rem; color: var(--slate-500);" data-cms="credentials.hosp_sub">Equipped with Modern Operation Theatres &amp; NICU</div>
             </div>
           </div>
 
@@ -411,16 +411,16 @@
           </div>
 
           <div style="background: rgba(255,255,255,0.12); padding: 1.25rem; border-radius: var(--radius-md); font-size: 0.85rem; line-height: 1.5;">
-            <strong>🚨 Emergency Obstetric Notice:</strong> For immediate emergency delivery, sudden labor pain, or hemorrhage, please go directly to Dinajpur Medical College, Hospital Emergency OT triage counter.
+            <strong>🚨 Emergency Obstetric Notice:</strong> <span data-cms="appointment.notice">For immediate emergency delivery, sudden labor pain, or hemorrhage, please go directly to Dinajpur Medical College, Hospital Emergency OT triage counter.</span>
           </div>
         </div>
 
         <!-- Appointment Form Card -->
         <div class="contact-form-card">
-          <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--slate-900); margin-bottom: 0.35rem;" data-cms="appointment.title">
+          <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--slate-900); margin-bottom: 0.35rem;" data-cms="appointment.form_title">
             Request an Appointment
           </h3>
-          <p style="font-size: 0.875rem; color: var(--slate-500); margin-bottom: 1.5rem;" data-cms="appointment.subtitle">
+          <p style="font-size: 0.875rem; color: var(--slate-500); margin-bottom: 1.5rem;" data-cms="appointment.form_subtitle">
             Our chamber assistant will confirm your serial and arrival time slot via phone.
           </p>
 
@@ -496,7 +496,7 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About the Doctor</a></li>
             <li><a href="services.html">Surgical Services</a></li>
-            <li><a href="contact.html">Chamber Timings &amp; Contact</a></li>
+            <li><a href="#appointment">Book Appointment &amp; Chambers</a></li>
             <li><a href="login.html">Doctor Admin Portal</a></li>
           </ul>
         </div>

@@ -741,6 +741,9 @@ function initEventListeners() {
   document.getElementById('btnAddChamberRow')?.addEventListener('click', () => addCmsChamberCard());
   document.getElementById('btnAddChamberRowBottom')?.addEventListener('click', () => addCmsChamberCard());
 
+  // Initialize CMS Sub-navigation & Live Search Filter
+  initCmsSubnavAndSearch();
+
   // CMS Content Form Submission
   document.getElementById('cmsContentForm')?.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -804,8 +807,10 @@ function initEventListeners() {
           ...currentContent.doctor,
           name: getVal('cms_doctor_name') || currentContent.doctor?.name,
           title: getVal('cms_doctor_title') || currentContent.doctor?.title,
+          subtitle: getVal('cms_doctor_subtitle') || currentContent.doctor?.subtitle,
           degrees: getVal('cms_doctor_degrees') || currentContent.doctor?.degrees,
           bmdc_reg: getVal('cms_doctor_bmdc_reg') || currentContent.doctor?.bmdc_reg,
+          experience_years: getVal('cms_doctor_experience_years') || currentContent.doctor?.experience_years,
           primary_phone: getVal('cms_doctor_primary_phone') || currentContent.doctor?.primary_phone,
           alt_phone: getVal('cms_doctor_alt_phone') || currentContent.doctor?.alt_phone,
           email: getVal('cms_doctor_email') || currentContent.doctor?.email,
@@ -814,9 +819,12 @@ function initEventListeners() {
         hero: {
           ...currentContent.hero,
           pill_text: getVal('cms_hero_pill_text'),
+          badge_status: getVal('cms_hero_badge_status'),
           title_main: getVal('cms_hero_title_main'),
           title_highlight: getVal('cms_hero_title_highlight'),
           subtitle: getVal('cms_hero_subtitle'),
+          btn_primary: getVal('cms_hero_btn_primary'),
+          btn_secondary: getVal('cms_hero_btn_secondary'),
           stat1_num: getVal('cms_hero_stat1_num'),
           stat1_label: getVal('cms_hero_stat1_label'),
           stat2_num: getVal('cms_hero_stat2_num'),
@@ -825,6 +833,38 @@ function initEventListeners() {
           stat3_label: getVal('cms_hero_stat3_label'),
           stat4_num: getVal('cms_hero_stat4_num'),
           stat4_label: getVal('cms_hero_stat4_label')
+        },
+        specialties: {
+          ...currentContent.specialties,
+          title: getVal('cms_specialties_title'),
+          tag: getVal('cms_specialties_tag'),
+          desc: getVal('cms_specialties_desc'),
+          card1_title: getVal('cms_specialties_card1_title'),
+          card1_desc: getVal('cms_specialties_card1_desc'),
+          card2_title: getVal('cms_specialties_card2_title'),
+          card2_desc: getVal('cms_specialties_card2_desc'),
+          card3_title: getVal('cms_specialties_card3_title'),
+          card3_desc: getVal('cms_specialties_card3_desc'),
+          card4_title: getVal('cms_specialties_card4_title'),
+          card4_desc: getVal('cms_specialties_card4_desc')
+        },
+        credentials: {
+          ...currentContent.credentials,
+          title: getVal('cms_credentials_title'),
+          tag: getVal('cms_credentials_tag'),
+          desc: getVal('cms_credentials_desc'),
+          qual_header: getVal('cms_credentials_qual_header'),
+          qual_sub: getVal('cms_credentials_qual_sub'),
+          q1_title: getVal('cms_credentials_q1_title'),
+          q1_sub: getVal('cms_credentials_q1_sub'),
+          q2_title: getVal('cms_credentials_q2_title'),
+          q2_sub: getVal('cms_credentials_q2_sub'),
+          q3_title: getVal('cms_credentials_q3_title'),
+          q3_sub: getVal('cms_credentials_q3_sub'),
+          q4_title: getVal('cms_credentials_q4_title'),
+          q4_sub: getVal('cms_credentials_q4_sub'),
+          hosp_header: getVal('cms_credentials_hosp_header'),
+          hosp_sub: getVal('cms_credentials_hosp_sub')
         },
         about: {
           ...currentContent.about,
@@ -836,45 +876,62 @@ function initEventListeners() {
           pillar1_title: getVal('cms_about_pillar1_title'),
           pillar1_desc: getVal('cms_about_pillar1_desc'),
           pillar2_title: getVal('cms_about_pillar2_title'),
-          pillar2_desc: getVal('cms_about_pillar2_desc')
-        },
-        specialties: {
-          ...currentContent.specialties,
-          title: getVal('cms_specialties_title'),
-          tag: getVal('cms_specialties_tag'),
-          desc: getVal('cms_specialties_desc')
-        },
-        credentials: {
-          ...currentContent.credentials,
-          title: getVal('cms_credentials_title'),
-          tag: getVal('cms_credentials_tag'),
-          desc: getVal('cms_credentials_desc')
-        },
-        appointment: {
-          ...currentContent.appointment,
-          title: getVal('cms_appointment_title'),
-          tag: getVal('cms_appointment_tag'),
-          subtitle: getVal('cms_appointment_subtitle')
+          pillar2_desc: getVal('cms_about_pillar2_desc'),
+          pillar3_title: getVal('cms_about_pillar3_title'),
+          pillar3_desc: getVal('cms_about_pillar3_desc'),
+          pillar4_title: getVal('cms_about_pillar4_title'),
+          pillar4_desc: getVal('cms_about_pillar4_desc')
         },
         services: {
           ...currentContent.services,
           banner_title: getVal('cms_services_banner_title'),
           banner_tag: getVal('cms_services_banner_tag'),
-          banner_desc: getVal('cms_services_banner_desc')
+          banner_desc: getVal('cms_services_banner_desc'),
+          cat1_title: getVal('cms_services_cat1_title'),
+          cat1_desc: getVal('cms_services_cat1_desc'),
+          s1_title: getVal('cms_services_s1_title'),
+          s1_desc: getVal('cms_services_s1_desc'),
+          s2_title: getVal('cms_services_s2_title'),
+          s2_desc: getVal('cms_services_s2_desc'),
+          cat2_title: getVal('cms_services_cat2_title'),
+          cat2_desc: getVal('cms_services_cat2_desc'),
+          s3_title: getVal('cms_services_s3_title'),
+          s3_desc: getVal('cms_services_s3_desc'),
+          s4_title: getVal('cms_services_s4_title'),
+          s4_desc: getVal('cms_services_s4_desc'),
+          cat3_title: getVal('cms_services_cat3_title'),
+          cat3_desc: getVal('cms_services_cat3_desc'),
+          s5_title: getVal('cms_services_s5_title'),
+          s5_desc: getVal('cms_services_s5_desc'),
+          s6_title: getVal('cms_services_s6_title'),
+          s6_desc: getVal('cms_services_s6_desc'),
+          preop_title: getVal('cms_services_preop_title'),
+          preop_desc: getVal('cms_services_preop_desc'),
+          postop_title: getVal('cms_services_postop_title'),
+          postop_desc: getVal('cms_services_postop_desc')
         },
-        chambers_page: {
-          ...currentContent.chambers_page,
-          banner_title: getVal('cms_chambers_banner_title'),
-          banner_tag: getVal('cms_chambers_banner_tag'),
-          banner_desc: getVal('cms_chambers_banner_desc')
+        chambers_section: {
+          ...currentContent.chambers_section,
+          title: getVal('cms_chambers_section_title'),
+          subtitle: getVal('cms_chambers_section_subtitle')
         },
         chambersList: newChambersList,
         chambers: {
           ...currentContent.chambers,
           ...legacyChambers
         },
+        appointment: {
+          ...currentContent.appointment,
+          title: getVal('cms_appointment_title'),
+          tag: getVal('cms_appointment_tag'),
+          subtitle: getVal('cms_appointment_subtitle'),
+          notice: getVal('cms_appointment_notice'),
+          form_title: getVal('cms_appointment_form_title'),
+          form_subtitle: getVal('cms_appointment_form_subtitle')
+        },
         footer: {
           ...currentContent.footer,
+          brand_title: getVal('cms_footer_brand_title') || currentContent.doctor?.name,
           about_text: getVal('cms_footer_about_text'),
           copyright_text: getVal('cms_footer_copyright_text')
         }
@@ -997,21 +1054,26 @@ async function populateCmsEditorForm() {
     pendingBanner.style.display = 'none';
   }
 
-  // Section 1: Doctor Profile & Contact
+  // Section 1: Doctor Profile & Global Contact
   setVal('cms_doctor_name', content.doctor?.name);
   setVal('cms_doctor_title', content.doctor?.title);
+  setVal('cms_doctor_subtitle', content.doctor?.subtitle);
   setVal('cms_doctor_degrees', content.doctor?.degrees);
   setVal('cms_doctor_bmdc_reg', content.doctor?.bmdc_reg);
+  setVal('cms_doctor_experience_years', content.doctor?.experience_years);
   setVal('cms_doctor_primary_phone', content.doctor?.primary_phone);
   setVal('cms_doctor_alt_phone', content.doctor?.alt_phone);
   setVal('cms_doctor_email', content.doctor?.email);
   setVal('cms_doctor_emergency_hotline', content.doctor?.emergency_hotline);
 
-  // Section 2: Homepage Hero
+  // Section 2: Homepage Hero & Stats
   setVal('cms_hero_pill_text', content.hero?.pill_text);
+  setVal('cms_hero_badge_status', content.hero?.badge_status);
   setVal('cms_hero_title_main', content.hero?.title_main);
   setVal('cms_hero_title_highlight', content.hero?.title_highlight);
   setVal('cms_hero_subtitle', content.hero?.subtitle);
+  setVal('cms_hero_btn_primary', content.hero?.btn_primary);
+  setVal('cms_hero_btn_secondary', content.hero?.btn_secondary);
   setVal('cms_hero_stat1_num', content.hero?.stat1_num);
   setVal('cms_hero_stat1_label', content.hero?.stat1_label);
   setVal('cms_hero_stat2_num', content.hero?.stat2_num);
@@ -1021,7 +1083,37 @@ async function populateCmsEditorForm() {
   setVal('cms_hero_stat4_num', content.hero?.stat4_num);
   setVal('cms_hero_stat4_label', content.hero?.stat4_label);
 
-  // Section 3: About Page
+  // Section 3: Clinical Specialties
+  setVal('cms_specialties_title', content.specialties?.title);
+  setVal('cms_specialties_tag', content.specialties?.tag);
+  setVal('cms_specialties_desc', content.specialties?.desc);
+  setVal('cms_specialties_card1_title', content.specialties?.card1_title);
+  setVal('cms_specialties_card1_desc', content.specialties?.card1_desc);
+  setVal('cms_specialties_card2_title', content.specialties?.card2_title);
+  setVal('cms_specialties_card2_desc', content.specialties?.card2_desc);
+  setVal('cms_specialties_card3_title', content.specialties?.card3_title);
+  setVal('cms_specialties_card3_desc', content.specialties?.card3_desc);
+  setVal('cms_specialties_card4_title', content.specialties?.card4_title);
+  setVal('cms_specialties_card4_desc', content.specialties?.card4_desc);
+
+  // Section 4: Credentials, Degrees & Attachments
+  setVal('cms_credentials_title', content.credentials?.title);
+  setVal('cms_credentials_tag', content.credentials?.tag);
+  setVal('cms_credentials_desc', content.credentials?.desc);
+  setVal('cms_credentials_qual_header', content.credentials?.qual_header);
+  setVal('cms_credentials_qual_sub', content.credentials?.qual_sub);
+  setVal('cms_credentials_q1_title', content.credentials?.q1_title);
+  setVal('cms_credentials_q1_sub', content.credentials?.q1_sub);
+  setVal('cms_credentials_q2_title', content.credentials?.q2_title);
+  setVal('cms_credentials_q2_sub', content.credentials?.q2_sub);
+  setVal('cms_credentials_q3_title', content.credentials?.q3_title);
+  setVal('cms_credentials_q3_sub', content.credentials?.q3_sub);
+  setVal('cms_credentials_q4_title', content.credentials?.q4_title);
+  setVal('cms_credentials_q4_sub', content.credentials?.q4_sub);
+  setVal('cms_credentials_hosp_header', content.credentials?.hosp_header);
+  setVal('cms_credentials_hosp_sub', content.credentials?.hosp_sub);
+
+  // Section 5: About Page Biography & 4 Pillars
   setVal('cms_about_banner_tag', content.about?.banner_tag);
   setVal('cms_about_bio_heading', content.about?.bio_heading);
   setVal('cms_about_bio_p1', content.about?.bio_p1);
@@ -1031,34 +1123,110 @@ async function populateCmsEditorForm() {
   setVal('cms_about_pillar1_desc', content.about?.pillar1_desc);
   setVal('cms_about_pillar2_title', content.about?.pillar2_title);
   setVal('cms_about_pillar2_desc', content.about?.pillar2_desc);
+  setVal('cms_about_pillar3_title', content.about?.pillar3_title);
+  setVal('cms_about_pillar3_desc', content.about?.pillar3_desc);
+  setVal('cms_about_pillar4_title', content.about?.pillar4_title);
+  setVal('cms_about_pillar4_desc', content.about?.pillar4_desc);
 
-  // Section 4: Main Headlines & Page Banners
-  setVal('cms_specialties_title', content.specialties?.title);
-  setVal('cms_specialties_tag', content.specialties?.tag);
-  setVal('cms_specialties_desc', content.specialties?.desc);
-
-  setVal('cms_credentials_title', content.credentials?.title);
-  setVal('cms_credentials_tag', content.credentials?.tag);
-  setVal('cms_credentials_desc', content.credentials?.desc);
-
-  setVal('cms_appointment_title', content.appointment?.title);
-  setVal('cms_appointment_tag', content.appointment?.tag);
-  setVal('cms_appointment_subtitle', content.appointment?.subtitle);
-
+  // Section 6: Surgical Services Page
   setVal('cms_services_banner_title', content.services?.banner_title);
   setVal('cms_services_banner_tag', content.services?.banner_tag);
   setVal('cms_services_banner_desc', content.services?.banner_desc);
+  setVal('cms_services_cat1_title', content.services?.cat1_title);
+  setVal('cms_services_cat1_desc', content.services?.cat1_desc);
+  setVal('cms_services_s1_title', content.services?.s1_title);
+  setVal('cms_services_s1_desc', content.services?.s1_desc);
+  setVal('cms_services_s2_title', content.services?.s2_title);
+  setVal('cms_services_s2_desc', content.services?.s2_desc);
+  setVal('cms_services_cat2_title', content.services?.cat2_title);
+  setVal('cms_services_cat2_desc', content.services?.cat2_desc);
+  setVal('cms_services_s3_title', content.services?.s3_title);
+  setVal('cms_services_s3_desc', content.services?.s3_desc);
+  setVal('cms_services_s4_title', content.services?.s4_title);
+  setVal('cms_services_s4_desc', content.services?.s4_desc);
+  setVal('cms_services_cat3_title', content.services?.cat3_title);
+  setVal('cms_services_cat3_desc', content.services?.cat3_desc);
+  setVal('cms_services_s5_title', content.services?.s5_title);
+  setVal('cms_services_s5_desc', content.services?.s5_desc);
+  setVal('cms_services_s6_title', content.services?.s6_title);
+  setVal('cms_services_s6_desc', content.services?.s6_desc);
+  setVal('cms_services_preop_title', content.services?.preop_title);
+  setVal('cms_services_preop_desc', content.services?.preop_desc);
+  setVal('cms_services_postop_title', content.services?.postop_title);
+  setVal('cms_services_postop_desc', content.services?.postop_desc);
 
-  setVal('cms_chambers_banner_title', content.chambers_page?.banner_title);
-  setVal('cms_chambers_banner_tag', content.chambers_page?.banner_tag);
-  setVal('cms_chambers_banner_desc', content.chambers_page?.banner_desc);
-
-  // Section 5: Dynamic Chambers List (Add / Remove)
+  // Section 7: Chambers & Visiting Hours
+  setVal('cms_chambers_section_title', content.chambers_section?.title);
+  setVal('cms_chambers_section_subtitle', content.chambers_section?.subtitle);
   renderCmsChambersList(window.siteContentService.getChambersList(content));
 
-  // Section 6: Footer
+  // Section 8: Appointment Booking
+  setVal('cms_appointment_title', content.appointment?.title);
+  setVal('cms_appointment_tag', content.appointment?.tag);
+  setVal('cms_appointment_subtitle', content.appointment?.subtitle);
+  setVal('cms_appointment_notice', content.appointment?.notice);
+  setVal('cms_appointment_form_title', content.appointment?.form_title);
+  setVal('cms_appointment_form_subtitle', content.appointment?.form_subtitle);
+
+  // Section 9: Footer & Branding
+  setVal('cms_footer_brand_title', content.footer?.brand_title || content.doctor?.name);
   setVal('cms_footer_about_text', content.footer?.about_text);
   setVal('cms_footer_copyright_text', content.footer?.copyright_text);
+}
+
+/**
+ * Setup Organized CMS Sub-Navigation and Live Search Filter
+ */
+function initCmsSubnavAndSearch() {
+  const tabs = document.querySelectorAll('#cmsSubnavBar .cms-subnav-btn');
+  const sectionCards = document.querySelectorAll('.cms-section-card');
+  const searchInput = document.getElementById('cmsSearchFilter');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const targetSection = tab.getAttribute('data-cms-tab');
+      if (searchInput) searchInput.value = '';
+
+      sectionCards.forEach(card => {
+        const sec = card.getAttribute('data-cms-section');
+        if (targetSection === 'all' || sec === targetSection) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  searchInput?.addEventListener('input', (e) => {
+    const q = e.target.value.toLowerCase().trim();
+    if (!q) {
+      const activeTab = document.querySelector('#cmsSubnavBar .cms-subnav-btn.active');
+      const targetSection = activeTab ? activeTab.getAttribute('data-cms-tab') : 'all';
+      sectionCards.forEach(card => {
+        const sec = card.getAttribute('data-cms-section');
+        if (targetSection === 'all' || sec === targetSection) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      return;
+    }
+
+    sectionCards.forEach(card => {
+      const text = card.textContent.toLowerCase();
+      const inputVals = Array.from(card.querySelectorAll('input, textarea')).map(i => (i.value || '').toLowerCase()).join(' ');
+      if (text.includes(q) || inputVals.includes(q)) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
 }
 
 /**

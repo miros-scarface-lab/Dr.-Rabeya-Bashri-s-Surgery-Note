@@ -617,163 +617,198 @@
             </div>
           </div>
 
+          <!-- Instant Search & Filter Bar -->
+          <div class="cms-search-wrapper">
+            <svg class="cms-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="cmsSearchFilter" class="cms-search-input" placeholder="🔍 Find any section, headline, procedure, phone number, or text to edit instantly...">
+          </div>
+
+          <!-- Quick Category Sub-Navigation Tabs -->
+          <div class="cms-subnav-bar" id="cmsSubnavBar">
+            <button type="button" class="cms-subnav-btn active" data-cms-tab="all">
+              <span>📑 All Sections</span>
+            </button>
+            <button type="button" class="cms-subnav-btn" data-cms-tab="doctor">
+              <span>🩺 Doctor Profile</span>
+            </button>
+            <button type="button" class="cms-subnav-btn" data-cms-tab="homepage">
+              <span>🏠 Homepage &amp; Hero</span>
+            </button>
+            <button type="button" class="cms-subnav-btn" data-cms-tab="specialties">
+              <span>✨ Clinical Specialties</span>
+            </button>
+            <button type="button" class="cms-subnav-btn" data-cms-tab="credentials">
+              <span>🎓 Credentials &amp; Degrees</span>
+            </button>
+            <button type="button" class="cms-subnav-btn" data-cms-tab="about">
+              <span>📖 About Bio &amp; Pillars</span>
+            </button>
+            <button type="button" class="cms-subnav-btn" data-cms-tab="services">
+              <span>🔬 Surgical Procedures</span>
+            </button>
+            <button type="button" class="cms-subnav-btn" data-cms-tab="chambers">
+              <span>🏥 Chamber Schedules</span>
+            </button>
+            <button type="button" class="cms-subnav-btn" data-cms-tab="appointment">
+              <span>📅 Appointment Booking</span>
+            </button>
+            <button type="button" class="cms-subnav-btn" data-cms-tab="footer">
+              <span>🌐 Footer &amp; Branding</span>
+            </button>
+          </div>
+
           <form id="cmsContentForm">
-            <!-- 1. Doctor Profile & Header Brand -->
-            <div style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.5rem;">
-              <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--slate-900); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-                <span>🩺</span> Section 1: Doctor Profile &amp; Contact Information
-              </h3>
-              <div class="form-row form-row-2">
-                <div class="form-group">
-                  <label class="form-label">Doctor's Official Name</label>
-                  <input type="text" id="cms_doctor_name" class="form-control" required>
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Specialty Title / Subtitle</label>
-                  <input type="text" id="cms_doctor_title" class="form-control" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Degrees &amp; Certifications</label>
-                <input type="text" id="cms_doctor_degrees" class="form-control" required>
-              </div>
-              <div class="form-row form-row-3">
-                <div class="form-group">
-                  <label class="form-label">BMDC Registration No.</label>
-                  <input type="text" id="cms_doctor_bmdc_reg" class="form-control">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Primary Appointment Phone</label>
-                  <input type="text" id="cms_doctor_primary_phone" class="form-control">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Alternate Phone / Serial Desk</label>
-                  <input type="text" id="cms_doctor_alt_phone" class="form-control">
-                </div>
-              </div>
-              <div class="form-row form-row-2">
-                <div class="form-group">
-                  <label class="form-label">Clinical Notification Email</label>
-                  <input type="email" id="cms_doctor_email" class="form-control">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Emergency 24/7 OT Hotline</label>
-                  <input type="text" id="cms_doctor_emergency_hotline" class="form-control">
-                </div>
-              </div>
-            </div>
+            <div class="cms-section-container">
 
-            <!-- 2. Homepage Hero Banner & Credentials -->
-            <div style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.5rem;">
-              <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--slate-900); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-                <span>✨</span> Section 2: Homepage Hero Banner &amp; Statistics
-              </h3>
-              <div class="form-group">
-                <label class="form-label">Hero Badge / Pill Tag</label>
-                <input type="text" id="cms_hero_pill_text" class="form-control">
-              </div>
-              <div class="form-row form-row-2">
-                <div class="form-group">
-                  <label class="form-label">Main Heading Line 1</label>
-                  <input type="text" id="cms_hero_title_main" class="form-control">
+              <!-- 1. Doctor Profile & Contact Information -->
+              <div class="cms-section-card" data-cms-section="doctor">
+                <div class="cms-section-header">
+                  <h3 class="cms-section-title">
+                    <span>🩺</span> Section 1: Doctor Profile &amp; Global Contact Info
+                  </h3>
+                  <span class="cms-section-badge">Global Profile</span>
                 </div>
-                <div class="form-group">
-                  <label class="form-label">Main Heading Line 2 (Highlighted Gradient Text)</label>
-                  <input type="text" id="cms_hero_title_highlight" class="form-control">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Hero Description / Subtitle</label>
-                <textarea id="cms_hero_subtitle" class="form-control" style="min-height: 80px;"></textarea>
-              </div>
-              <div style="font-weight: 700; font-size: 0.85rem; color: var(--slate-800); margin: 1rem 0 0.5rem;">Hero Credential Counters:</div>
-              <div class="form-row form-row-2">
-                <div class="form-group">
-                  <label class="form-label">Stat 1 (e.g. 15+ &amp; Experience)</label>
-                  <div style="display: flex; gap: 0.5rem;">
-                    <input type="text" id="cms_hero_stat1_num" class="form-control" style="max-width: 100px;">
-                    <input type="text" id="cms_hero_stat1_label" class="form-control">
+                <div class="form-row form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Doctor's Official Name</label>
+                    <input type="text" id="cms_doctor_name" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Specialty Primary Title</label>
+                    <input type="text" id="cms_doctor_title" class="form-control" required>
                   </div>
                 </div>
-                <div class="form-group">
-                  <label class="form-label">Stat 2 (e.g. 4,500+ &amp; Deliveries)</label>
-                  <div style="display: flex; gap: 0.5rem;">
-                    <input type="text" id="cms_hero_stat2_num" class="form-control" style="max-width: 100px;">
-                    <input type="text" id="cms_hero_stat2_label" class="form-control">
+                <div class="form-row form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Specialty Subtitle / Description</label>
+                    <input type="text" id="cms_doctor_subtitle" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Degrees &amp; Certifications</label>
+                    <input type="text" id="cms_doctor_degrees" class="form-control" required>
+                  </div>
+                </div>
+                <div class="form-row form-row-3">
+                  <div class="form-group">
+                    <label class="form-label">BMDC Registration No.</label>
+                    <input type="text" id="cms_doctor_bmdc_reg" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Years of Experience</label>
+                    <input type="text" id="cms_doctor_experience_years" class="form-control" placeholder="15+">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Primary Appointment Phone</label>
+                    <input type="text" id="cms_doctor_primary_phone" class="form-control">
+                  </div>
+                </div>
+                <div class="form-row form-row-3">
+                  <div class="form-group">
+                    <label class="form-label">Alternate Phone / Serial Desk</label>
+                    <input type="text" id="cms_doctor_alt_phone" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Clinical Notification Email</label>
+                    <input type="email" id="cms_doctor_email" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Emergency 24/7 OT Hotline</label>
+                    <input type="text" id="cms_doctor_emergency_hotline" class="form-control">
                   </div>
                 </div>
               </div>
-              <div class="form-row form-row-2">
-                <div class="form-group">
-                  <label class="form-label">Stat 3 (e.g. 99.4% &amp; Safety)</label>
-                  <div style="display: flex; gap: 0.5rem;">
-                    <input type="text" id="cms_hero_stat3_num" class="form-control" style="max-width: 100px;">
-                    <input type="text" id="cms_hero_stat3_label" class="form-control">
+
+              <!-- 2. Homepage Hero Banner & Credential Counters -->
+              <div class="cms-section-card" data-cms-section="homepage">
+                <div class="cms-section-header">
+                  <h3 class="cms-section-title">
+                    <span>✨</span> Section 2: Homepage Hero Banner &amp; Statistics
+                  </h3>
+                  <span class="cms-section-badge">Homepage</span>
+                </div>
+                <div class="form-row form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Hero Badge / Pill Tag</label>
+                    <input type="text" id="cms_hero_pill_text" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Accepting Patients Badge Status</label>
+                    <input type="text" id="cms_hero_badge_status" class="form-control">
+                  </div>
+                </div>
+                <div class="form-row form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Main Heading Line 1</label>
+                    <input type="text" id="cms_hero_title_main" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Main Heading Line 2 (Highlighted Gradient Text)</label>
+                    <input type="text" id="cms_hero_title_highlight" class="form-control">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="form-label">Stat 4 (e.g. 4 &amp; Hospitals)</label>
-                  <div style="display: flex; gap: 0.5rem;">
-                    <input type="text" id="cms_hero_stat4_num" class="form-control" style="max-width: 100px;">
-                    <input type="text" id="cms_hero_stat4_label" class="form-control">
+                  <label class="form-label">Hero Description / Subtitle</label>
+                  <textarea id="cms_hero_subtitle" class="form-control" style="min-height: 80px;"></textarea>
+                </div>
+                <div class="form-row form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Primary Action Button Text</label>
+                    <input type="text" id="cms_hero_btn_primary" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Secondary Action Button Text</label>
+                    <input type="text" id="cms_hero_btn_secondary" class="form-control">
+                  </div>
+                </div>
+
+                <div class="cms-group-box">
+                  <div class="cms-group-title">🔢 4 Hero Credential Counters:</div>
+                  <div class="form-row form-row-2">
+                    <div class="form-group">
+                      <label class="form-label">Stat 1 (e.g. 15+ &amp; Experience)</label>
+                      <div style="display: flex; gap: 0.5rem;">
+                        <input type="text" id="cms_hero_stat1_num" class="form-control" style="max-width: 100px;">
+                        <input type="text" id="cms_hero_stat1_label" class="form-control">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Stat 2 (e.g. 4,500+ &amp; Deliveries)</label>
+                      <div style="display: flex; gap: 0.5rem;">
+                        <input type="text" id="cms_hero_stat2_num" class="form-control" style="max-width: 100px;">
+                        <input type="text" id="cms_hero_stat2_label" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row form-row-2" style="margin-bottom: 0;">
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label class="form-label">Stat 3 (e.g. 99.4% &amp; Safety)</label>
+                      <div style="display: flex; gap: 0.5rem;">
+                        <input type="text" id="cms_hero_stat3_num" class="form-control" style="max-width: 100px;">
+                        <input type="text" id="cms_hero_stat3_label" class="form-control">
+                      </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label class="form-label">Stat 4 (e.g. 1 &amp; Dinajpur Medical College)</label>
+                      <div style="display: flex; gap: 0.5rem;">
+                        <input type="text" id="cms_hero_stat4_num" class="form-control" style="max-width: 100px;">
+                        <input type="text" id="cms_hero_stat4_label" class="form-control">
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <!-- 3. About Page Biography & Philosophy -->
-            <div style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.5rem;">
-              <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--slate-900); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-                <span>📖</span> Section 3: About Page Biography &amp; Philosophy
-              </h3>
-              <div class="form-row form-row-2">
-                <div class="form-group">
-                  <label class="form-label">About Page Banner Badge / Tag</label>
-                  <input type="text" id="cms_about_banner_tag" class="form-control">
+              <!-- 3. Clinical Specialties 4 Cards -->
+              <div class="cms-section-card" data-cms-section="specialties">
+                <div class="cms-section-header">
+                  <h3 class="cms-section-title">
+                    <span>🩺</span> Section 3: Clinical Specialties &amp; Cards
+                  </h3>
+                  <span class="cms-section-badge">Homepage</span>
                 </div>
-                <div class="form-group">
-                  <label class="form-label">Biography Heading (Main Headline)</label>
-                  <input type="text" id="cms_about_bio_heading" class="form-control">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Biography Paragraph 1</label>
-                <textarea id="cms_about_bio_p1" class="form-control" style="min-height: 90px;"></textarea>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Biography Paragraph 2</label>
-                <textarea id="cms_about_bio_p2" class="form-control" style="min-height: 90px;"></textarea>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Biography Paragraph 3</label>
-                <textarea id="cms_about_bio_p3" class="form-control" style="min-height: 90px;"></textarea>
-              </div>
-              <div class="form-row form-row-2" style="margin-top: 1rem;">
-                <div class="form-group">
-                  <label class="form-label">Philosophy Pillar 1 (Title &amp; Desc)</label>
-                  <input type="text" id="cms_about_pillar1_title" class="form-control" style="margin-bottom: 0.5rem;">
-                  <textarea id="cms_about_pillar1_desc" class="form-control" style="min-height: 70px;"></textarea>
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Philosophy Pillar 2 (Title &amp; Desc)</label>
-                  <input type="text" id="cms_about_pillar2_title" class="form-control" style="margin-bottom: 0.5rem;">
-                  <textarea id="cms_about_pillar2_desc" class="form-control" style="min-height: 70px;"></textarea>
-                </div>
-              </div>
-            </div>
-
-            <!-- 4. Website Main Headlines & Page Banners -->
-            <div style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.5rem;">
-              <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--slate-900); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                <span>📢</span> Section 4: Main Headlines &amp; Page Banners
-              </h3>
-              <p style="font-size: 0.85rem; color: var(--slate-600); margin-bottom: 1.25rem;">
-                Customize the main section headlines, badge tags, and subheadings across all pages of your website.
-              </p>
-
-              <!-- Group A: Specialties & Services Headlines -->
-              <div style="background: var(--white); border: 1px solid var(--slate-200); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1rem;">
-                <div style="font-weight: 700; color: var(--primary); margin-bottom: 0.75rem;">Homepage Clinical Specialties Section Headlines</div>
                 <div class="form-row form-row-2">
                   <div class="form-group">
                     <label class="form-label">Specialties Section Title (Main Headline)</label>
@@ -784,18 +819,72 @@
                     <input type="text" id="cms_specialties_tag" class="form-control">
                   </div>
                 </div>
-                <div class="form-group" style="margin-bottom: 0;">
-                  <label class="form-label">Specialties Section Subtitle / Description</label>
+                <div class="form-group">
+                  <label class="form-label">Specialties Section Description</label>
                   <textarea id="cms_specialties_desc" class="form-control" style="min-height: 60px;"></textarea>
+                </div>
+
+                <div class="form-row form-row-2">
+                  <div class="cms-group-box">
+                    <div class="cms-group-title">Card 1: Normal Delivery</div>
+                    <div class="form-group">
+                      <label class="form-label">Card Title</label>
+                      <input type="text" id="cms_specialties_card1_title" class="form-control">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label class="form-label">Card Description</label>
+                      <textarea id="cms_specialties_card1_desc" class="form-control" style="min-height: 70px;"></textarea>
+                    </div>
+                  </div>
+                  <div class="cms-group-box">
+                    <div class="cms-group-title">Card 2: Cesarean Section</div>
+                    <div class="form-group">
+                      <label class="form-label">Card Title</label>
+                      <input type="text" id="cms_specialties_card2_title" class="form-control">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label class="form-label">Card Description</label>
+                      <textarea id="cms_specialties_card2_desc" class="form-control" style="min-height: 70px;"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row form-row-2">
+                  <div class="cms-group-box">
+                    <div class="cms-group-title">Card 3: Gynecological Surgeries</div>
+                    <div class="form-group">
+                      <label class="form-label">Card Title</label>
+                      <input type="text" id="cms_specialties_card3_title" class="form-control">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label class="form-label">Card Description</label>
+                      <textarea id="cms_specialties_card3_desc" class="form-control" style="min-height: 70px;"></textarea>
+                    </div>
+                  </div>
+                  <div class="cms-group-box">
+                    <div class="cms-group-title">Card 4: Laparoscopic Surgery</div>
+                    <div class="form-group">
+                      <label class="form-label">Card Title</label>
+                      <input type="text" id="cms_specialties_card4_title" class="form-control">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label class="form-label">Card Description</label>
+                      <textarea id="cms_specialties_card4_desc" class="form-control" style="min-height: 70px;"></textarea>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <!-- Group B: Credentials & Qualifications Headlines -->
-              <div style="background: var(--white); border: 1px solid var(--slate-200); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1rem;">
-                <div style="font-weight: 700; color: var(--secondary); margin-bottom: 0.75rem;">Qualifications &amp; Hospital Attachments Section Headlines</div>
+              <!-- 4. Qualifications & Hospital Attachments Section -->
+              <div class="cms-section-card" data-cms-section="credentials">
+                <div class="cms-section-header">
+                  <h3 class="cms-section-title">
+                    <span>🎓</span> Section 4: Credentials, Degrees &amp; Attachments
+                  </h3>
+                  <span class="cms-section-badge">Homepage</span>
+                </div>
                 <div class="form-row form-row-2">
                   <div class="form-group">
-                    <label class="form-label">Credentials Section Title (Main Headline)</label>
+                    <label class="form-label">Credentials Section Title</label>
                     <input type="text" id="cms_credentials_title" class="form-control">
                   </div>
                   <div class="form-group">
@@ -803,34 +892,132 @@
                     <input type="text" id="cms_credentials_tag" class="form-control">
                   </div>
                 </div>
-                <div class="form-group" style="margin-bottom: 0;">
+                <div class="form-group">
                   <label class="form-label">Credentials Section Description</label>
                   <textarea id="cms_credentials_desc" class="form-control" style="min-height: 60px;"></textarea>
                 </div>
+
+                <div class="cms-group-box">
+                  <div class="cms-group-title">📜 Academic Degrees &amp; Fellowships Column</div>
+                  <div class="form-row form-row-2">
+                    <div class="form-group">
+                      <label class="form-label">Column Header</label>
+                      <input type="text" id="cms_credentials_qual_header" class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Column Subtitle</label>
+                      <input type="text" id="cms_credentials_qual_sub" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-row form-row-2">
+                    <div class="form-group">
+                      <label class="form-label">Degree 1 (e.g. FCPS)</label>
+                      <input type="text" id="cms_credentials_q1_title" class="form-control" style="margin-bottom: 0.35rem;">
+                      <input type="text" id="cms_credentials_q1_sub" class="form-control" placeholder="Institution">
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Degree 2 (e.g. MS)</label>
+                      <input type="text" id="cms_credentials_q2_title" class="form-control" style="margin-bottom: 0.35rem;">
+                      <input type="text" id="cms_credentials_q2_sub" class="form-control" placeholder="Institution">
+                    </div>
+                  </div>
+                  <div class="form-row form-row-2" style="margin-bottom: 0;">
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label class="form-label">Degree 3 (e.g. Fellowship in Laparoscopy)</label>
+                      <input type="text" id="cms_credentials_q3_title" class="form-control" style="margin-bottom: 0.35rem;">
+                      <input type="text" id="cms_credentials_q3_sub" class="form-control" placeholder="Institution">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label class="form-label">Degree 4 (e.g. MBBS)</label>
+                      <input type="text" id="cms_credentials_q4_title" class="form-control" style="margin-bottom: 0.35rem;">
+                      <input type="text" id="cms_credentials_q4_sub" class="form-control" placeholder="Institution">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="cms-group-box" style="margin-bottom: 0;">
+                  <div class="cms-group-title">🏥 Hospital Attachments Column Header</div>
+                  <div class="form-row form-row-2">
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label class="form-label">Column Header</label>
+                      <input type="text" id="cms_credentials_hosp_header" class="form-control">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label class="form-label">Column Subtitle</label>
+                      <input type="text" id="cms_credentials_hosp_sub" class="form-control">
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <!-- Group C: Appointment Booking Section Headlines -->
-              <div style="background: var(--white); border: 1px solid var(--slate-200); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1rem;">
-                <div style="font-weight: 700; color: var(--slate-800); margin-bottom: 0.75rem;">Online Appointment Booking Section Headlines</div>
+              <!-- 5. About Page Biography & 4 Clinical Philosophy Pillars -->
+              <div class="cms-section-card" data-cms-section="about">
+                <div class="cms-section-header">
+                  <h3 class="cms-section-title">
+                    <span>📖</span> Section 5: About Page Biography &amp; Philosophy
+                  </h3>
+                  <span class="cms-section-badge">About Page</span>
+                </div>
                 <div class="form-row form-row-2">
                   <div class="form-group">
-                    <label class="form-label">Appointment Section Title (Main Headline)</label>
-                    <input type="text" id="cms_appointment_title" class="form-control">
+                    <label class="form-label">About Page Banner Badge / Tag</label>
+                    <input type="text" id="cms_about_banner_tag" class="form-control">
                   </div>
                   <div class="form-group">
-                    <label class="form-label">Appointment Badge / Tag</label>
-                    <input type="text" id="cms_appointment_tag" class="form-control">
+                    <label class="form-label">Biography Heading (Main Headline)</label>
+                    <input type="text" id="cms_about_bio_heading" class="form-control">
                   </div>
                 </div>
-                <div class="form-group" style="margin-bottom: 0;">
-                  <label class="form-label">Appointment Subtitle / Instructions</label>
-                  <input type="text" id="cms_appointment_subtitle" class="form-control">
+                <div class="form-group">
+                  <label class="form-label">Biography Paragraph 1</label>
+                  <textarea id="cms_about_bio_p1" class="form-control" style="min-height: 80px;"></textarea>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Biography Paragraph 2</label>
+                  <textarea id="cms_about_bio_p2" class="form-control" style="min-height: 80px;"></textarea>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Biography Paragraph 3</label>
+                  <textarea id="cms_about_bio_p3" class="form-control" style="min-height: 80px;"></textarea>
+                </div>
+
+                <div class="cms-group-box" style="margin-bottom: 0;">
+                  <div class="cms-group-title">🌸 4 Clinical Philosophy Pillars</div>
+                  <div class="form-row form-row-2">
+                    <div class="form-group">
+                      <label class="form-label">Pillar 1 (Gentle Birth)</label>
+                      <input type="text" id="cms_about_pillar1_title" class="form-control" style="margin-bottom: 0.35rem;">
+                      <textarea id="cms_about_pillar1_desc" class="form-control" style="min-height: 60px;"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Pillar 2 (Precision Surgery)</label>
+                      <input type="text" id="cms_about_pillar2_title" class="form-control" style="margin-bottom: 0.35rem;">
+                      <textarea id="cms_about_pillar2_desc" class="form-control" style="min-height: 60px;"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-row form-row-2" style="margin-bottom: 0;">
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label class="form-label">Pillar 3 (Safety Protocols)</label>
+                      <input type="text" id="cms_about_pillar3_title" class="form-control" style="margin-bottom: 0.35rem;">
+                      <textarea id="cms_about_pillar3_desc" class="form-control" style="min-height: 60px;"></textarea>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label class="form-label">Pillar 4 (Empathetic Care)</label>
+                      <input type="text" id="cms_about_pillar4_title" class="form-control" style="margin-bottom: 0.35rem;">
+                      <textarea id="cms_about_pillar4_desc" class="form-control" style="min-height: 60px;"></textarea>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <!-- Group D: Services Page Banner Headlines -->
-              <div style="background: var(--white); border: 1px solid var(--slate-200); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1rem;">
-                <div style="font-weight: 700; color: var(--primary); margin-bottom: 0.75rem;">Services Page Banner Headlines</div>
+              <!-- 6. Surgical Services Page (Categories, Procedures, Pre/Post-Op) -->
+              <div class="cms-section-card" data-cms-section="services">
+                <div class="cms-section-header">
+                  <h3 class="cms-section-title">
+                    <span>🔬</span> Section 6: Surgical Services Page &amp; Procedures
+                  </h3>
+                  <span class="cms-section-badge">Services Page</span>
+                </div>
                 <div class="form-row form-row-2">
                   <div class="form-group">
                     <label class="form-label">Services Page Main Title</label>
@@ -841,76 +1028,193 @@
                     <input type="text" id="cms_services_banner_tag" class="form-control">
                   </div>
                 </div>
-                <div class="form-group" style="margin-bottom: 0;">
+                <div class="form-group">
                   <label class="form-label">Services Page Description</label>
                   <textarea id="cms_services_banner_desc" class="form-control" style="min-height: 60px;"></textarea>
                 </div>
-              </div>
 
-              <!-- Group E: Contact & Chambers Page Banner Headlines -->
-              <div style="background: var(--white); border: 1px solid var(--slate-200); border-radius: var(--radius-md); padding: 1.25rem;">
-                <div style="font-weight: 700; color: var(--secondary); margin-bottom: 0.75rem;">Chamber &amp; Contact Page Banner Headlines</div>
-                <div class="form-row form-row-2">
-                  <div class="form-group">
-                    <label class="form-label">Contact Page Main Title</label>
-                    <input type="text" id="cms_chambers_banner_title" class="form-control">
+                <!-- Group 1: Obstetric Procedures -->
+                <div class="cms-group-box">
+                  <div class="cms-group-title">🤰 Category 1: Obstetric &amp; Delivery Care</div>
+                  <div class="form-row form-row-2">
+                    <div class="form-group">
+                      <label class="form-label">Category 1 Title</label>
+                      <input type="text" id="cms_services_cat1_title" class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Category 1 Description</label>
+                      <input type="text" id="cms_services_cat1_desc" class="form-control">
+                    </div>
                   </div>
-                  <div class="form-group">
-                    <label class="form-label">Contact Page Badge / Tag</label>
-                    <input type="text" id="cms_chambers_banner_tag" class="form-control">
+                  <div class="form-row form-row-2">
+                    <div class="form-group">
+                      <label class="form-label">Procedure 1: Normal Delivery (Title &amp; Desc)</label>
+                      <input type="text" id="cms_services_s1_title" class="form-control" style="margin-bottom: 0.35rem;">
+                      <textarea id="cms_services_s1_desc" class="form-control" style="min-height: 65px;"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Procedure 2: Cesarean Section (Title &amp; Desc)</label>
+                      <input type="text" id="cms_services_s2_title" class="form-control" style="margin-bottom: 0.35rem;">
+                      <textarea id="cms_services_s2_desc" class="form-control" style="min-height: 65px;"></textarea>
+                    </div>
                   </div>
                 </div>
-                <div class="form-group" style="margin-bottom: 0;">
-                  <label class="form-label">Contact Page Description</label>
-                  <textarea id="cms_chambers_banner_desc" class="form-control" style="min-height: 60px;"></textarea>
+
+                <!-- Group 2: Gynecologic & Laparoscopic Surgeries -->
+                <div class="cms-group-box">
+                  <div class="cms-group-title">🌸 Category 2: Gynecological &amp; Laparoscopic Surgeries</div>
+                  <div class="form-row form-row-2">
+                    <div class="form-group">
+                      <label class="form-label">Category 2 Title</label>
+                      <input type="text" id="cms_services_cat2_title" class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Category 2 Description</label>
+                      <input type="text" id="cms_services_cat2_desc" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-row form-row-2">
+                    <div class="form-group">
+                      <label class="form-label">Procedure 3: Myomectomy (Title &amp; Desc)</label>
+                      <input type="text" id="cms_services_s3_title" class="form-control" style="margin-bottom: 0.35rem;">
+                      <textarea id="cms_services_s3_desc" class="form-control" style="min-height: 65px;"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Procedure 4: Hysterectomy (Title &amp; Desc)</label>
+                      <input type="text" id="cms_services_s4_title" class="form-control" style="margin-bottom: 0.35rem;">
+                      <textarea id="cms_services_s4_desc" class="form-control" style="min-height: 65px;"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-row form-row-2" style="margin-bottom: 0;">
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label class="form-label">Procedure 5: Diagnostic Laparoscopy (Title &amp; Desc)</label>
+                      <input type="text" id="cms_services_s5_title" class="form-control" style="margin-bottom: 0.35rem;">
+                      <textarea id="cms_services_s5_desc" class="form-control" style="min-height: 65px;"></textarea>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label class="form-label">Procedure 6: Ovarian Cystectomy (Title &amp; Desc)</label>
+                      <input type="text" id="cms_services_s6_title" class="form-control" style="margin-bottom: 0.35rem;">
+                      <textarea id="cms_services_s6_desc" class="form-control" style="min-height: 65px;"></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Pre-op & Post-op Advice -->
+                <div class="cms-group-box" style="margin-bottom: 0;">
+                  <div class="cms-group-title">📋 Pre-Operative &amp; Post-Operative Guidance</div>
+                  <div class="form-row form-row-2">
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label class="form-label">Pre-Operative Preparation Card</label>
+                      <input type="text" id="cms_services_preop_title" class="form-control" style="margin-bottom: 0.35rem;">
+                      <textarea id="cms_services_preop_desc" class="form-control" style="min-height: 60px;"></textarea>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label class="form-label">Post-Operative Recovery Card</label>
+                      <input type="text" id="cms_services_postop_title" class="form-control" style="margin-bottom: 0.35rem;">
+                      <textarea id="cms_services_postop_desc" class="form-control" style="min-height: 60px;"></textarea>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <!-- 5. Chambers, Visiting Hours & Contact Schedules (Dynamic Add / Remove) -->
-            <div style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.5rem;">
-              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
-                <div>
-                  <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--slate-900); margin: 0; display: flex; align-items: center; gap: 0.5rem;">
-                    <span>🏥</span> Section 5: Chamber Locations &amp; Visiting Hours
+              <!-- 7. Chambers, Visiting Hours & Contact Schedules (Dynamic Add / Remove) -->
+              <div class="cms-section-card" data-cms-section="chambers">
+                <div class="cms-section-header">
+                  <h3 class="cms-section-title">
+                    <span>🏥</span> Section 7: Chamber Locations &amp; Visiting Hours
                   </h3>
-                  <div style="font-size: 0.85rem; color: var(--slate-500); margin-top: 0.25rem;">
-                    Add or remove chamber locations as needed. Changes sync across booking dropdowns, schedules, and footer.
+                  <button type="button" id="btnAddChamberRow" class="btn btn-primary btn-sm" style="display: flex; align-items: center; gap: 0.4rem; font-weight: 600;">
+                    <span>➕</span> Add New Chamber
+                  </button>
+                </div>
+                <div class="form-row form-row-2" style="margin-bottom: 1rem;">
+                  <div class="form-group">
+                    <label class="form-label">Chambers Section Title</label>
+                    <input type="text" id="cms_chambers_section_title" class="form-control" placeholder="Clinical Attachment &amp; Visiting Chambers">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Chambers Section Subtitle</label>
+                    <input type="text" id="cms_chambers_section_subtitle" class="form-control" placeholder="Current hospital visiting schedule in Dinajpur">
                   </div>
                 </div>
-                <button type="button" id="btnAddChamberRow" class="btn btn-primary btn-sm" style="display: flex; align-items: center; gap: 0.4rem; font-weight: 600;">
-                  <span>➕</span> Add New Chamber
+
+                <!-- Dynamic Chambers Container -->
+                <div id="cmsChambersContainer" style="display: flex; flex-direction: column; gap: 1rem;">
+                  <!-- Populated dynamically via JS -->
+                </div>
+
+                <button type="button" id="btnAddChamberRowBottom" class="btn btn-outline-primary" style="width: 100%; border-style: dashed; padding: 0.85rem; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 1rem;">
+                  <span>➕</span> Add Another Chamber Location
                 </button>
               </div>
 
-              <!-- Dynamic Chambers Container -->
-              <div id="cmsChambersContainer" style="display: flex; flex-direction: column; gap: 1rem;">
-                <!-- Populated dynamically via JS -->
+              <!-- 8. Online Appointment Booking Section -->
+              <div class="cms-section-card" data-cms-section="appointment">
+                <div class="cms-section-header">
+                  <h3 class="cms-section-title">
+                    <span>📅</span> Section 8: Consultation &amp; Appointment Booking
+                  </h3>
+                  <span class="cms-section-badge">Booking Form</span>
+                </div>
+                <div class="form-row form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Appointment Section Title (Main Headline)</label>
+                    <input type="text" id="cms_appointment_title" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Appointment Badge / Tag</label>
+                    <input type="text" id="cms_appointment_tag" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Appointment Subtitle / Instructions</label>
+                  <input type="text" id="cms_appointment_subtitle" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">🚨 Emergency Obstetric Notice Text</label>
+                  <textarea id="cms_appointment_notice" class="form-control" style="min-height: 60px;"></textarea>
+                </div>
+                <div class="form-row form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Form Box Headline</label>
+                    <input type="text" id="cms_appointment_form_title" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Form Box Subtitle</label>
+                    <input type="text" id="cms_appointment_form_subtitle" class="form-control">
+                  </div>
+                </div>
               </div>
 
-              <button type="button" id="btnAddChamberRowBottom" class="btn btn-outline-primary" style="width: 100%; border-style: dashed; padding: 0.85rem; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 1rem;">
-                <span>➕</span> Add Another Chamber Location
-              </button>
+              <!-- 9. Footer & Copyright Notice -->
+              <div class="cms-section-card" data-cms-section="footer">
+                <div class="cms-section-header">
+                  <h3 class="cms-section-title">
+                    <span>🌐</span> Section 9: Footer &amp; Copyright Notice
+                  </h3>
+                  <span class="cms-section-badge">Global Footer</span>
+                </div>
+                <div class="form-row form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Footer Brand Title</label>
+                    <input type="text" id="cms_footer_brand_title" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Copyright Notice Line</label>
+                    <input type="text" id="cms_footer_copyright_text" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                  <label class="form-label">Footer About Text</label>
+                  <textarea id="cms_footer_about_text" class="form-control" style="min-height: 70px;"></textarea>
+                </div>
+              </div>
+
             </div>
 
-            <!-- 6. Footer & Copyright -->
-            <div style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 2rem;">
-              <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--slate-900); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-                <span>🌐</span> Section 6: Footer &amp; Copyright Notice
-              </h3>
-              <div class="form-group">
-                <label class="form-label">Footer About Text</label>
-                <textarea id="cms_footer_about_text" class="form-control" style="min-height: 70px;"></textarea>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Copyright Notice Line</label>
-                <input type="text" id="cms_footer_copyright_text" class="form-control">
-              </div>
-            </div>
-
-            <!-- Submit Button Bar -->
-            <div style="display: flex; gap: 1rem; align-items: center; justify-content: flex-end; position: sticky; bottom: 1rem; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); padding: 1rem 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--slate-200); box-shadow: var(--shadow-xl);">
-              <span style="font-size: 0.85rem; color: var(--slate-500);">Unsaved changes will not appear on public site until saved.</span>
+            <!-- Sticky Submit Button Bar -->
+            <div style="display: flex; gap: 1rem; align-items: center; justify-content: flex-end; position: sticky; bottom: 1rem; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); padding: 1rem 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--slate-200); box-shadow: var(--shadow-xl); margin-top: 1.5rem; z-index: 10;">
+              <span id="cmsSaveStatusText" style="font-size: 0.85rem; color: var(--slate-500); margin-right: auto;">Unsaved changes will not appear on public site until saved.</span>
               <button type="submit" id="btnSaveCmsContent" class="btn btn-primary btn-lg">
                 💾 Save &amp; Publish All Website Changes
               </button>

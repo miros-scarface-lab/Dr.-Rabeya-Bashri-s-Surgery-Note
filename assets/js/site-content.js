@@ -26,6 +26,8 @@ const DEFAULT_SITE_CONTENT = {
     "title_main": "Gentle Deliveries,",
     "title_highlight": "Excellence in Surgery.",
     "subtitle": "Specializing in high-safety Cesarean sections, painless normal deliveries, advanced laparoscopic procedures, and comprehensive gynecologic surgical care with over 15 years of dedicated medical service.",
+    "btn_primary": "Schedule Consultation",
+    "btn_secondary": "View Surgical Procedures",
     "stat1_num": "15+",
     "stat1_label": "Years Clinical Experience",
     "stat2_num": "4,500+",
@@ -39,40 +41,36 @@ const DEFAULT_SITE_CONTENT = {
   "specialties": {
     "tag": "Clinical Expertise",
     "title": "Specialized Surgical & Obstetric Care",
-    "desc": "Providing evidence-based, compassionate surgical and obstetric care tailored to every stage of a woman's life."
+    "desc": "Providing evidence-based, compassionate surgical and obstetric care tailored to every stage of a woman's life.",
+    "card1_title": "Normal & Painless Delivery",
+    "card1_desc": "Prioritizing natural birth whenever safe. Experienced in painless epidural labor management, continuous fetal heart monitoring, and gentle birth techniques.",
+    "card2_title": "Cesarean Delivery (LSCS)",
+    "card2_desc": "Expertise in elective and emergency C-sections, repeat surgeries (previous 1, 2, or 3 C-sections), twin births, and high-risk maternal conditions.",
+    "card3_title": "Gynecological Surgeries",
+    "card3_desc": "Specialized surgical management for uterine fibroids, abnormal uterine bleeding, adenomyosis, ovarian cysts, and pelvic organ prolapse.",
+    "card4_title": "Minimally Invasive Laparoscopy",
+    "card4_desc": "Keyhole surgical approaches resulting in smaller scars, minimal postoperative discomfort, and significantly faster recovery times."
   },
   "credentials": {
     "tag": "Credentials & Training",
     "title": "Medical Qualifications & Hospital Attachments",
-    "desc": "Certified by apex medical bodies with specialized higher fellowship training in gynecologic operative surgery and maternal medicine."
+    "desc": "Certified by apex medical bodies with specialized higher fellowship training in gynecologic operative surgery and maternal medicine.",
+    "qual_header": "Academic Degrees & Fellowships",
+    "qual_sub": "Verified Professional Certifications",
+    "q1_title": "FCPS in Obstetrics & Gynecology",
+    "q1_sub": "Bangladesh College of Physicians and Surgeons (BCPS)",
+    "q2_title": "MS (Master of Surgery) in Gynae & Obs",
+    "q2_sub": "Bangabandhu Sheikh Mujib Medical University (BSMMU)",
+    "q3_title": "Fellowship in Minimally Invasive Laparoscopic Surgery",
+    "q3_sub": "Advanced Training in Operative Gynaecological Endoscopy",
+    "q4_title": "MBBS (Bachelor of Medicine & Surgery)",
+    "q4_sub": "Dhaka Medical College, Registered with BMDC",
+    "hosp_header": "Hospital Attachments & Chambers",
+    "hosp_sub": "Equipped with Modern Operation Theatres & NICU"
   },
-  "about": {
-    "banner_tag": "Surgeon Biography & Background",
-    "page_title": "Dr. Rabeya Basri",
-    "page_subtitle": "MBBS, FCPS (Obstetrics & Gynecology), MS (Gynae & Obs)\nFellowship in Minimally Invasive Laparoscopic Surgery",
-    "bio_heading": "Dedicated to Safe Deliveries & Advanced Gynecological Care",
-    "bio_p1": "Dr. Rabeya Basri is an experienced Consultant Obstetrician and Gynecologist with over 15 years of surgical excellence in maternal-fetal medicine and operative gynecology. Having completed her FCPS from the Bangladesh College of Physicians and Surgeons (BCPS) and Master of Surgery (MS), she has dedicated her career to providing compassionate, evidence-based care to women across all stages of life.",
-    "bio_p2": "Dr. Rabeya has performed thousands of successful surgical deliveries, including routine and high-risk Cesarean sections, complex repeat C-sections (previous 2 and 3 scars), and multi-fetal pregnancies. She is a strong advocate for natural and painless delivery, ensuring mothers receive the highest standard of labor support, epidural analgesia, and fetal monitoring.",
-    "bio_p3": "In gynecological surgery, she is recognized for her expertise in uterine preservation techniques (abdominal and laparoscopic myomectomy for fibroids), laparoscopic ovarian cystectomies, and minimally invasive hysterectomies. Her surgical philosophy is rooted in meticulous technique, minimal blood loss, cosmetic incision closure, and rapid postoperative recovery.",
-    "pillar1_title": "🌸 Gentle Birth Advocacy",
-    "pillar1_desc": "Encouraging natural and painless labor whenever clinically safe for mother and baby.",
-    "pillar2_title": "🔬 Precision Surgery",
-    "pillar2_desc": "Minimally invasive keyhole techniques for faster recovery and reduced pain."
-  },
-  "services": {
-    "banner_tag": "Clinical Procedures & Care",
-    "banner_title": "Surgical & Obstetric Services",
-    "banner_desc": "From gentle childbirth to advanced laparoscopic operative gynecology, delivering world-class surgical precision and empathetic care."
-  },
-  "appointment": {
-    "tag": "Direct Scheduling",
-    "title": "Request an Appointment",
-    "subtitle": "Schedule an in-person chamber consultation, antenatal checkup, or surgical pre-operative discussion."
-  },
-  "chambers_page": {
-    "banner_tag": "Appointments & Locations",
-    "banner_title": "Chamber Schedule & Contact",
-    "banner_desc": "Find chamber visiting hours or request an appointment online."
+  "chambers_section": {
+    "title": "Clinical Attachment & Visiting Chambers",
+    "subtitle": "Current government and private hospital visiting schedule in Dinajpur"
   },
   "chambersList": [
     {
@@ -92,6 +90,56 @@ const DEFAULT_SITE_CONTENT = {
     "chamber1_days": "Saturday – Thursday",
     "chamber1_hours": "9:00 AM – 2:30 PM & Evening Chamber",
     "chamber1_phone": "+880 1700-000000"
+  },
+  "appointment": {
+    "tag": "Direct Scheduling",
+    "title": "Book a Consultation",
+    "subtitle": "Schedule an in-person chamber consultation, antenatal checkup, or surgical pre-operative discussion.",
+    "form_title": "Request an Appointment",
+    "form_subtitle": "Our chamber assistant will confirm your serial and arrival time slot via phone.",
+    "notice": "For immediate emergency delivery, sudden labor pain, or hemorrhage, please go directly to Dinajpur Medical College, Hospital Emergency OT triage counter."
+  },
+  "about": {
+    "banner_tag": "Surgeon Biography & Background",
+    "bio_heading": "Dedicated to Safe Deliveries & Advanced Gynecological Care",
+    "bio_p1": "Dr. Rabeya Basri is an experienced Consultant Obstetrician and Gynecologist with over 15 years of surgical excellence in maternal-fetal medicine and operative gynecology. Having completed her FCPS from the Bangladesh College of Physicians and Surgeons (BCPS) and Master of Surgery (MS), she has dedicated her career to providing compassionate, evidence-based care to women across all stages of life.",
+    "bio_p2": "Dr. Rabeya has performed thousands of successful surgical deliveries, including routine and high-risk Cesarean sections, complex repeat C-sections (previous 2 and 3 scars), and multi-fetal pregnancies. She is a strong advocate for natural and painless delivery, ensuring mothers receive the highest standard of labor support, epidural analgesia, and fetal monitoring.",
+    "bio_p3": "In gynecological surgery, she is recognized for her expertise in uterine preservation techniques (abdominal and laparoscopic myomectomy for fibroids), laparoscopic ovarian cystectomies, and minimally invasive hysterectomies. Her surgical philosophy is rooted in meticulous technique, minimal blood loss, cosmetic incision closure, and rapid postoperative recovery.",
+    "pillar1_title": "🌸 Gentle Birth Advocacy",
+    "pillar1_desc": "Encouraging natural and painless labor whenever clinically safe for mother and baby.",
+    "pillar2_title": "🔬 Precision Surgery",
+    "pillar2_desc": "Minimally invasive keyhole techniques for faster recovery and reduced pain.",
+    "pillar3_title": "🛡️ High Safety Protocols",
+    "pillar3_desc": "Strict infection control, comprehensive blood loss prevention, and fetal surveillance.",
+    "pillar4_title": "🤝 Empathetic Patient Care",
+    "pillar4_desc": "Personalized maternal counseling and attentive post-operative follow-up."
+  },
+  "services": {
+    "banner_tag": "Clinical Procedures & Care",
+    "banner_title": "Surgical & Obstetric Services",
+    "banner_desc": "From gentle childbirth to advanced laparoscopic operative gynecology, delivering world-class surgical precision and empathetic care.",
+    "cat1_title": "Obstetric & Delivery Care",
+    "cat1_desc": "Safe maternal management for mother and newborn",
+    "s1_title": "Normal & Painless Vaginal Delivery",
+    "s1_desc": "Natural labor support in a calm, mother-centric environment. We offer painless epidural analgesia administered by specialized anesthesiologists, enabling smooth, comfortable labor with continuous CTG fetal heart surveillance.",
+    "s2_title": "Cesarean Delivery (LSCS)",
+    "s2_desc": "Elective and emergency Lower Segment Cesarean Sections (LSCS) performed in tertiary hospital theatres with full neonatal resuscitation and NICU backup. Cosmetically closed with hidden subcuticular sutures.",
+    "cat2_title": "Advanced Gynecologic Surgery",
+    "cat2_desc": "Specialized surgical care for uterine fibroids, prolapse, and abnormal bleeding",
+    "s3_title": "Myomectomy & Uterine Sparing Surgery",
+    "s3_desc": "Surgical removal of uterine fibroids while meticulously preserving the uterus for future childbearing and hormone balance. Performed via cosmetic mini-laparotomy or laparoscopic approach.",
+    "s4_title": "Hysterectomy (Abdominal & Vaginal)",
+    "s4_desc": "Total or subtotal hysterectomy for definitive management of severe adenomyosis, resistant abnormal bleeding, and pelvic organ prolapse with minimal blood loss and rapid recovery.",
+    "cat3_title": "Minimally Invasive Laparoscopy",
+    "cat3_desc": "Keyhole surgical precision with rapid recovery and cosmetic incisions",
+    "s5_title": "Diagnostic & Operative Laparoscopy",
+    "s5_desc": "Direct high-definition visual examination of pelvic organs for chronic pelvic pain, unexplained infertility, tubal patency evaluation, and endometriosis ablation.",
+    "s6_title": "Laparoscopic Ovarian Cystectomy",
+    "s6_desc": "Keyhole removal of ovarian cysts (chocolate cysts, dermoid cysts, serous cystadenomas) with maximal preservation of surrounding healthy ovarian tissue and reserve.",
+    "preop_title": "Patient Pre-Operative Preparation",
+    "preop_desc": "Essential guidelines to follow prior to your scheduled surgical admission.",
+    "postop_title": "Post-Operative Recovery Protocols",
+    "postop_desc": "Evidence-based post-surgical guidelines to ensure comfortable, speedy recuperation."
   },
   "footer": {
     "brand_title": "Dr. Rabeya Basri",
