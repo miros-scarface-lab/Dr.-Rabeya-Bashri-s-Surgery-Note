@@ -174,10 +174,38 @@ const DEFAULT_SITE_CONTENT = {
 };
 
 /**
+ * Instant Synchronous Content Hydration (0ms, no network delay)
+ * Merges DEFAULT_SITE_CONTENT, window.__PRE_CACHED_CMS__, and localStorage.
+ */
+function getSyncSiteContent() {
+  let result = deepMerge({}, DEFAULT_SITE_CONTENT);
+
+  // 1. Check window.__PRE_CACHED_CMS__ (pre-parsed in head)
+  if (window.__PRE_CACHED_CMS__ && typeof window.__PRE_CACHED_CMS__ === 'object') {
+    result = deepMerge(result, window.__PRE_CACHED_CMS__);
+  }
+
+  // 2. Read client localStorage cache
+  try {
+    const localData = localStorage.getItem('site_content_data');
+    if (localData) {
+      const parsed = JSON.parse(localData);
+      if (parsed && typeof parsed === 'object') {
+        result = deepMerge(result, parsed);
+      }
+    }
+  } catch (e) {
+    console.warn("Could not parse local site content cache:", e);
+  }
+
+  return result;
+}
+
+/**
  * Load saved content from Supabase, permanent site_content.json on disk, or localStorage
  */
 async function getSiteContent() {
-  let result = deepMerge({}, DEFAULT_SITE_CONTENT);
+  let result = getSyncSiteContent();
 
   // 1. Static site_content.json from repository/disk baseline
   try {
@@ -192,20 +220,7 @@ async function getSiteContent() {
     // Expected on file:/// or offline
   }
 
-  // 2. User edits saved locally in this browser
-  const localData = localStorage.getItem('site_content_data');
-  if (localData) {
-    try {
-      const parsed = JSON.parse(localData);
-      if (parsed && typeof parsed === 'object') {
-        result = deepMerge(result, parsed);
-      }
-    } catch (e) {
-      console.warn("Could not parse local site content cache:", e);
-    }
-  }
-
-  // 3. Cloud storage (Supabase) if connected
+  // 2. Cloud storage (Supabase) if connected
   const sb = window.getSupabase ? window.getSupabase() : null;
   if (sb) {
     try {
@@ -381,10 +396,13 @@ function getChambersList(content) {
 }
 
 /**
- * Apply Site Content to the current HTML page automatically
+ * Apply Site Content to the current HTML page automatically.
+ * Synchronous and instant (0ms delay) - eliminates flash of old data.
  */
-async function applySiteContentToPage() {
-  const content = await getSiteContent();
+function applySiteContentToPage(content) {
+  if (!content) {
+    content = getSyncSiteContent();
+  }
 
   // 1. Find all elements marked with data-cms="section.field"
   document.querySelectorAll('[data-cms]').forEach(el => {
@@ -609,24 +627,52 @@ async function applySiteContentToPage() {
       `).join('');
     }
   });
+  
+  // Remove anti-flicker loading class
+  if (typeof document !== 'undefined' && document.documentElement) {
+    document.documentElement.classList.remove('cms-pending');
+    document.documentElement.classList.add('cms-ready');
+  }
 }
 
-// Automatically apply when DOM ready on public and admin pages
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
+/**
+ * Silent non-blocking background check for latest cloud or disk updates
+ */
+async function refreshSiteContentInBackground() {
+  try {
+    const fresh = await getSiteContent();
+    applySiteContentToPage(fresh);
+  } catch (err) {
+    console.warn("Background content refresh notice:", err);
+  }
+}
+
+// Automatically apply synchronously when DOM ready on public and admin pages
+if (typeof document !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Instant 0ms synchronous hydration before screen paint
+      applySiteContentToPage();
+      // 2. Silent background check for any cloud updates
+      setTimeout(refreshSiteContentInBackground, 80);
+    });
+  } else {
+    // 1. Instant synchronous hydration
     applySiteContentToPage();
-  });
-} else {
-  applySiteContentToPage();
+    // 2. Silent background check
+    setTimeout(refreshSiteContentInBackground, 80);
+  }
 }
 
 // Global exposure
 window.siteContentService = {
   DEFAULT_SITE_CONTENT,
+  getSyncSiteContent,
   getSiteContent,
   saveSiteContent,
   resetSiteContent,
   applySiteContentToPage,
+  refreshSiteContentInBackground,
   getChambersList,
   escapeHtml
 };

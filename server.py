@@ -35,6 +35,62 @@ def update_site_content_js(content):
     except Exception as e:
         print(f"[Server] Error updating site-content.js: {e}")
 
+def update_index_html(content):
+    """Synchronize index.html directly on disk so raw HTML contains the latest content with zero loading glitch."""
+    index_path = os.path.join(DIRECTORY, 'index.html')
+    if not os.path.exists(index_path):
+        return
+    try:
+        with open(index_path, 'r', encoding='utf-8') as f:
+            html = f.read()
+
+        # Update SEO tags if present
+        if isinstance(content.get('seo'), dict):
+            seo = content['seo']
+            if 'meta_title' in seo and seo['meta_title']:
+                title_val = seo['meta_title']
+                html = re.sub(r'<title>.*?</title>', f'<title>{title_val}</title>', html, count=1)
+                html = re.sub(r'(<meta property="og:title" content=").*?(">)', f'\\g<1>{title_val}\\g<2>', html, count=1)
+                html = re.sub(r'(<meta name="twitter:title" content=").*?(">)', f'\\g<1>{title_val}\\g<2>', html, count=1)
+
+            if 'meta_description' in seo and seo['meta_description']:
+                desc_val = seo['meta_description']
+                html = re.sub(r'(<meta name="description"\s+content=").*?(">)', f'\\g<1>{desc_val}\\g<2>', html, count=1)
+                html = re.sub(r'(<meta property="og:description"\s+content=").*?(">)', f'\\g<1>{desc_val}\\g<2>', html, count=1)
+                html = re.sub(r'(<meta name="twitter:description"\s+content=").*?(">)', f'\\g<1>{desc_val}\\g<2>', html, count=1)
+
+            if 'meta_keywords' in seo and seo['meta_keywords']:
+                kw_val = seo['meta_keywords']
+                html = re.sub(r'(<meta name="keywords"\s+content=").*?(">)', f'\\g<1>{kw_val}\\g<2>', html, count=1)
+
+            if 'google_verification' in seo and seo['google_verification']:
+                gv_val = seo['google_verification']
+                html = re.sub(r'(<meta name="google-site-verification"\s+content=").*?(">)', f'\\g<1>{gv_val}\\g<2>', html, count=1)
+
+        # Flatten nested fields
+        flat = {}
+        def flatten(d, prefix=''):
+            for k, v in d.items():
+                curr = f"{prefix}.{k}" if prefix else k
+                if isinstance(v, dict):
+                    flatten(v, curr)
+                elif isinstance(v, (str, int, float)):
+                    flat[curr] = str(v)
+
+        flatten(content)
+
+        # Replace text inside tags with data-cms="key"
+        for key, val in flat.items():
+            escaped_key = re.escape(key)
+            pattern = r'(data-cms="' + escaped_key + r'"[^>]*>)([^<]*?)(</(?:span|p|h1|h2|h3|h4|h5|div|a|strong|li)>)'
+            html = re.sub(pattern, lambda m, v=val: m.group(1) + v + m.group(3), html)
+
+        with open(index_path, 'w', encoding='utf-8') as f:
+            f.write(html)
+        print("[Server] Successfully synchronized index.html on disk with updated CMS content.")
+    except Exception as e:
+        print(f"[Server] Error updating index.html: {e}")
+
 class PermanentCMSHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=DIRECTORY, **kwargs)
@@ -93,6 +149,9 @@ class PermanentCMSHandler(http.server.SimpleHTTPRequestHandler):
                 # 2. Update DEFAULT_SITE_CONTENT in assets/js/site-content.js permanently
                 update_site_content_js(merged)
 
+                # 3. Synchronize index.html directly on disk to prevent any loading glitch
+                update_index_html(merged)
+
                 # Response
                 self.send_response(200)
                 self.send_header('Content-Type', 'application/json; charset=utf-8')
@@ -100,10 +159,10 @@ class PermanentCMSHandler(http.server.SimpleHTTPRequestHandler):
                 response_data = {
                     'success': True,
                     'savedToDisk': True,
-                    'message': 'Changes permanently written to site_content.json and site-content.js'
+                    'message': 'Changes permanently written to site_content.json, site-content.js, and index.html'
                 }
                 self.wfile.write(json.dumps(response_data).encode('utf-8'))
-                print("[Server] Successfully saved CMS updates permanently to disk.")
+                print("[Server] Successfully saved CMS updates permanently to disk and index.html.")
             except Exception as e:
                 print(f"[Server] Error saving CMS content: {e}")
                 self.send_response(500)
@@ -121,6 +180,16 @@ class PermanentCMSHandler(http.server.SimpleHTTPRequestHandler):
         self.end_headers()
 
 if __name__ == '__main__':
+    # Initial synchronization of index.html with site_content.json on startup
+    json_path = os.path.join(DIRECTORY, 'site_content.json')
+    if os.path.exists(json_path):
+        try:
+            with open(json_path, 'r', encoding='utf-8') as f:
+                init_data = json.load(f)
+            update_index_html(init_data)
+        except Exception as e:
+            print(f"[Server] Initial sync error: {e}")
+
     # Allow port reuse immediately upon restart
     socketserver.TCPServer.allow_reuse_address = True
     with socketserver.TCPServer(("", PORT), PermanentCMSHandler) as httpd:

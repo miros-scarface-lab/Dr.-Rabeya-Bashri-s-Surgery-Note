@@ -4,15 +4,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Dr. Rabeya Basri | Trainee Obstetrician, Gynecologist &amp; Laparoscopic Surgeon</title>
+
+  <!-- Anti-FOUC Instant Pre-Hydration: Eliminates stale data flash during page load -->
+  <style id="cmsAntiFlickerStyle">
+    html.cms-pending [data-cms] {
+      opacity: 0;
+      transition: opacity 0.12s ease;
+    }
+    html.cms-ready [data-cms] {
+      opacity: 1;
+    }
+  </style>
+  <script>
+    (function() {
+      document.documentElement.classList.add('cms-pending');
+      try {
+        var raw = localStorage.getItem('site_content_data');
+        if (raw) {
+          window.__PRE_CACHED_CMS__ = JSON.parse(raw);
+        }
+      } catch(e) {}
+      // Failsafe timer: ensures elements are never hidden longer than 150ms under any circumstance
+      setTimeout(function() {
+        document.documentElement.classList.remove('cms-pending');
+        document.documentElement.classList.add('cms-ready');
+      }, 150);
+    })();
+  </script>
+  <script src="assets/js/site-content.js" defer></script>
+  <title>Dr. Rabeya Basri | Trainee Obstetrician, Gynecologist & Laparoscopic Surgeon</title>
   <meta name="description"
-    content="Official single-page clinical website of Dr. Rabeya Basri - FCPS(Obs & Gynae), specialized in high-safety Cesarean sections, painless normal deliveries, and advanced gynecologic surgeries in Dinajpur.">
+    content="Official single-page clinical website of Dr. Rabeya Basri - FCPS, MS (OBGYN), specialized in high-safety Cesarean sections, painless normal deliveries, and advanced gynecologic surgeries in Dinajpur.">
 
   <!-- Google Site Verification (Google Search Console Property Claim) -->
   <meta name="google-site-verification" content="googlea85682d0c3e46a85">
 
   <meta name="keywords"
-    content="Dr Rabeya Basri, Rabeya Basri,Gynecologist Dinajpur, Obstetrician Dinajpur, Cesarean section Dinajpur, Painless normal delivery, Laparoscopic Surgeon Dinajpur, Dinajpur Medical College Hospital, Gynae Specialist">
+    content="Dr Rabeya Basri, Gynecologist Dinajpur, Obstetrician Dinajpur, Cesarean section Dinajpur, Painless normal delivery, Laparoscopic Surgeon Dinajpur, Dinajpur Medical College Hospital, Gynae Specialist">
   <meta name="author" content="Dr. Rabeya Basri">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="https://dr-rabeyabasri.com/">
@@ -20,18 +48,18 @@
   <!-- Open Graph Meta Tags (Social Sharing & Previews) -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Dr. Rabeya Basri - Practice Website">
-  <meta property="og:title" content="Dr. Rabeya Basri | Trainee Obstetrician, Gynecologist &amp; Laparoscopic Surgeon">
+  <meta property="og:title" content="Dr. Rabeya Basri | Trainee Obstetrician, Gynecologist & Laparoscopic Surgeon">
   <meta property="og:description"
-    content="Compassionate maternal &amp; women's surgical care. Specializing in high-safety Cesarean sections, painless normal deliveries, and advanced laparoscopic surgeries in Dinajpur.">
+    content="Official single-page clinical website of Dr. Rabeya Basri - FCPS, MS (OBGYN), specialized in high-safety Cesarean sections, painless normal deliveries, and advanced gynecologic surgeries in Dinajpur.">
   <meta property="og:image" content="assets/images/doctor-portrait.jpg">
   <meta property="og:url" content="https://dr-rabeyabasri.com/">
   <meta property="og:locale" content="en_US">
 
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Dr. Rabeya Basri | Trainee Obstetrician, Gynecologist &amp; Laparoscopic Surgeon">
+  <meta name="twitter:title" content="Dr. Rabeya Basri | Trainee Obstetrician, Gynecologist & Laparoscopic Surgeon">
   <meta name="twitter:description"
-    content="Specializing in high-safety Cesarean sections, painless normal deliveries, and advanced laparoscopic procedures in Dinajpur.">
+    content="Official single-page clinical website of Dr. Rabeya Basri - FCPS, MS (OBGYN), specialized in high-safety Cesarean sections, painless normal deliveries, and advanced gynecologic surgeries in Dinajpur.">
   <meta name="twitter:image" content="assets/images/doctor-portrait.jpg">
 
   <!-- Google Schema.org MedicalBusiness / Physician Structured Data -->
@@ -93,7 +121,7 @@
           </div>
           <div class="brand-text">
             <span class="brand-name" data-cms="doctor.name">Dr. Rabeya Basri</span>
-            <span class="brand-sub" data-cms="doctor.title">Obstetrics &amp; Gynecology Surgeon</span>
+            <span class="brand-sub" data-cms="doctor.title">Obstetrics & Gynecology Surgeon</span>
           </div>
         </a>
 
@@ -187,7 +215,7 @@
               <path
                 d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
             </svg>
-            <span data-cms="hero.pill_text">Compassionate Maternal &amp; Women's Surgical Care</span>
+            <span data-cms="hero.pill_text">Compassionate Maternal & Women's Surgical Care</span>
           </div>
 
           <h1 class="hero-title">
@@ -195,10 +223,7 @@
             <span class="text-highlight" data-cms="hero.title_highlight">Excellence in Surgery.</span>
           </h1>
 
-          <p class="hero-subtitle" data-cms="hero.subtitle">
-            Specializing in high-safety Cesarean sections, painless normal deliveries, advanced laparoscopic procedures,
-            and comprehensive gynecologic surgical care with over 15 years of dedicated medical service.
-          </p>
+          <p class="hero-subtitle" data-cms="hero.subtitle">Specializing in high-safety Cesarean sections, painless normal deliveries, advanced laparoscopic procedures, and comprehensive gynecologic surgical care with over 15 years of dedicated medical service.</p>
 
           <div class="hero-actions">
             <a href="#appointment" class="btn btn-primary btn-lg">
@@ -223,11 +248,11 @@
             </div>
             <div class="hero-stat-item">
               <span class="hero-stat-num" data-cms="hero.stat2_num">4,500+</span>
-              <span class="hero-stat-label" data-cms="hero.stat2_label">Deliveries &amp; Surgeries</span>
+              <span class="hero-stat-label" data-cms="hero.stat2_label">Deliveries & Surgeries</span>
             </div>
             <div class="hero-stat-item">
               <span class="hero-stat-num" data-cms="hero.stat3_num">99.4%</span>
-              <span class="hero-stat-label" data-cms="hero.stat3_label">Safety &amp; Success Record</span>
+              <span class="hero-stat-label" data-cms="hero.stat3_label">Safety & Success Record</span>
             </div>
           </div>
         </div>
@@ -259,7 +284,7 @@
             <div class="doctor-badge-floating">
               <div>
                 <div class="badge-info-name" data-cms="doctor.name">Dr. Rabeya Basri</div>
-                <div class="badge-info-role" data-cms="doctor.degrees">FCPS (OBGYN), MS, Laparoscopy</div>
+                <div class="badge-info-role" data-cms="doctor.degrees">MBBS, FCPS (OBGYN), MS (Gynae & Obs), Fellowship in Laparoscopy</div>
               </div>
               <span class="badge badge-success"><span class="badge-status-dot"></span><span
                   data-cms="hero.badge_status">Accepting Patients</span></span>
@@ -278,9 +303,8 @@
     <div class="container">
       <div class="section-header">
         <span class="section-badge-pill" data-cms="section_labels.sec2_badge">Section 2 • Biography</span><br>
-        <span class="section-tag" data-cms="about.banner_tag">Surgeon Biography &amp; Background</span>
-        <h2 class="section-title" data-cms="about.bio_heading">Dedicated to Safe Deliveries &amp; Advanced Gynecological
-          Care</h2>
+        <span class="section-tag" data-cms="about.banner_tag">Surgeon Biography & Background</span>
+        <h2 class="section-title" data-cms="about.bio_heading">Dedicated to Safe Deliveries & Advanced Gynecological Care</h2>
       </div>
 
       <div class="hero-grid" style="align-items: flex-start;">
@@ -295,10 +319,8 @@
                 </svg>
               </div>
               <div>
-                <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--slate-900);" data-cms="doctor.name">Dr.
-                  Rabeya Basri</h3>
-                <div style="font-size: 0.8rem; color: var(--slate-500);" data-cms="doctor.subtitle">Trainee
-                  Obstetrician &amp; Gynecologist</div>
+                <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--slate-900);" data-cms="doctor.name">Dr. Rabeya Basri</h3>
+                <div style="font-size: 0.8rem; color: var(--slate-500);" data-cms="doctor.subtitle">Trainee Obstetrician, Gynecologist & Laparoscopic Surgeon</div>
               </div>
             </div>
 
@@ -347,18 +369,8 @@
               FCPS from the Bangladesh College of Physicians and Surgeons (BCPS) and Master of Surgery (MS), she has
               dedicated her career to providing compassionate, evidence-based care to women across all stages of life.
             </p>
-            <p data-cms="about.bio_p2">
-              Dr. Rabeya has performed thousands of successful surgical deliveries, including routine and high-risk
-              Cesarean sections, complex repeat C-sections (previous 2 and 3 scars), and multi-fetal pregnancies. She is
-              a strong advocate for natural and painless delivery, ensuring mothers receive the highest standard of
-              labor support, epidural analgesia, and fetal monitoring.
-            </p>
-            <p data-cms="about.bio_p3">
-              In gynecological surgery, she is recognized for her expertise in uterine preservation techniques
-              (abdominal and laparoscopic myomectomy for fibroids), laparoscopic ovarian cystectomies, and minimally
-              invasive hysterectomies. Her surgical philosophy is rooted in meticulous technique, minimal blood loss,
-              cosmetic incision closure, and rapid postoperative recovery.
-            </p>
+            <p data-cms="about.bio_p2">Dr. Rabeya has performed thousands of successful surgical deliveries, including routine and high-risk Cesarean sections, complex repeat C-sections (previous 2 and 3 scars), and multi-fetal pregnancies. She is a strong advocate for natural and painless delivery, ensuring mothers receive the highest standard of labor support, epidural analgesia, and fetal monitoring.</p>
+            <p data-cms="about.bio_p3">In gynecological surgery, she is recognized for her expertise in uterine preservation techniques (abdominal and laparoscopic myomectomy for fibroids), laparoscopic ovarian cystectomies, and minimally invasive hysterectomies. Her surgical philosophy is rooted in meticulous technique, minimal blood loss, cosmetic incision closure, and rapid postoperative recovery.</p>
           </div>
 
           <!-- 4 Clinical Philosophy Pillars -->
@@ -368,29 +380,25 @@
               style="background: var(--white); border: 1px solid var(--slate-200); border-radius: var(--radius-md); padding: 1.15rem; box-shadow: var(--shadow-xs);">
               <div style="font-weight: 800; color: var(--primary); margin-bottom: 0.35rem; font-size: 0.95rem;"
                 data-cms="about.pillar1_title">🌸 Gentle Birth Advocacy</div>
-              <div style="font-size: 0.85rem; color: var(--slate-600); line-height: 1.5;" data-cms="about.pillar1_desc">
-                Encouraging natural and painless labor whenever clinically safe for mother and baby.</div>
+              <div style="font-size: 0.85rem; color: var(--slate-600); line-height: 1.5;" data-cms="about.pillar1_desc">Encouraging natural and painless labor whenever clinically safe for mother and baby.</div>
             </div>
             <div
               style="background: var(--white); border: 1px solid var(--slate-200); border-radius: var(--radius-md); padding: 1.15rem; box-shadow: var(--shadow-xs);">
               <div style="font-weight: 800; color: var(--secondary); margin-bottom: 0.35rem; font-size: 0.95rem;"
                 data-cms="about.pillar2_title">🔬 Precision Surgery</div>
-              <div style="font-size: 0.85rem; color: var(--slate-600); line-height: 1.5;" data-cms="about.pillar2_desc">
-                Minimally invasive keyhole techniques for faster recovery and reduced pain.</div>
+              <div style="font-size: 0.85rem; color: var(--slate-600); line-height: 1.5;" data-cms="about.pillar2_desc">Minimally invasive keyhole techniques for faster recovery and reduced pain.</div>
             </div>
             <div
               style="background: var(--white); border: 1px solid var(--slate-200); border-radius: var(--radius-md); padding: 1.15rem; box-shadow: var(--shadow-xs);">
               <div style="font-weight: 800; color: var(--primary); margin-bottom: 0.35rem; font-size: 0.95rem;"
                 data-cms="about.pillar3_title">🛡️ High Safety Protocols</div>
-              <div style="font-size: 0.85rem; color: var(--slate-600); line-height: 1.5;" data-cms="about.pillar3_desc">
-                Strict infection control, comprehensive blood loss prevention, and fetal surveillance.</div>
+              <div style="font-size: 0.85rem; color: var(--slate-600); line-height: 1.5;" data-cms="about.pillar3_desc">Strict infection control, comprehensive blood loss prevention, and fetal surveillance.</div>
             </div>
             <div
               style="background: var(--white); border: 1px solid var(--slate-200); border-radius: var(--radius-md); padding: 1.15rem; box-shadow: var(--shadow-xs);">
               <div style="font-weight: 800; color: var(--secondary); margin-bottom: 0.35rem; font-size: 0.95rem;"
                 data-cms="about.pillar4_title">🤝 Empathetic Patient Care</div>
-              <div style="font-size: 0.85rem; color: var(--slate-600); line-height: 1.5;" data-cms="about.pillar4_desc">
-                Personalized maternal counseling and attentive post-operative follow-up.</div>
+              <div style="font-size: 0.85rem; color: var(--slate-600); line-height: 1.5;" data-cms="about.pillar4_desc">Personalized maternal counseling and attentive post-operative follow-up.</div>
             </div>
           </div>
         </div>
@@ -407,10 +415,8 @@
       <div class="section-header">
         <span class="section-badge-pill" data-cms="section_labels.sec3_badge">Section 3 • Specialties</span><br>
         <span class="section-tag" data-cms="specialties.tag">Clinical Expertise</span>
-        <h2 class="section-title" data-cms="specialties.title">Specialized Surgical &amp; Obstetric Care</h2>
-        <p class="section-desc" data-cms="specialties.desc">
-          Providing evidence-based, compassionate surgical and obstetric care tailored to every stage of a woman's life.
-        </p>
+        <h2 class="section-title" data-cms="specialties.title">Specialized Surgical & Obstetric Care</h2>
+        <p class="section-desc" data-cms="specialties.desc">Providing evidence-based, compassionate surgical and obstetric care tailored to every stage of a woman's life.</p>
       </div>
 
       <div class="cards-grid">
@@ -423,11 +429,8 @@
               </path>
             </svg>
           </div>
-          <h3 class="service-title" data-cms="specialties.card1_title">Normal &amp; Painless Delivery</h3>
-          <p class="service-text" data-cms="specialties.card1_desc">
-            Prioritizing natural birth whenever safe. Experienced in painless epidural labor management, continuous
-            fetal heart monitoring, and gentle birth techniques.
-          </p>
+          <h3 class="service-title" data-cms="specialties.card1_title">Normal & Painless Delivery</h3>
+          <p class="service-text" data-cms="specialties.card1_desc">Prioritizing natural birth whenever safe. Experienced in painless epidural labor management, continuous fetal heart monitoring, and gentle birth techniques.</p>
           <ul class="service-features-list">
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <polyline points="20 6 9 17 4 12"></polyline>
@@ -453,10 +456,7 @@
             </svg>
           </div>
           <h3 class="service-title" data-cms="specialties.card2_title">Cesarean Delivery (LSCS)</h3>
-          <p class="service-text" data-cms="specialties.card2_desc">
-            Expertise in elective and emergency C-sections, repeat surgeries (previous 1, 2, or 3 C-sections), twin
-            births, and high-risk maternal conditions.
-          </p>
+          <p class="service-text" data-cms="specialties.card2_desc">Expertise in elective and emergency C-sections, repeat surgeries (previous 1, 2, or 3 C-sections), twin births, and high-risk maternal conditions.</p>
           <ul class="service-features-list">
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <polyline points="20 6 9 17 4 12"></polyline>
@@ -482,10 +482,7 @@
             </svg>
           </div>
           <h3 class="service-title" data-cms="specialties.card3_title">Gynecological Surgeries</h3>
-          <p class="service-text" data-cms="specialties.card3_desc">
-            Specialized surgical management for uterine fibroids, abnormal uterine bleeding, adenomyosis, ovarian cysts,
-            and pelvic organ prolapse.
-          </p>
+          <p class="service-text" data-cms="specialties.card3_desc">Specialized surgical management for uterine fibroids, abnormal uterine bleeding, adenomyosis, ovarian cysts, and pelvic organ prolapse.</p>
           <ul class="service-features-list">
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <polyline points="20 6 9 17 4 12"></polyline>
@@ -512,10 +509,7 @@
             </svg>
           </div>
           <h3 class="service-title" data-cms="specialties.card4_title">Minimally Invasive Laparoscopy</h3>
-          <p class="service-text" data-cms="specialties.card4_desc">
-            Keyhole surgical approaches resulting in smaller scars, minimal postoperative discomfort, and significantly
-            faster recovery times.
-          </p>
+          <p class="service-text" data-cms="specialties.card4_desc">Keyhole surgical approaches resulting in smaller scars, minimal postoperative discomfort, and significantly faster recovery times.</p>
           <ul class="service-features-list">
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <polyline points="20 6 9 17 4 12"></polyline>
@@ -542,12 +536,9 @@
     <div class="container">
       <div class="section-header">
         <span class="section-badge-pill" data-cms="section_labels.sec4_badge">Section 4 • Surgical Services</span><br>
-        <span class="section-tag" data-cms="services.banner_tag">Clinical Procedures &amp; Care</span>
-        <h2 class="section-title" data-cms="services.banner_title">Surgical &amp; Obstetric Services</h2>
-        <p class="section-desc" data-cms="services.banner_desc">
-          From gentle childbirth to advanced laparoscopic operative gynecology, delivering world-class surgical
-          precision and empathetic care.
-        </p>
+        <span class="section-tag" data-cms="services.banner_tag">Clinical Procedures & Care</span>
+        <h2 class="section-title" data-cms="services.banner_title">Surgical & Obstetric Services</h2>
+        <p class="section-desc" data-cms="services.banner_desc">From gentle childbirth to advanced laparoscopic operative gynecology, delivering world-class surgical precision and empathetic care.</p>
       </div>
 
       <!-- Category 1: Obstetric Procedures -->
@@ -558,21 +549,15 @@
             🤰
           </div>
           <div>
-            <h3 style="font-size: 1.45rem; font-weight: 800; color: var(--slate-900);" data-cms="services.cat1_title">
-              Obstetric &amp; Delivery Care</h3>
-            <p style="font-size: 0.875rem; color: var(--slate-500);" data-cms="services.cat1_desc">Safe maternal
-              management for mother and newborn</p>
+            <h3 style="font-size: 1.45rem; font-weight: 800; color: var(--slate-900);" data-cms="services.cat1_title">Obstetric & Delivery Care</h3>
+            <p style="font-size: 0.875rem; color: var(--slate-500);" data-cms="services.cat1_desc">Safe maternal management for mother and newborn</p>
           </div>
         </div>
 
         <div class="cards-grid">
           <div class="service-card">
-            <h4 class="service-title" data-cms="services.s1_title">Normal &amp; Painless Vaginal Delivery</h4>
-            <p class="service-text" data-cms="services.s1_desc">
-              Natural labor support in a calm, mother-centric environment. We offer painless epidural analgesia
-              administered by specialized anesthesiologists, enabling smooth, comfortable labor with continuous CTG
-              fetal heart surveillance.
-            </p>
+            <h4 class="service-title" data-cms="services.s1_title">Normal & Painless Vaginal Delivery</h4>
+            <p class="service-text" data-cms="services.s1_desc">Natural labor support in a calm, mother-centric environment. We offer painless epidural analgesia administered by specialized anesthesiologists, enabling smooth, comfortable labor with continuous CTG fetal heart surveillance.</p>
             <div style="margin-top: auto; padding-top: 0.75rem;">
               <a href="#appointment" class="btn btn-outline-primary btn-sm">Book Delivery Planning Visit &rarr;</a>
             </div>
@@ -580,10 +565,7 @@
 
           <div class="service-card">
             <h4 class="service-title" data-cms="services.s2_title">Cesarean Delivery (LSCS)</h4>
-            <p class="service-text" data-cms="services.s2_desc">
-              Elective and emergency Lower Segment Cesarean Sections (LSCS) performed in tertiary hospital theatres with
-              full neonatal resuscitation and NICU backup. Cosmetically closed with hidden subcuticular sutures.
-            </p>
+            <p class="service-text" data-cms="services.s2_desc">Elective and emergency Lower Segment Cesarean Sections (LSCS) performed in tertiary hospital theatres with full neonatal resuscitation and NICU backup. Cosmetically closed with hidden subcuticular sutures.</p>
             <div style="margin-top: auto; padding-top: 0.75rem;">
               <a href="#appointment" class="btn btn-outline-primary btn-sm">Book C-Section Discussion &rarr;</a>
             </div>
@@ -599,31 +581,23 @@
             🌸
           </div>
           <div>
-            <h3 style="font-size: 1.45rem; font-weight: 800; color: var(--slate-900);" data-cms="services.cat2_title">
-              Advanced Gynecologic Surgery</h3>
-            <p style="font-size: 0.875rem; color: var(--slate-500);" data-cms="services.cat2_desc">Specialized surgical
-              care for uterine fibroids, prolapse, and abnormal bleeding</p>
+            <h3 style="font-size: 1.45rem; font-weight: 800; color: var(--slate-900);" data-cms="services.cat2_title">Advanced Gynecologic Surgery</h3>
+            <p style="font-size: 0.875rem; color: var(--slate-500);" data-cms="services.cat2_desc">Specialized surgical care for uterine fibroids, prolapse, and abnormal bleeding</p>
           </div>
         </div>
 
         <div class="cards-grid">
           <div class="service-card">
-            <h4 class="service-title" data-cms="services.s3_title">Myomectomy &amp; Uterine Sparing Surgery</h4>
-            <p class="service-text" data-cms="services.s3_desc">
-              Surgical removal of uterine fibroids while meticulously preserving the uterus for future childbearing and
-              hormone balance. Performed via cosmetic mini-laparotomy or laparoscopic approach.
-            </p>
+            <h4 class="service-title" data-cms="services.s3_title">Myomectomy & Uterine Sparing Surgery</h4>
+            <p class="service-text" data-cms="services.s3_desc">Surgical removal of uterine fibroids while meticulously preserving the uterus for future childbearing and hormone balance. Performed via cosmetic mini-laparotomy or laparoscopic approach.</p>
             <div style="margin-top: auto; padding-top: 0.75rem;">
               <a href="#appointment" class="btn btn-outline-primary btn-sm">Consult for Fibroid Surgery &rarr;</a>
             </div>
           </div>
 
           <div class="service-card">
-            <h4 class="service-title" data-cms="services.s4_title">Hysterectomy (Abdominal &amp; Vaginal)</h4>
-            <p class="service-text" data-cms="services.s4_desc">
-              Total or subtotal hysterectomy for definitive management of severe adenomyosis, resistant abnormal
-              bleeding, and pelvic organ prolapse with minimal blood loss and rapid recovery.
-            </p>
+            <h4 class="service-title" data-cms="services.s4_title">Hysterectomy (Abdominal & Vaginal)</h4>
+            <p class="service-text" data-cms="services.s4_desc">Total or subtotal hysterectomy for definitive management of severe adenomyosis, resistant abnormal bleeding, and pelvic organ prolapse with minimal blood loss and rapid recovery.</p>
             <div style="margin-top: auto; padding-top: 0.75rem;">
               <a href="#appointment" class="btn btn-outline-primary btn-sm">Consult for Hysterectomy &rarr;</a>
             </div>
@@ -639,20 +613,15 @@
             🔬
           </div>
           <div>
-            <h3 style="font-size: 1.45rem; font-weight: 800; color: var(--slate-900);" data-cms="services.cat3_title">
-              Minimally Invasive Laparoscopy</h3>
-            <p style="font-size: 0.875rem; color: var(--slate-500);" data-cms="services.cat3_desc">Keyhole surgical
-              precision with rapid recovery and cosmetic incisions</p>
+            <h3 style="font-size: 1.45rem; font-weight: 800; color: var(--slate-900);" data-cms="services.cat3_title">Minimally Invasive Laparoscopy</h3>
+            <p style="font-size: 0.875rem; color: var(--slate-500);" data-cms="services.cat3_desc">Keyhole surgical precision with rapid recovery and cosmetic incisions</p>
           </div>
         </div>
 
         <div class="cards-grid">
           <div class="service-card">
-            <h4 class="service-title" data-cms="services.s5_title">Diagnostic &amp; Operative Laparoscopy</h4>
-            <p class="service-text" data-cms="services.s5_desc">
-              Direct high-definition visual examination of pelvic organs for chronic pelvic pain, unexplained
-              infertility, tubal patency evaluation, and endometriosis ablation.
-            </p>
+            <h4 class="service-title" data-cms="services.s5_title">Diagnostic & Operative Laparoscopy</h4>
+            <p class="service-text" data-cms="services.s5_desc">Direct high-definition visual examination of pelvic organs for chronic pelvic pain, unexplained infertility, tubal patency evaluation, and endometriosis ablation.</p>
             <div style="margin-top: auto; padding-top: 0.75rem;">
               <a href="#appointment" class="btn btn-outline-primary btn-sm">Book Laparoscopy Consultation &rarr;</a>
             </div>
@@ -660,10 +629,7 @@
 
           <div class="service-card">
             <h4 class="service-title" data-cms="services.s6_title">Laparoscopic Ovarian Cystectomy</h4>
-            <p class="service-text" data-cms="services.s6_desc">
-              Keyhole removal of ovarian cysts (chocolate cysts, dermoid cysts, serous cystadenomas) with maximal
-              preservation of surrounding healthy ovarian tissue and reserve.
-            </p>
+            <p class="service-text" data-cms="services.s6_desc">Keyhole removal of ovarian cysts (chocolate cysts, dermoid cysts, serous cystadenomas) with maximal preservation of surrounding healthy ovarian tissue and reserve.</p>
             <div style="margin-top: auto; padding-top: 0.75rem;">
               <a href="#appointment" class="btn btn-outline-primary btn-sm">Book Cystectomy Workup &rarr;</a>
             </div>
@@ -678,26 +644,18 @@
           style="background: var(--white); border: 1px solid var(--slate-200); border-radius: var(--radius-lg); padding: 1.75rem; box-shadow: var(--shadow-sm);">
           <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
             <span style="font-size: 1.25rem;">📋</span>
-            <h4 style="font-size: 1.15rem; font-weight: 800; color: var(--slate-900);" data-cms="services.preop_title">
-              Patient Pre-Operative Preparation</h4>
+            <h4 style="font-size: 1.15rem; font-weight: 800; color: var(--slate-900);" data-cms="services.preop_title">Patient Pre-Operative Preparation</h4>
           </div>
-          <p style="font-size: 0.9rem; color: var(--slate-600); line-height: 1.6;" data-cms="services.preop_desc">
-            Essential guidelines to follow prior to your scheduled surgical admission: fasting schedules, necessary lab
-            investigations (CBC, Blood Grouping, Viral Serology), and anesthesia pre-op evaluation.
-          </p>
+          <p style="font-size: 0.9rem; color: var(--slate-600); line-height: 1.6;" data-cms="services.preop_desc">Essential guidelines to follow prior to your scheduled surgical admission.</p>
         </div>
 
         <div
           style="background: var(--white); border: 1px solid var(--slate-200); border-radius: var(--radius-lg); padding: 1.75rem; box-shadow: var(--shadow-sm);">
           <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
             <span style="font-size: 1.25rem;">🩹</span>
-            <h4 style="font-size: 1.15rem; font-weight: 800; color: var(--slate-900);" data-cms="services.postop_title">
-              Post-Operative Recovery Protocols</h4>
+            <h4 style="font-size: 1.15rem; font-weight: 800; color: var(--slate-900);" data-cms="services.postop_title">Post-Operative Recovery Protocols</h4>
           </div>
-          <p style="font-size: 0.9rem; color: var(--slate-600); line-height: 1.6;" data-cms="services.postop_desc">
-            Evidence-based post-surgical guidelines to ensure comfortable, speedy recuperation: early ambulation, wound
-            hygiene, pain management protocols, and scheduled follow-up visits.
-          </p>
+          <p style="font-size: 0.9rem; color: var(--slate-600); line-height: 1.6;" data-cms="services.postop_desc">Evidence-based post-surgical guidelines to ensure comfortable, speedy recuperation.</p>
         </div>
       </div>
     </div>
@@ -711,12 +669,9 @@
     <div class="container">
       <div class="section-header">
         <span class="section-badge-pill" data-cms="section_labels.sec5_badge">Section 5 • Credentials</span><br>
-        <span class="section-tag" data-cms="credentials.tag">Credentials &amp; Training</span>
-        <h2 class="section-title" data-cms="credentials.title">Medical Qualifications &amp; Hospital Attachments</h2>
-        <p class="section-desc" data-cms="credentials.desc">
-          Certified by apex medical bodies with specialized higher fellowship training in gynecologic operative surgery
-          and maternal medicine.
-        </p>
+        <span class="section-tag" data-cms="credentials.tag">Credentials & Training</span>
+        <h2 class="section-title" data-cms="credentials.title">Medical Qualifications & Hospital Attachments</h2>
+        <p class="section-desc" data-cms="credentials.desc">Certified by apex medical bodies with specialized higher fellowship training in gynecologic operative surgery and maternal medicine.</p>
       </div>
 
       <div class="qualifications-grid">
@@ -731,37 +686,30 @@
             </div>
             <div>
               <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--slate-900);"
-                data-cms="credentials.qual_header">Academic Degrees &amp; Fellowships</h3>
-              <div style="font-size: 0.825rem; color: var(--slate-500);" data-cms="credentials.qual_sub">Verified
-                Professional Certifications</div>
+                data-cms="credentials.qual_header">Academic Degrees & Fellowships</h3>
+              <div style="font-size: 0.825rem; color: var(--slate-500);" data-cms="credentials.qual_sub">Verified Professional Certifications</div>
             </div>
           </div>
 
           <div class="qual-timeline">
             <div class="timeline-item">
               <div class="timeline-year">Fellowship</div>
-              <div class="timeline-title" data-cms="credentials.q1_title">FCPS in Obstetrics &amp; Gynecology</div>
-              <div class="timeline-sub" data-cms="credentials.q1_sub">Bangladesh College of Physicians and Surgeons
-                (BCPS)</div>
+              <div class="timeline-title" data-cms="credentials.q1_title">FCPS in Obstetrics & Gynecology</div>
+              <div class="timeline-sub" data-cms="credentials.q1_sub">Bangladesh College of Physicians and Surgeons (BCPS)</div>
             </div>
             <div class="timeline-item">
               <div class="timeline-year">Postgraduate Degree</div>
-              <div class="timeline-title" data-cms="credentials.q2_title">MS (Master of Surgery) in Gynae &amp; Obs
-              </div>
-              <div class="timeline-sub" data-cms="credentials.q2_sub">Bangabandhu Sheikh Mujib Medical University
-                (BSMMU)</div>
+              <div class="timeline-title" data-cms="credentials.q2_title">MS (Master of Surgery) in Gynae & Obs</div>
+              <div class="timeline-sub" data-cms="credentials.q2_sub">Bangabandhu Sheikh Mujib Medical University (BSMMU)</div>
             </div>
             <div class="timeline-item">
               <div class="timeline-year">Specialized Training</div>
-              <div class="timeline-title" data-cms="credentials.q3_title">Fellowship in Minimally Invasive Laparoscopic
-                Surgery</div>
-              <div class="timeline-sub" data-cms="credentials.q3_sub">Advanced Training in Operative Gynaecological
-                Endoscopy</div>
+              <div class="timeline-title" data-cms="credentials.q3_title">Fellowship in Minimally Invasive Laparoscopic Surgery</div>
+              <div class="timeline-sub" data-cms="credentials.q3_sub">Advanced Training in Operative Gynaecological Endoscopy</div>
             </div>
             <div class="timeline-item">
               <div class="timeline-year">Graduation</div>
-              <div class="timeline-title" data-cms="credentials.q4_title">MBBS (Bachelor of Medicine &amp; Surgery)
-              </div>
+              <div class="timeline-title" data-cms="credentials.q4_title">MBBS (Bachelor of Medicine & Surgery)</div>
               <div class="timeline-sub" data-cms="credentials.q4_sub">Dhaka Medical College, Registered with BMDC</div>
             </div>
           </div>
@@ -835,9 +783,8 @@
       <div class="section-header">
         <span class="section-badge-pill" data-cms="section_labels.sec6_badge">Section 6 • Chambers</span><br>
         <span class="section-tag">Clinical Locations</span>
-        <h2 class="section-title" data-cms="chambers_section.title">Clinical Attachment &amp; Visiting Chambers</h2>
-        <p class="section-desc" data-cms="chambers_section.subtitle">Current government and private hospital visiting
-          schedule in Dinajpur</p>
+        <h2 class="section-title" data-cms="chambers_section.title">Clinical Attachment & Visiting Chambers</h2>
+        <p class="section-desc" data-cms="chambers_section.subtitle">Current government and private hospital visiting schedule in Dinajpur</p>
       </div>
 
       <!-- Dynamic Chamber Cards Grid -->
@@ -856,9 +803,8 @@
           </div>
           <div>
             <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--slate-900);"
-              data-cms="credentials.hosp_header">Hospital Attachments &amp; Chambers</h3>
-            <div style="font-size: 0.825rem; color: var(--slate-500);" data-cms="credentials.hosp_sub">Equipped with
-              Modern Operation Theatres &amp; NICU</div>
+              data-cms="credentials.hosp_header">Hospital Attachments & Chambers</h3>
+            <div style="font-size: 0.825rem; color: var(--slate-500);" data-cms="credentials.hosp_sub">Equipped with Modern Operation Theatres & NICU</div>
           </div>
         </div>
 
@@ -879,17 +825,15 @@
         <span class="section-badge-pill" data-cms="section_labels.sec7_badge">Section 7 • Appointments</span><br>
         <span class="section-tag" data-cms="appointment.tag">Direct Scheduling</span>
         <h2 class="section-title" data-cms="appointment.title">Book a Consultation</h2>
-        <p class="section-desc" data-cms="appointment.subtitle">Schedule an in-person chamber consultation, antenatal
-          checkup, or surgical pre-operative discussion.</p>
+        <p class="section-desc" data-cms="appointment.subtitle">Schedule an in-person chamber consultation, antenatal checkup, or surgical pre-operative discussion.</p>
       </div>
 
       <div class="contact-layout">
         <!-- Contact Info Box -->
         <div class="contact-info-panel">
           <div class="contact-info-header">
-            <h3 data-cms="appointment.title">Direct Patient Helpline</h3>
-            <p data-cms="appointment.subtitle">Schedule an in-person chamber consultation, antenatal checkup, or
-              surgical pre-operative discussion.</p>
+            <h3 data-cms="appointment.title">Book a Consultation</h3>
+            <p data-cms="appointment.subtitle">Schedule an in-person chamber consultation, antenatal checkup, or surgical pre-operative discussion.</p>
           </div>
 
           <div class="contact-details-list">
@@ -942,22 +886,16 @@
 
           <div
             style="background: rgba(255,255,255,0.14); padding: 1.25rem; border-radius: var(--radius-md); font-size: 0.85rem; line-height: 1.5; border: 1px solid rgba(255,255,255,0.2);">
-            <strong>🚨 Emergency Obstetric Notice:</strong> <span data-cms="appointment.notice">For immediate emergency
-              delivery, sudden labor pain, or hemorrhage, please go directly to Dinajpur Medical College, Hospital
-              Emergency OT triage counter.</span>
+            <strong>🚨 Emergency Obstetric Notice:</strong> <span data-cms="appointment.notice">For immediate emergency delivery, sudden labor pain, or hemorrhage, please go directly to Dinajpur Medical College, Hospital Emergency OT triage counter.</span>
           </div>
         </div>
 
         <!-- Appointment Request Form Card -->
         <div class="contact-form-card">
           <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--slate-900); margin-bottom: 0.35rem;"
-            data-cms="appointment.form_title">
-            Request an Appointment
-          </h3>
+            data-cms="appointment.form_title">Request an Appointment</h3>
           <p style="font-size: 0.875rem; color: var(--slate-500); margin-bottom: 1.5rem;"
-            data-cms="appointment.form_subtitle">
-            Our chamber assistant will confirm your serial and arrival time slot via phone.
-          </p>
+            data-cms="appointment.form_subtitle">Our chamber assistant will confirm your serial and arrival time slot via phone.</p>
 
           <form id="appointmentForm">
             <div class="form-row form-row-2">
@@ -1024,8 +962,7 @@
         <!-- Brand Info -->
         <div class="footer-brand">
           <h4 data-cms="footer.brand_title">Dr. Rabeya Basri</h4>
-          <p data-cms="footer.about_text">Trainee Obstetrician, Gynecologist &amp; Laparoscopic Surgeon dedicated to
-            compassionate, high-safety healthcare for women.</p>
+          <p data-cms="footer.about_text">Trainee Obstetrician, Gynecologist & Laparoscopic Surgeon dedicated to compassionate, high-safety healthcare for women.</p>
           <div style="margin-top: 1rem; font-size: 0.825rem; color: var(--slate-400);">
             BMDC Reg. No: <span data-cms="doctor.bmdc_reg">A-XXXXX</span> • Dinajpur, Bangladesh
           </div>
@@ -1063,8 +1000,7 @@
 
       <div class="footer-bottom">
         <div>
-          &copy; <span id="currentYearSpan">2026</span> <span data-cms="footer.copyright_text">Dr. Rabeya Basri. All
-            medical rights reserved.</span>
+          &copy; <span id="currentYearSpan">2026</span> <span data-cms="footer.copyright_text">Dr. Rabeya Basri. All medical rights reserved.</span>
         </div>
         <div style="display: flex; gap: 1rem;">
           <a href="login.html" style="color: #94A3B8;">Doctor Admin Login &rarr;</a>
@@ -1107,7 +1043,6 @@
 
   <!-- Scripts -->
   <script src="assets/js/supabase-config.js"></script>
-  <script src="assets/js/site-content.js"></script>
   <script src="assets/js/db.js"></script>
   <script src="assets/js/main.js"></script>
   <script>
