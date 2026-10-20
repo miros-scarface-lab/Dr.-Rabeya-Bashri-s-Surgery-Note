@@ -1,6 +1,6 @@
 # 🏥 Dr. Rabeya Basri — Surgeon's Admin Panel & Personal Data Reservation Suite
 
-A complete, production-ready, trustworthy website and personal clinical data reservation system for **Dr. Rabeya Basri**, Consultant Obstetrician & Gynecologic Surgeon. Designed for personal clinical data reservation, patient volume tracking, procedure archiving, and chamber administration. Ready for one-click deployment on **Netlify** with a **Supabase** backend for authentication and database management.
+A complete, production-ready, trustworthy website and personal clinical data reservation system for **Dr. Rabeya Basri**, Trainee Obstetrician & Gynecologic Surgeon. Designed for personal clinical data reservation, patient volume tracking, procedure archiving, and chamber administration. Ready for one-click deployment on **Netlify** with a **Supabase** backend for authentication and database management.
 
 ---
 
