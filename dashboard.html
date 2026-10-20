@@ -659,6 +659,9 @@
             <button type="button" class="cms-subnav-btn" data-cms-tab="sec8-footer">
               <span>🌐 Section 8: Footer</span>
             </button>
+            <button type="button" class="cms-subnav-btn" data-cms-tab="seo">
+              <span>🔍 Google SEO &amp; Verification</span>
+            </button>
           </div>
 
           <form id="cmsContentForm">
@@ -1365,6 +1368,69 @@
                 <div class="form-group" style="margin-bottom: 0;">
                   <label class="form-label">Footer About Text</label>
                   <textarea id="cms_footer_about_text" class="form-control" style="min-height: 70px;"></textarea>
+              </div>
+
+              <!-- GOOGLE SEO & SITE VERIFICATION (Search Console Property Claim) -->
+              <div class="cms-section-card" data-cms-section="seo">
+                <div class="cms-section-header">
+                  <h3 class="cms-section-title">
+                    <span>🔍</span> Google SEO, Search Console &amp; Property Verification
+                  </h3>
+                  <span class="cms-section-badge" style="background: #E0F2FE; color: #0369A1;">Google Verified</span>
+                </div>
+
+                <div style="background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: var(--radius-md); padding: 1rem 1.25rem; margin-bottom: 1.25rem;">
+                  <div style="display: flex; align-items: center; gap: 0.5rem; font-weight: 700; color: #15803D; margin-bottom: 0.35rem;">
+                    <span>🛡️ Google Search Console Property Claim Active</span>
+                  </div>
+                  <p style="font-size: 0.85rem; color: #166534; line-height: 1.5; margin-bottom: 0.75rem;">
+                    Your website is configured with the verification file <code>googlea85682d0c3e46a85.html</code> and the verification meta tag to claim property ownership on Google Search Console.
+                  </p>
+                  <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;">
+                    <a href="googlea85682d0c3e46a85.html" target="_blank" class="btn btn-sm btn-ghost" style="background: white; border: 1px solid #86EFAC; color: #15803D; font-size: 0.775rem;">
+                      📄 View Verification File (googlea85682d0c3e46a85.html)
+                    </a>
+                    <a href="robots.txt" target="_blank" class="btn btn-sm btn-ghost" style="background: white; border: 1px solid #86EFAC; color: #15803D; font-size: 0.775rem;">
+                      🤖 View robots.txt
+                    </a>
+                    <a href="sitemap.xml" target="_blank" class="btn btn-sm btn-ghost" style="background: white; border: 1px solid #86EFAC; color: #15803D; font-size: 0.775rem;">
+                      🗺️ View sitemap.xml
+                    </a>
+                    <a href="https://search.google.com/search-console" target="_blank" class="btn btn-sm btn-ghost" style="background: white; border: 1px solid #86EFAC; color: #15803D; font-size: 0.775rem;">
+                      🚀 Open Google Search Console
+                    </a>
+                  </div>
+                </div>
+
+                <div class="form-row form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Google Site Verification Code</label>
+                    <input type="text" id="cms_seo_google_verification" class="form-control" placeholder="googlea85682d0c3e46a85">
+                    <span class="form-hint">Claim token verified by Google Search Console</span>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Canonical Website Domain URL</label>
+                    <input type="url" id="cms_seo_canonical_url" class="form-control" placeholder="https://dr-rabeyabasri.com">
+                    <span class="form-hint">Used for canonical indexing and Google rich snippets</span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Google Search Result Title (&lt;title&gt;)</label>
+                  <input type="text" id="cms_seo_meta_title" class="form-control" placeholder="Dr. Rabeya Basri | Consultant Obstetrician, Gynecologist &amp; Laparoscopic Surgeon">
+                  <span class="form-hint">Displayed as the clickable headline in Google search results</span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Google Search Meta Description</label>
+                  <textarea id="cms_seo_meta_description" class="form-control" style="min-height: 75px;" placeholder="Brief description displayed under your title in Google search results..."></textarea>
+                  <span class="form-hint">Summary shown to patients searching on Google (recommended: 140–160 characters)</span>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 0;">
+                  <label class="form-label">SEO Keywords &amp; Patient Search Terms</label>
+                  <input type="text" id="cms_seo_meta_keywords" class="form-control" placeholder="Dr Rabeya Basri, Gynecologist Dinajpur, Obstetrician Dinajpur, Cesarean section Dinajpur, Painless normal delivery...">
+                  <span class="form-hint">Comma-separated keywords for local Dinajpur and Rangpur medical queries</span>
                 </div>
               </div>
 

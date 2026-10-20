@@ -12,6 +12,13 @@
     "photo_url": "assets/images/doctor-portrait.jpg",
     "emergency_hotline": "+880 1700-000000"
   },
+  "seo": {
+    "google_verification": "googlea85682d0c3e46a85",
+    "meta_title": "Dr. Rabeya Basri | Consultant Obstetrician, Gynecologist & Laparoscopic Surgeon",
+    "meta_description": "Official single-page clinical website of Dr. Rabeya Basri - FCPS, MS (OBGYN), specialized in high-safety Cesarean sections, painless normal deliveries, and advanced gynecologic surgeries in Dinajpur.",
+    "meta_keywords": "Dr Rabeya Basri, Gynecologist Dinajpur, Obstetrician Dinajpur, Cesarean section Dinajpur, Painless normal delivery, Laparoscopic Surgeon Dinajpur, Dinajpur Medical College Hospital, Gynae Specialist",
+    "canonical_url": "https://dr-rabeyabasri.com"
+  },
   "sections_visibility": {
     "section1_hero": true,
     "section2_about": true,

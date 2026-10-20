@@ -22,6 +22,13 @@ const DEFAULT_SITE_CONTENT = {
     "photo_url": "assets/images/doctor-portrait.jpg",
     "emergency_hotline": "+880 1700-000000"
   },
+  "seo": {
+    "google_verification": "googlea85682d0c3e46a85",
+    "meta_title": "Dr. Rabeya Basri | Consultant Obstetrician, Gynecologist & Laparoscopic Surgeon",
+    "meta_description": "Official single-page clinical website of Dr. Rabeya Basri - FCPS, MS (OBGYN), specialized in high-safety Cesarean sections, painless normal deliveries, and advanced gynecologic surgeries in Dinajpur.",
+    "meta_keywords": "Dr Rabeya Basri, Gynecologist Dinajpur, Obstetrician Dinajpur, Cesarean section Dinajpur, Painless normal delivery, Laparoscopic Surgeon Dinajpur, Dinajpur Medical College Hospital, Gynae Specialist",
+    "canonical_url": "https://dr-rabeyabasri.com"
+  },
   "sections_visibility": {
     "section1_hero": true,
     "section2_about": true,
@@ -415,6 +422,37 @@ async function applySiteContentToPage() {
       }
     }
   });
+
+  // 1.1 Dynamic SEO & Google Verification Meta Sync
+  if (content.seo) {
+    if (content.seo.meta_title && document.querySelector('title')) {
+      document.title = content.seo.meta_title;
+    }
+    const gVerify = document.querySelector('meta[name="google-site-verification"]');
+    if (gVerify && content.seo.google_verification) {
+      gVerify.setAttribute('content', content.seo.google_verification);
+    }
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc && content.seo.meta_description) {
+      metaDesc.setAttribute('content', content.seo.meta_description);
+    }
+    const metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords && content.seo.meta_keywords) {
+      metaKeywords.setAttribute('content', content.seo.meta_keywords);
+    }
+    const canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (canonicalLink && content.seo.canonical_url) {
+      canonicalLink.setAttribute('href', content.seo.canonical_url);
+    }
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle && content.seo.meta_title) {
+      ogTitle.setAttribute('content', content.seo.meta_title);
+    }
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc && content.seo.meta_description) {
+      ogDesc.setAttribute('content', content.seo.meta_description);
+    }
+  }
 
   // 2. Handle Section Visibility Toggles (Controlled by Admin Panel)
   if (content.sections_visibility) {

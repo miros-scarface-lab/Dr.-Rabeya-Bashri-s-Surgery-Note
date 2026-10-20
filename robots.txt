@@ -1,0 +1,17 @@
+# Robots.txt for Dr. Rabeya Basri Clinical & Surgical Practice
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /googlea85682d0c3e46a85.html
+Allow: /assets/
+Allow: /sitemap.xml
+
+# Private Doctor Admin Portal & Protected Files
+Disallow: /dashboard.html
+Disallow: /login.html
+Disallow: /supabase_schema.sql
+Disallow: /site_content.json
+Disallow: /server.py
+Disallow: /api/
+
+Sitemap: https://dr-rabeyabasri.com/sitemap.xml

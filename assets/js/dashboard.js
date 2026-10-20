@@ -979,6 +979,14 @@ function initEventListeners() {
           brand_title: getVal('cms_footer_brand_title') || currentContent.doctor?.name,
           about_text: getVal('cms_footer_about_text'),
           copyright_text: getVal('cms_footer_copyright_text')
+        },
+        seo: {
+          ...currentContent.seo,
+          google_verification: getVal('cms_seo_google_verification') || 'googlea85682d0c3e46a85',
+          canonical_url: getVal('cms_seo_canonical_url') || 'https://dr-rabeyabasri.com',
+          meta_title: getVal('cms_seo_meta_title'),
+          meta_description: getVal('cms_seo_meta_description'),
+          meta_keywords: getVal('cms_seo_meta_keywords')
         }
       };
 
@@ -1358,6 +1366,13 @@ async function populateCmsEditorForm() {
   setVal('cms_footer_brand_title', content.footer?.brand_title || content.doctor?.name);
   setVal('cms_footer_about_text', content.footer?.about_text);
   setVal('cms_footer_copyright_text', content.footer?.copyright_text);
+
+  // Google SEO & Verification
+  setVal('cms_seo_google_verification', content.seo?.google_verification || 'googlea85682d0c3e46a85');
+  setVal('cms_seo_canonical_url', content.seo?.canonical_url || 'https://dr-rabeyabasri.com');
+  setVal('cms_seo_meta_title', content.seo?.meta_title);
+  setVal('cms_seo_meta_description', content.seo?.meta_description);
+  setVal('cms_seo_meta_keywords', content.seo?.meta_keywords);
 }
 
 /**
