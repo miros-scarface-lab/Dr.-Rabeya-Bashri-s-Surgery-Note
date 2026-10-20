@@ -860,6 +860,7 @@ function initEventListeners() {
           primary_phone: getVal('cms_doctor_primary_phone') || currentContent.doctor?.primary_phone,
           alt_phone: getVal('cms_doctor_alt_phone') || currentContent.doctor?.alt_phone,
           email: getVal('cms_doctor_email') || currentContent.doctor?.email,
+          photo_url: getVal('cms_doctor_photo_url') || currentContent.doctor?.photo_url || 'assets/images/doctor-portrait.jpg',
           emergency_hotline: getVal('cms_doctor_emergency_hotline') || currentContent.doctor?.emergency_hotline
         },
         hero: {
@@ -876,9 +877,7 @@ function initEventListeners() {
           stat2_num: getVal('cms_hero_stat2_num'),
           stat2_label: getVal('cms_hero_stat2_label'),
           stat3_num: getVal('cms_hero_stat3_num'),
-          stat3_label: getVal('cms_hero_stat3_label'),
-          stat4_num: getVal('cms_hero_stat4_num'),
-          stat4_label: getVal('cms_hero_stat4_label')
+          stat3_label: getVal('cms_hero_stat3_label')
         },
         specialties: {
           ...currentContent.specialties,
@@ -1073,6 +1072,128 @@ function initEventListeners() {
       showToast("Please copy supabase_schema.sql from your project folder: " + e.message, "info");
     }
   });
+
+  // Doctor Portrait Photo Manager controls
+  const photoFileInput = document.getElementById('cmsDoctorPhotoFileInput');
+  const triggerPhotoUploadBtn = document.getElementById('btnTriggerDoctorPhotoUpload');
+  const photoUrlInput = document.getElementById('cms_doctor_photo_url');
+  const resetPhotoDefaultBtn = document.getElementById('btnResetDoctorPhotoDefault');
+
+  triggerPhotoUploadBtn?.addEventListener('click', () => {
+    photoFileInput?.click();
+  });
+
+  photoFileInput?.addEventListener('change', (e) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      handleDoctorPhotoFileUpload(file);
+    }
+  });
+
+  photoUrlInput?.addEventListener('input', (e) => {
+    updateDoctorPhotoPreview(e.target.value.trim());
+  });
+
+  photoUrlInput?.addEventListener('change', (e) => {
+    updateDoctorPhotoPreview(e.target.value.trim());
+  });
+
+  resetPhotoDefaultBtn?.addEventListener('click', () => {
+    const defaultPhoto = 'assets/images/doctor-portrait.jpg';
+    if (photoUrlInput) photoUrlInput.value = defaultPhoto;
+    updateDoctorPhotoPreview(defaultPhoto);
+    showToast("Doctor photo reset to default. Click 'Save & Publish' to make it live.", "info");
+  });
+}
+
+/**
+ * Handle Doctor Photo Upload & Optimization
+ */
+function handleDoctorPhotoFileUpload(file) {
+  if (!file || !file.type.startsWith('image/')) {
+    showToast("Please select a valid image file (PNG, JPG, WEBP).", "error");
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const rawDataUrl = e.target.result;
+    
+    // Scale down image on canvas to preserve performance & fit neatly in storage
+    const img = new Image();
+    img.onload = function() {
+      const maxDim = 900;
+      let width = img.width;
+      let height = img.height;
+
+      if (width > maxDim || height > maxDim) {
+        if (width > height) {
+          height = Math.round((height * maxDim) / width);
+          width = maxDim;
+        } else {
+          width = Math.round((width * maxDim) / height);
+          height = maxDim;
+        }
+      }
+
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, width, height);
+
+      const optimizedDataUrl = canvas.toDataURL('image/jpeg', 0.88);
+      const urlInput = document.getElementById('cms_doctor_photo_url');
+      if (urlInput) urlInput.value = optimizedDataUrl;
+
+      updateDoctorPhotoPreview(optimizedDataUrl);
+      showToast("Photo uploaded and optimized! Click 'Save & Publish' below to apply it to your website.", "success");
+    };
+    img.onerror = function() {
+      const urlInput = document.getElementById('cms_doctor_photo_url');
+      if (urlInput) urlInput.value = rawDataUrl;
+      updateDoctorPhotoPreview(rawDataUrl);
+      showToast("Photo loaded! Click 'Save & Publish' below to apply it to your website.", "success");
+    };
+    img.src = rawDataUrl;
+  };
+  reader.readAsDataURL(file);
+}
+
+/**
+ * Update Doctor Portrait Preview in Admin CMS
+ */
+function updateDoctorPhotoPreview(url) {
+  const previewImg = document.getElementById('cmsDoctorPhotoPreview');
+  const previewPlaceholder = document.getElementById('cmsDoctorPhotoPlaceholder');
+  const statusLabel = document.getElementById('cmsDoctorPhotoStatus');
+
+  const targetUrl = url && url.trim() ? url.trim() : 'assets/images/doctor-portrait.jpg';
+
+  if (previewImg) {
+    previewImg.src = targetUrl;
+    previewImg.style.display = 'block';
+    if (previewPlaceholder) previewPlaceholder.style.display = 'none';
+
+    previewImg.onerror = function() {
+      previewImg.style.display = 'none';
+      if (previewPlaceholder) previewPlaceholder.style.display = 'flex';
+      if (statusLabel) statusLabel.textContent = 'Image failed to load';
+    };
+    previewImg.onload = function() {
+      previewImg.style.display = 'block';
+      if (previewPlaceholder) previewPlaceholder.style.display = 'none';
+      if (statusLabel) {
+        if (targetUrl.startsWith('data:image')) {
+          statusLabel.textContent = 'Custom Device Upload (Ready to Publish)';
+        } else if (targetUrl === 'assets/images/doctor-portrait.jpg') {
+          statusLabel.textContent = 'Default Practice Portrait';
+        } else {
+          statusLabel.textContent = 'Custom Image Linked';
+        }
+      }
+    };
+  }
 }
 
 /**
@@ -1130,6 +1251,8 @@ async function populateCmsEditorForm() {
   setVal('cms_doctor_alt_phone', content.doctor?.alt_phone);
   setVal('cms_doctor_email', content.doctor?.email);
   setVal('cms_doctor_emergency_hotline', content.doctor?.emergency_hotline);
+  setVal('cms_doctor_photo_url', content.doctor?.photo_url || 'assets/images/doctor-portrait.jpg');
+  updateDoctorPhotoPreview(content.doctor?.photo_url || 'assets/images/doctor-portrait.jpg');
 
   // Section 1: Hero & Stats
   setVal('cms_hero_pill_text', content.hero?.pill_text);
@@ -1145,8 +1268,6 @@ async function populateCmsEditorForm() {
   setVal('cms_hero_stat2_label', content.hero?.stat2_label);
   setVal('cms_hero_stat3_num', content.hero?.stat3_num);
   setVal('cms_hero_stat3_label', content.hero?.stat3_label);
-  setVal('cms_hero_stat4_num', content.hero?.stat4_num);
-  setVal('cms_hero_stat4_label', content.hero?.stat4_label);
 
   // Section 3: Clinical Specialties
   setVal('cms_specialties_title', content.specialties?.title);

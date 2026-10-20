@@ -672,6 +672,63 @@
                   </h3>
                   <span class="cms-section-badge">Master Profile</span>
                 </div>
+
+                <!-- Doctor Portrait Image Manager -->
+                <div class="doctor-photo-manager-box" style="background: linear-gradient(135deg, rgba(216, 90, 127, 0.05), rgba(14, 116, 144, 0.05)); border: 1px solid var(--slate-200); border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 1.5rem;">
+                  <div style="display: flex; gap: 1.25rem; align-items: center; flex-wrap: wrap;">
+                    
+                    <!-- Thumbnail Preview Box -->
+                    <div style="position: relative; width: 100px; height: 125px; border-radius: var(--radius-md); overflow: hidden; background: var(--slate-100); border: 2px solid var(--primary-subtle); box-shadow: var(--shadow-sm); flex-shrink: 0;">
+                      <img id="cmsDoctorPhotoPreview" src="assets/images/doctor-portrait.jpg" alt="Doctor Portrait Preview" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                      <div id="cmsDoctorPhotoPlaceholder" style="display: none; width: 100%; height: 100%; align-items: center; justify-content: center; background: #FCE7F3; color: var(--primary); font-size: 2rem;">
+                        👩‍⚕️
+                      </div>
+                    </div>
+
+                    <!-- Upload Controls & Info -->
+                    <div style="flex: 1; min-width: 240px;">
+                      <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem; flex-wrap: wrap;">
+                        <label class="form-label" style="font-weight: 700; margin-bottom: 0; font-size: 0.95rem;">
+                          Main Doctor's Portrait Image
+                        </label>
+                        <span id="cmsDoctorPhotoStatus" class="badge badge-purple" style="font-size: 0.72rem; padding: 0.2rem 0.55rem;">
+                          Active Website Photo
+                        </span>
+                      </div>
+                      <p style="font-size: 0.8rem; color: var(--slate-500); margin-bottom: 0.85rem; line-height: 1.4;">
+                        Upload a photo from your computer/phone camera, or specify an image URL. Displayed prominently on the Website Hero section.
+                      </p>
+
+                      <!-- Action Buttons -->
+                      <div style="display: flex; flex-wrap: wrap; gap: 0.65rem; margin-bottom: 0.85rem;">
+                        <input type="file" id="cmsDoctorPhotoFileInput" accept="image/*" style="display: none;">
+                        <button type="button" class="btn btn-primary btn-sm" id="btnTriggerDoctorPhotoUpload" style="gap: 0.4rem;">
+                          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                          </svg>
+                          <span>📁 Upload from Device / Phone</span>
+                        </button>
+
+                        <button type="button" class="btn btn-ghost btn-sm" id="btnResetDoctorPhotoDefault" style="color: var(--slate-600); border: 1px solid var(--slate-200);">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                            <path d="M3 3v5h5"></path>
+                          </svg>
+                          <span>↺ Reset to Default</span>
+                        </button>
+                      </div>
+
+                      <!-- URL Input -->
+                      <div class="form-group" style="margin-bottom: 0;">
+                        <label class="form-label" style="font-size: 0.775rem; color: var(--slate-500);">Or specify Image Path / Web URL:</label>
+                        <input type="text" id="cms_doctor_photo_url" class="form-control" placeholder="assets/images/doctor-portrait.jpg or https://..." style="font-size: 0.85rem;">
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
                 <div class="form-row form-row-2">
                   <div class="form-group">
                     <label class="form-label">Doctor's Official Name</label>
@@ -780,36 +837,27 @@
                 </div>
 
                 <div class="cms-group-box">
-                  <div class="cms-group-title">🔢 4 Hero Credential Counters:</div>
-                  <div class="form-row form-row-2">
-                    <div class="form-group">
+                  <div class="cms-group-title">🔢 3 Hero Credential Counters:</div>
+                  <div class="form-row form-row-3" style="margin-bottom: 0;">
+                    <div class="form-group" style="margin-bottom: 0;">
                       <label class="form-label">Stat 1 (e.g. 15+ &amp; Experience)</label>
                       <div style="display: flex; gap: 0.5rem;">
                         <input type="text" id="cms_hero_stat1_num" class="form-control" style="max-width: 100px;">
                         <input type="text" id="cms_hero_stat1_label" class="form-control">
                       </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="margin-bottom: 0;">
                       <label class="form-label">Stat 2 (e.g. 4,500+ &amp; Deliveries)</label>
                       <div style="display: flex; gap: 0.5rem;">
                         <input type="text" id="cms_hero_stat2_num" class="form-control" style="max-width: 100px;">
                         <input type="text" id="cms_hero_stat2_label" class="form-control">
                       </div>
                     </div>
-                  </div>
-                  <div class="form-row form-row-2" style="margin-bottom: 0;">
                     <div class="form-group" style="margin-bottom: 0;">
                       <label class="form-label">Stat 3 (e.g. 99.4% &amp; Safety)</label>
                       <div style="display: flex; gap: 0.5rem;">
                         <input type="text" id="cms_hero_stat3_num" class="form-control" style="max-width: 100px;">
                         <input type="text" id="cms_hero_stat3_label" class="form-control">
-                      </div>
-                    </div>
-                    <div class="form-group" style="margin-bottom: 0;">
-                      <label class="form-label">Stat 4 (e.g. 1 &amp; Dinajpur Medical College)</label>
-                      <div style="display: flex; gap: 0.5rem;">
-                        <input type="text" id="cms_hero_stat4_num" class="form-control" style="max-width: 100px;">
-                        <input type="text" id="cms_hero_stat4_label" class="form-control">
                       </div>
                     </div>
                   </div>

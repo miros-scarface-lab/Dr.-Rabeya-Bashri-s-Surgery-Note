@@ -601,7 +601,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-credentials-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   padding-top: 1.75rem;
   border-top: 1px solid var(--slate-200);
@@ -2443,23 +2443,25 @@ textarea.form-control {
 
   .hero-credentials-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.85rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.65rem;
   }
 
   .hero-stat-item {
     background: var(--white);
-    padding: 0.75rem 0.85rem;
+    padding: 0.75rem 0.5rem;
     border-radius: var(--radius-md);
     border: 1px solid var(--slate-200);
+    text-align: center;
   }
 
   .hero-stat-num {
-    font-size: 1.45rem;
+    font-size: 1.35rem;
   }
 
   .hero-stat-label {
-    font-size: 0.725rem;
+    font-size: 0.7rem;
+    line-height: 1.25;
   }
 
   .doctor-portrait-card {

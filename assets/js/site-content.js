@@ -54,8 +54,6 @@ const DEFAULT_SITE_CONTENT = {
     "stat2_label": "Deliveries & Surgeries",
     "stat3_num": "99.4%",
     "stat3_label": "Safety & Success Record",
-    "stat4_num": "1",
-    "stat4_label": "Dinajpur Medical College, Hospital",
     "badge_status": "Accepting Patients"
   },
   "about": {
@@ -403,6 +401,13 @@ async function applySiteContentToPage() {
       } else if (el.hasAttribute('data-cms-attr')) {
         const attrName = el.getAttribute('data-cms-attr');
         el.setAttribute(attrName, val);
+        if (el.tagName === 'IMG' && attrName === 'src' && val) {
+          el.style.display = 'block';
+          const fallback = el.nextElementSibling;
+          if (fallback && (fallback.classList.contains('doctor-avatar-svg') || fallback.tagName === 'svg' || fallback.tagName === 'SVG')) {
+            fallback.style.display = 'none';
+          }
+        }
       } else if (el.hasAttribute('data-cms-html')) {
         el.innerHTML = val;
       } else {

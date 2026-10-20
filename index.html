@@ -165,10 +165,6 @@
               <span class="hero-stat-num" data-cms="hero.stat3_num">99.4%</span>
               <span class="hero-stat-label" data-cms="hero.stat3_label">Safety &amp; Success Record</span>
             </div>
-            <div class="hero-stat-item">
-              <span class="hero-stat-num" data-cms="hero.stat4_num">1</span>
-              <span class="hero-stat-label" data-cms="hero.stat4_label">Dinajpur Medical College, Hospital</span>
-            </div>
           </div>
         </div>
 
@@ -180,7 +176,10 @@
                 src="assets/images/doctor-portrait.jpg" 
                 alt="Dr. Rabeya Basri - Consultant Obstetrician &amp; Gynecologist Surgeon" 
                 class="doctor-photo-img"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+                data-cms="doctor.photo_url"
+                data-cms-attr="src"
+                onload="this.style.display='block'; if(this.nextElementSibling) this.nextElementSibling.style.display='none';"
+                onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';"
               >
               <!-- Stylized Fallback Avatar -->
               <svg class="doctor-avatar-svg" style="display: none;" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
