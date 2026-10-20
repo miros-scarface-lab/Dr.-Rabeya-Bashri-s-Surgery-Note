@@ -627,6 +627,7 @@
           </div>
 
           <!-- Quick Category Sub-Navigation Tabs -->
+          <!-- Quick Category Sub-Navigation Tabs -->
           <div class="cms-subnav-bar" id="cmsSubnavBar">
             <button type="button" class="cms-subnav-btn active" data-cms-tab="all">
               <span>📑 All Sections</span>
@@ -634,42 +635,42 @@
             <button type="button" class="cms-subnav-btn" data-cms-tab="doctor">
               <span>🩺 Doctor Profile</span>
             </button>
-            <button type="button" class="cms-subnav-btn" data-cms-tab="homepage">
-              <span>🏠 Homepage &amp; Hero</span>
+            <button type="button" class="cms-subnav-btn" data-cms-tab="sec1-hero">
+              <span>✨ Section 1: Hero</span>
             </button>
-            <button type="button" class="cms-subnav-btn" data-cms-tab="specialties">
-              <span>✨ Clinical Specialties</span>
+            <button type="button" class="cms-subnav-btn" data-cms-tab="sec2-about">
+              <span>📖 Section 2: Bio &amp; About</span>
             </button>
-            <button type="button" class="cms-subnav-btn" data-cms-tab="credentials">
-              <span>🎓 Credentials &amp; Degrees</span>
+            <button type="button" class="cms-subnav-btn" data-cms-tab="sec3-specialties">
+              <span>🩺 Section 3: Specialties</span>
             </button>
-            <button type="button" class="cms-subnav-btn" data-cms-tab="about">
-              <span>📖 About Bio &amp; Pillars</span>
+            <button type="button" class="cms-subnav-btn" data-cms-tab="sec4-services">
+              <span>🔬 Section 4: Services</span>
             </button>
-            <button type="button" class="cms-subnav-btn" data-cms-tab="services">
-              <span>🔬 Surgical Procedures</span>
+            <button type="button" class="cms-subnav-btn" data-cms-tab="sec5-credentials">
+              <span>🎓 Section 5: Credentials</span>
             </button>
-            <button type="button" class="cms-subnav-btn" data-cms-tab="chambers">
-              <span>🏥 Chamber Schedules</span>
+            <button type="button" class="cms-subnav-btn" data-cms-tab="sec6-chambers">
+              <span>🏥 Section 6: Chambers</span>
             </button>
-            <button type="button" class="cms-subnav-btn" data-cms-tab="appointment">
-              <span>📅 Appointment Booking</span>
+            <button type="button" class="cms-subnav-btn" data-cms-tab="sec7-appointment">
+              <span>📅 Section 7: Booking</span>
             </button>
-            <button type="button" class="cms-subnav-btn" data-cms-tab="footer">
-              <span>🌐 Footer &amp; Branding</span>
+            <button type="button" class="cms-subnav-btn" data-cms-tab="sec8-footer">
+              <span>🌐 Section 8: Footer</span>
             </button>
           </div>
 
           <form id="cmsContentForm">
             <div class="cms-section-container">
 
-              <!-- 1. Doctor Profile & Contact Information -->
+              <!-- GLOBAL: Doctor Profile & Contact Information -->
               <div class="cms-section-card" data-cms-section="doctor">
                 <div class="cms-section-header">
                   <h3 class="cms-section-title">
-                    <span>🩺</span> Section 1: Doctor Profile &amp; Global Contact Info
+                    <span>🩺</span> Global Doctor Profile &amp; Contact Credentials
                   </h3>
-                  <span class="cms-section-badge">Global Profile</span>
+                  <span class="cms-section-badge">Master Profile</span>
                 </div>
                 <div class="form-row form-row-2">
                   <div class="form-group">
@@ -701,7 +702,7 @@
                     <input type="text" id="cms_doctor_experience_years" class="form-control" placeholder="15+">
                   </div>
                   <div class="form-group">
-                    <label class="form-label">Primary Appointment Phone</label>
+                    <label class="form-label">Primary Appointment Phone (Serial Desk)</label>
                     <input type="text" id="cms_doctor_primary_phone" class="form-control">
                   </div>
                 </div>
@@ -721,14 +722,28 @@
                 </div>
               </div>
 
-              <!-- 2. Homepage Hero Banner & Credential Counters -->
-              <div class="cms-section-card" data-cms-section="homepage">
+              <!-- SECTION 1: Hero Banner & Statistics -->
+              <div class="cms-section-card" data-cms-section="sec1-hero">
                 <div class="cms-section-header">
                   <h3 class="cms-section-title">
-                    <span>✨</span> Section 2: Homepage Hero Banner &amp; Statistics
+                    <span>✨</span> Section 1: Hero Banner &amp; Statistics
                   </h3>
-                  <span class="cms-section-badge">Homepage</span>
+                  <div class="cms-toggle-switch-wrapper">
+                    <label class="cms-switch">
+                      <input type="checkbox" id="cms_toggle_section1_hero" checked>
+                      <span class="cms-slider"></span>
+                    </label>
+                    <label class="cms-toggle-label" for="cms_toggle_section1_hero">
+                      <span>👁️ Section 1 Active</span>
+                    </label>
+                  </div>
                 </div>
+
+                <div class="form-group" style="background: var(--white); padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--slate-200); margin-bottom: 1rem;">
+                  <label class="form-label" style="font-weight: 700;">Section 1 Pill / Badge Label (Shown on website)</label>
+                  <input type="text" id="cms_sec1_badge" class="form-control" placeholder="Section 1 • Welcome">
+                </div>
+
                 <div class="form-row form-row-2">
                   <div class="form-group">
                     <label class="form-label">Hero Badge / Pill Tag</label>
@@ -801,14 +816,102 @@
                 </div>
               </div>
 
-              <!-- 3. Clinical Specialties 4 Cards -->
-              <div class="cms-section-card" data-cms-section="specialties">
+              <!-- SECTION 2: Surgeon Biography & Clinical Philosophy -->
+              <div class="cms-section-card" data-cms-section="sec2-about">
+                <div class="cms-section-header">
+                  <h3 class="cms-section-title">
+                    <span>📖</span> Section 2: Surgeon Biography &amp; Clinical Philosophy
+                  </h3>
+                  <div class="cms-toggle-switch-wrapper">
+                    <label class="cms-switch">
+                      <input type="checkbox" id="cms_toggle_section2_about" checked>
+                      <span class="cms-slider"></span>
+                    </label>
+                    <label class="cms-toggle-label" for="cms_toggle_section2_about">
+                      <span>👁️ Section 2 Active</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group" style="background: var(--white); padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--slate-200); margin-bottom: 1rem;">
+                  <label class="form-label" style="font-weight: 700;">Section 2 Pill / Badge Label (Shown on website)</label>
+                  <input type="text" id="cms_sec2_badge" class="form-control" placeholder="Section 2 • Biography">
+                </div>
+
+                <div class="form-row form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Biography Banner Tag / Badge</label>
+                    <input type="text" id="cms_about_banner_tag" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Biography Main Heading</label>
+                    <input type="text" id="cms_about_bio_heading" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Biography Paragraph 1</label>
+                  <textarea id="cms_about_bio_p1" class="form-control" style="min-height: 80px;"></textarea>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Biography Paragraph 2</label>
+                  <textarea id="cms_about_bio_p2" class="form-control" style="min-height: 80px;"></textarea>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Biography Paragraph 3</label>
+                  <textarea id="cms_about_bio_p3" class="form-control" style="min-height: 80px;"></textarea>
+                </div>
+
+                <div class="cms-group-box" style="margin-bottom: 0;">
+                  <div class="cms-group-title">🌸 4 Clinical Philosophy Pillars</div>
+                  <div class="form-row form-row-2">
+                    <div class="form-group">
+                      <label class="form-label">Pillar 1 Title &amp; Description</label>
+                      <input type="text" id="cms_about_pillar1_title" class="form-control" style="margin-bottom: 0.35rem;">
+                      <textarea id="cms_about_pillar1_desc" class="form-control" style="min-height: 60px;"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Pillar 2 Title &amp; Description</label>
+                      <input type="text" id="cms_about_pillar2_title" class="form-control" style="margin-bottom: 0.35rem;">
+                      <textarea id="cms_about_pillar2_desc" class="form-control" style="min-height: 60px;"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-row form-row-2" style="margin-bottom: 0;">
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label class="form-label">Pillar 3 Title &amp; Description</label>
+                      <input type="text" id="cms_about_pillar3_title" class="form-control" style="margin-bottom: 0.35rem;">
+                      <textarea id="cms_about_pillar3_desc" class="form-control" style="min-height: 60px;"></textarea>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label class="form-label">Pillar 4 Title &amp; Description</label>
+                      <input type="text" id="cms_about_pillar4_title" class="form-control" style="margin-bottom: 0.35rem;">
+                      <textarea id="cms_about_pillar4_desc" class="form-control" style="min-height: 60px;"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SECTION 3: Clinical Specialties & Cards -->
+              <div class="cms-section-card" data-cms-section="sec3-specialties">
                 <div class="cms-section-header">
                   <h3 class="cms-section-title">
                     <span>🩺</span> Section 3: Clinical Specialties &amp; Cards
                   </h3>
-                  <span class="cms-section-badge">Homepage</span>
+                  <div class="cms-toggle-switch-wrapper">
+                    <label class="cms-switch">
+                      <input type="checkbox" id="cms_toggle_section3_specialties" checked>
+                      <span class="cms-slider"></span>
+                    </label>
+                    <label class="cms-toggle-label" for="cms_toggle_section3_specialties">
+                      <span>👁️ Section 3 Active</span>
+                    </label>
+                  </div>
                 </div>
+
+                <div class="form-group" style="background: var(--white); padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--slate-200); margin-bottom: 1rem;">
+                  <label class="form-label" style="font-weight: 700;">Section 3 Pill / Badge Label (Shown on website)</label>
+                  <input type="text" id="cms_sec3_badge" class="form-control" placeholder="Section 3 • Specialties">
+                </div>
+
                 <div class="form-row form-row-2">
                   <div class="form-group">
                     <label class="form-label">Specialties Section Title (Main Headline)</label>
@@ -874,150 +977,28 @@
                 </div>
               </div>
 
-              <!-- 4. Qualifications & Hospital Attachments Section -->
-              <div class="cms-section-card" data-cms-section="credentials">
+              <!-- SECTION 4: Comprehensive Surgical Services & Procedures -->
+              <div class="cms-section-card" data-cms-section="sec4-services">
                 <div class="cms-section-header">
                   <h3 class="cms-section-title">
-                    <span>🎓</span> Section 4: Credentials, Degrees &amp; Attachments
+                    <span>🔬</span> Section 4: Comprehensive Surgical Services &amp; Guides
                   </h3>
-                  <span class="cms-section-badge">Homepage</span>
-                </div>
-                <div class="form-row form-row-2">
-                  <div class="form-group">
-                    <label class="form-label">Credentials Section Title</label>
-                    <input type="text" id="cms_credentials_title" class="form-control">
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label">Credentials Badge / Tag</label>
-                    <input type="text" id="cms_credentials_tag" class="form-control">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Credentials Section Description</label>
-                  <textarea id="cms_credentials_desc" class="form-control" style="min-height: 60px;"></textarea>
-                </div>
-
-                <div class="cms-group-box">
-                  <div class="cms-group-title">📜 Academic Degrees &amp; Fellowships Column</div>
-                  <div class="form-row form-row-2">
-                    <div class="form-group">
-                      <label class="form-label">Column Header</label>
-                      <input type="text" id="cms_credentials_qual_header" class="form-control">
-                    </div>
-                    <div class="form-group">
-                      <label class="form-label">Column Subtitle</label>
-                      <input type="text" id="cms_credentials_qual_sub" class="form-control">
-                    </div>
-                  </div>
-                  <div class="form-row form-row-2">
-                    <div class="form-group">
-                      <label class="form-label">Degree 1 (e.g. FCPS)</label>
-                      <input type="text" id="cms_credentials_q1_title" class="form-control" style="margin-bottom: 0.35rem;">
-                      <input type="text" id="cms_credentials_q1_sub" class="form-control" placeholder="Institution">
-                    </div>
-                    <div class="form-group">
-                      <label class="form-label">Degree 2 (e.g. MS)</label>
-                      <input type="text" id="cms_credentials_q2_title" class="form-control" style="margin-bottom: 0.35rem;">
-                      <input type="text" id="cms_credentials_q2_sub" class="form-control" placeholder="Institution">
-                    </div>
-                  </div>
-                  <div class="form-row form-row-2" style="margin-bottom: 0;">
-                    <div class="form-group" style="margin-bottom: 0;">
-                      <label class="form-label">Degree 3 (e.g. Fellowship in Laparoscopy)</label>
-                      <input type="text" id="cms_credentials_q3_title" class="form-control" style="margin-bottom: 0.35rem;">
-                      <input type="text" id="cms_credentials_q3_sub" class="form-control" placeholder="Institution">
-                    </div>
-                    <div class="form-group" style="margin-bottom: 0;">
-                      <label class="form-label">Degree 4 (e.g. MBBS)</label>
-                      <input type="text" id="cms_credentials_q4_title" class="form-control" style="margin-bottom: 0.35rem;">
-                      <input type="text" id="cms_credentials_q4_sub" class="form-control" placeholder="Institution">
-                    </div>
+                  <div class="cms-toggle-switch-wrapper">
+                    <label class="cms-switch">
+                      <input type="checkbox" id="cms_toggle_section4_services" checked>
+                      <span class="cms-slider"></span>
+                    </label>
+                    <label class="cms-toggle-label" for="cms_toggle_section4_services">
+                      <span>👁️ Section 4 Active</span>
+                    </label>
                   </div>
                 </div>
 
-                <div class="cms-group-box" style="margin-bottom: 0;">
-                  <div class="cms-group-title">🏥 Hospital Attachments Column Header</div>
-                  <div class="form-row form-row-2">
-                    <div class="form-group" style="margin-bottom: 0;">
-                      <label class="form-label">Column Header</label>
-                      <input type="text" id="cms_credentials_hosp_header" class="form-control">
-                    </div>
-                    <div class="form-group" style="margin-bottom: 0;">
-                      <label class="form-label">Column Subtitle</label>
-                      <input type="text" id="cms_credentials_hosp_sub" class="form-control">
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 5. About Page Biography & 4 Clinical Philosophy Pillars -->
-              <div class="cms-section-card" data-cms-section="about">
-                <div class="cms-section-header">
-                  <h3 class="cms-section-title">
-                    <span>📖</span> Section 5: About Page Biography &amp; Philosophy
-                  </h3>
-                  <span class="cms-section-badge">About Page</span>
-                </div>
-                <div class="form-row form-row-2">
-                  <div class="form-group">
-                    <label class="form-label">About Page Banner Badge / Tag</label>
-                    <input type="text" id="cms_about_banner_tag" class="form-control">
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label">Biography Heading (Main Headline)</label>
-                    <input type="text" id="cms_about_bio_heading" class="form-control">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Biography Paragraph 1</label>
-                  <textarea id="cms_about_bio_p1" class="form-control" style="min-height: 80px;"></textarea>
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Biography Paragraph 2</label>
-                  <textarea id="cms_about_bio_p2" class="form-control" style="min-height: 80px;"></textarea>
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Biography Paragraph 3</label>
-                  <textarea id="cms_about_bio_p3" class="form-control" style="min-height: 80px;"></textarea>
+                <div class="form-group" style="background: var(--white); padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--slate-200); margin-bottom: 1rem;">
+                  <label class="form-label" style="font-weight: 700;">Section 4 Pill / Badge Label (Shown on website)</label>
+                  <input type="text" id="cms_sec4_badge" class="form-control" placeholder="Section 4 • Surgical Services">
                 </div>
 
-                <div class="cms-group-box" style="margin-bottom: 0;">
-                  <div class="cms-group-title">🌸 4 Clinical Philosophy Pillars</div>
-                  <div class="form-row form-row-2">
-                    <div class="form-group">
-                      <label class="form-label">Pillar 1 (Gentle Birth)</label>
-                      <input type="text" id="cms_about_pillar1_title" class="form-control" style="margin-bottom: 0.35rem;">
-                      <textarea id="cms_about_pillar1_desc" class="form-control" style="min-height: 60px;"></textarea>
-                    </div>
-                    <div class="form-group">
-                      <label class="form-label">Pillar 2 (Precision Surgery)</label>
-                      <input type="text" id="cms_about_pillar2_title" class="form-control" style="margin-bottom: 0.35rem;">
-                      <textarea id="cms_about_pillar2_desc" class="form-control" style="min-height: 60px;"></textarea>
-                    </div>
-                  </div>
-                  <div class="form-row form-row-2" style="margin-bottom: 0;">
-                    <div class="form-group" style="margin-bottom: 0;">
-                      <label class="form-label">Pillar 3 (Safety Protocols)</label>
-                      <input type="text" id="cms_about_pillar3_title" class="form-control" style="margin-bottom: 0.35rem;">
-                      <textarea id="cms_about_pillar3_desc" class="form-control" style="min-height: 60px;"></textarea>
-                    </div>
-                    <div class="form-group" style="margin-bottom: 0;">
-                      <label class="form-label">Pillar 4 (Empathetic Care)</label>
-                      <input type="text" id="cms_about_pillar4_title" class="form-control" style="margin-bottom: 0.35rem;">
-                      <textarea id="cms_about_pillar4_desc" class="form-control" style="min-height: 60px;"></textarea>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 6. Surgical Services Page (Categories, Procedures, Pre/Post-Op) -->
-              <div class="cms-section-card" data-cms-section="services">
-                <div class="cms-section-header">
-                  <h3 class="cms-section-title">
-                    <span>🔬</span> Section 6: Surgical Services Page &amp; Procedures
-                  </h3>
-                  <span class="cms-section-badge">Services Page</span>
-                </div>
                 <div class="form-row form-row-2">
                   <div class="form-group">
                     <label class="form-label">Services Page Main Title</label>
@@ -1117,16 +1098,123 @@
                 </div>
               </div>
 
-              <!-- 7. Chambers, Visiting Hours & Contact Schedules (Dynamic Add / Remove) -->
-              <div class="cms-section-card" data-cms-section="chambers">
+              <!-- SECTION 5: Academic Qualifications & Affiliations -->
+              <div class="cms-section-card" data-cms-section="sec5-credentials">
                 <div class="cms-section-header">
                   <h3 class="cms-section-title">
-                    <span>🏥</span> Section 7: Chamber Locations &amp; Visiting Hours
+                    <span>🎓</span> Section 5: Academic Qualifications, Degrees &amp; Attachments
                   </h3>
-                  <button type="button" id="btnAddChamberRow" class="btn btn-primary btn-sm" style="display: flex; align-items: center; gap: 0.4rem; font-weight: 600;">
-                    <span>➕</span> Add New Chamber
-                  </button>
+                  <div class="cms-toggle-switch-wrapper">
+                    <label class="cms-switch">
+                      <input type="checkbox" id="cms_toggle_section5_credentials" checked>
+                      <span class="cms-slider"></span>
+                    </label>
+                    <label class="cms-toggle-label" for="cms_toggle_section5_credentials">
+                      <span>👁️ Section 5 Active</span>
+                    </label>
+                  </div>
                 </div>
+
+                <div class="form-group" style="background: var(--white); padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--slate-200); margin-bottom: 1rem;">
+                  <label class="form-label" style="font-weight: 700;">Section 5 Pill / Badge Label (Shown on website)</label>
+                  <input type="text" id="cms_sec5_badge" class="form-control" placeholder="Section 5 • Credentials">
+                </div>
+
+                <div class="form-row form-row-2">
+                  <div class="form-group">
+                    <label class="form-label">Credentials Section Title</label>
+                    <input type="text" id="cms_credentials_title" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Credentials Badge / Tag</label>
+                    <input type="text" id="cms_credentials_tag" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Credentials Section Description</label>
+                  <textarea id="cms_credentials_desc" class="form-control" style="min-height: 60px;"></textarea>
+                </div>
+
+                <div class="cms-group-box">
+                  <div class="cms-group-title">📜 Academic Degrees &amp; Fellowships Column</div>
+                  <div class="form-row form-row-2">
+                    <div class="form-group">
+                      <label class="form-label">Column Header</label>
+                      <input type="text" id="cms_credentials_qual_header" class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Column Subtitle</label>
+                      <input type="text" id="cms_credentials_qual_sub" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-row form-row-2">
+                    <div class="form-group">
+                      <label class="form-label">Degree 1 (e.g. FCPS)</label>
+                      <input type="text" id="cms_credentials_q1_title" class="form-control" style="margin-bottom: 0.35rem;">
+                      <input type="text" id="cms_credentials_q1_sub" class="form-control" placeholder="Institution">
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Degree 2 (e.g. MS)</label>
+                      <input type="text" id="cms_credentials_q2_title" class="form-control" style="margin-bottom: 0.35rem;">
+                      <input type="text" id="cms_credentials_q2_sub" class="form-control" placeholder="Institution">
+                    </div>
+                  </div>
+                  <div class="form-row form-row-2" style="margin-bottom: 0;">
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label class="form-label">Degree 3 (e.g. Fellowship in Laparoscopy)</label>
+                      <input type="text" id="cms_credentials_q3_title" class="form-control" style="margin-bottom: 0.35rem;">
+                      <input type="text" id="cms_credentials_q3_sub" class="form-control" placeholder="Institution">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label class="form-label">Degree 4 (e.g. MBBS)</label>
+                      <input type="text" id="cms_credentials_q4_title" class="form-control" style="margin-bottom: 0.35rem;">
+                      <input type="text" id="cms_credentials_q4_sub" class="form-control" placeholder="Institution">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="cms-group-box" style="margin-bottom: 0;">
+                  <div class="cms-group-title">🏥 Hospital Attachments Column Header</div>
+                  <div class="form-row form-row-2">
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label class="form-label">Column Header</label>
+                      <input type="text" id="cms_credentials_hosp_header" class="form-control">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label class="form-label">Column Subtitle</label>
+                      <input type="text" id="cms_credentials_hosp_sub" class="form-control">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SECTION 6: Chambers, Visiting Hours & Contact Schedules (Dynamic Add / Remove) -->
+              <div class="cms-section-card" data-cms-section="sec6-chambers">
+                <div class="cms-section-header">
+                  <h3 class="cms-section-title">
+                    <span>🏥</span> Section 6: Chamber Locations &amp; Visiting Hours
+                  </h3>
+                  <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+                    <div class="cms-toggle-switch-wrapper">
+                      <label class="cms-switch">
+                        <input type="checkbox" id="cms_toggle_section6_chambers" checked>
+                        <span class="cms-slider"></span>
+                      </label>
+                      <label class="cms-toggle-label" for="cms_toggle_section6_chambers">
+                        <span>👁️ Section 6 Active</span>
+                      </label>
+                    </div>
+                    <button type="button" id="btnAddChamberRow" class="btn btn-primary btn-sm" style="display: flex; align-items: center; gap: 0.4rem; font-weight: 600;">
+                      <span>➕</span> Add New Chamber
+                    </button>
+                  </div>
+                </div>
+
+                <div class="form-group" style="background: var(--white); padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--slate-200); margin-bottom: 1rem;">
+                  <label class="form-label" style="font-weight: 700;">Section 6 Pill / Badge Label (Shown on website)</label>
+                  <input type="text" id="cms_sec6_badge" class="form-control" placeholder="Section 6 • Chambers">
+                </div>
+
                 <div class="form-row form-row-2" style="margin-bottom: 1rem;">
                   <div class="form-group">
                     <label class="form-label">Chambers Section Title</label>
@@ -1148,14 +1236,28 @@
                 </button>
               </div>
 
-              <!-- 8. Online Appointment Booking Section -->
-              <div class="cms-section-card" data-cms-section="appointment">
+              <!-- SECTION 7: Online Appointment Booking Section -->
+              <div class="cms-section-card" data-cms-section="sec7-appointment">
                 <div class="cms-section-header">
                   <h3 class="cms-section-title">
-                    <span>📅</span> Section 8: Consultation &amp; Appointment Booking
+                    <span>📅</span> Section 7: Consultation &amp; Appointment Booking Form
                   </h3>
-                  <span class="cms-section-badge">Booking Form</span>
+                  <div class="cms-toggle-switch-wrapper">
+                    <label class="cms-switch">
+                      <input type="checkbox" id="cms_toggle_section7_appointment" checked>
+                      <span class="cms-slider"></span>
+                    </label>
+                    <label class="cms-toggle-label" for="cms_toggle_section7_appointment">
+                      <span>👁️ Section 7 Active</span>
+                    </label>
+                  </div>
                 </div>
+
+                <div class="form-group" style="background: var(--white); padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--slate-200); margin-bottom: 1rem;">
+                  <label class="form-label" style="font-weight: 700;">Section 7 Pill / Badge Label (Shown on website)</label>
+                  <input type="text" id="cms_sec7_badge" class="form-control" placeholder="Section 7 • Appointments">
+                </div>
+
                 <div class="form-row form-row-2">
                   <div class="form-group">
                     <label class="form-label">Appointment Section Title (Main Headline)</label>
@@ -1186,13 +1288,21 @@
                 </div>
               </div>
 
-              <!-- 9. Footer & Copyright Notice -->
-              <div class="cms-section-card" data-cms-section="footer">
+              <!-- SECTION 8: Footer & Copyright Notice -->
+              <div class="cms-section-card" data-cms-section="sec8-footer">
                 <div class="cms-section-header">
                   <h3 class="cms-section-title">
-                    <span>🌐</span> Section 9: Footer &amp; Copyright Notice
+                    <span>🌐</span> Section 8: Practice Footer &amp; Copyright Notice
                   </h3>
-                  <span class="cms-section-badge">Global Footer</span>
+                  <div class="cms-toggle-switch-wrapper">
+                    <label class="cms-switch">
+                      <input type="checkbox" id="cms_toggle_section8_footer" checked>
+                      <span class="cms-slider"></span>
+                    </label>
+                    <label class="cms-toggle-label" for="cms_toggle_section8_footer">
+                      <span>👁️ Section 8 Active</span>
+                    </label>
+                  </div>
                 </div>
                 <div class="form-row form-row-2">
                   <div class="form-group">

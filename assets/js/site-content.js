@@ -4,6 +4,7 @@
  * ==============================================================================
  * Enables complete dynamic management of every text, heading, section,
  * phone number, chamber schedule, and credential from the Admin Panel.
+ * Includes Section Visibility controls for the Single Page Website.
  * ==============================================================================
  */
 
@@ -20,6 +21,25 @@ const DEFAULT_SITE_CONTENT = {
     "email": "dr.rabeyabasri@example.com",
     "photo_url": "assets/images/doctor-portrait.jpg",
     "emergency_hotline": "+880 1700-000000"
+  },
+  "sections_visibility": {
+    "section1_hero": true,
+    "section2_about": true,
+    "section3_specialties": true,
+    "section4_services": true,
+    "section5_credentials": true,
+    "section6_chambers": true,
+    "section7_appointment": true,
+    "section8_footer": true
+  },
+  "section_labels": {
+    "sec1_badge": "Section 1 • Welcome",
+    "sec2_badge": "Section 2 • Biography",
+    "sec3_badge": "Section 3 • Specialties",
+    "sec4_badge": "Section 4 • Surgical Services",
+    "sec5_badge": "Section 5 • Credentials",
+    "sec6_badge": "Section 6 • Chambers",
+    "sec7_badge": "Section 7 • Appointments"
   },
   "hero": {
     "pill_text": "Compassionate Maternal & Women's Surgical Care",
@@ -38,6 +58,21 @@ const DEFAULT_SITE_CONTENT = {
     "stat4_label": "Dinajpur Medical College, Hospital",
     "badge_status": "Accepting Patients"
   },
+  "about": {
+    "banner_tag": "Surgeon Biography & Background",
+    "bio_heading": "Dedicated to Safe Deliveries & Advanced Gynecological Care",
+    "bio_p1": "Dr. Rabeya Basri is an experienced Consultant Obstetrician and Gynecologist with over 15 years of surgical excellence in maternal-fetal medicine and operative gynecology. Having completed her FCPS from the Bangladesh College of Physicians and Surgeons (BCPS) and Master of Surgery (MS), she has dedicated her career to providing compassionate, evidence-based care to women across all stages of life.",
+    "bio_p2": "Dr. Rabeya has performed thousands of successful surgical deliveries, including routine and high-risk Cesarean sections, complex repeat C-sections (previous 2 and 3 scars), and multi-fetal pregnancies. She is a strong advocate for natural and painless delivery, ensuring mothers receive the highest standard of labor support, epidural analgesia, and fetal monitoring.",
+    "bio_p3": "In gynecological surgery, she is recognized for her expertise in uterine preservation techniques (abdominal and laparoscopic myomectomy for fibroids), laparoscopic ovarian cystectomies, and minimally invasive hysterectomies. Her surgical philosophy is rooted in meticulous technique, minimal blood loss, cosmetic incision closure, and rapid postoperative recovery.",
+    "pillar1_title": "🌸 Gentle Birth Advocacy",
+    "pillar1_desc": "Encouraging natural and painless labor whenever clinically safe for mother and baby.",
+    "pillar2_title": "🔬 Precision Surgery",
+    "pillar2_desc": "Minimally invasive keyhole techniques for faster recovery and reduced pain.",
+    "pillar3_title": "🛡️ High Safety Protocols",
+    "pillar3_desc": "Strict infection control, comprehensive blood loss prevention, and fetal surveillance.",
+    "pillar4_title": "🤝 Empathetic Patient Care",
+    "pillar4_desc": "Personalized maternal counseling and attentive post-operative follow-up."
+  },
   "specialties": {
     "tag": "Clinical Expertise",
     "title": "Specialized Surgical & Obstetric Care",
@@ -50,6 +85,33 @@ const DEFAULT_SITE_CONTENT = {
     "card3_desc": "Specialized surgical management for uterine fibroids, abnormal uterine bleeding, adenomyosis, ovarian cysts, and pelvic organ prolapse.",
     "card4_title": "Minimally Invasive Laparoscopy",
     "card4_desc": "Keyhole surgical approaches resulting in smaller scars, minimal postoperative discomfort, and significantly faster recovery times."
+  },
+  "services": {
+    "banner_tag": "Clinical Procedures & Care",
+    "banner_title": "Surgical & Obstetric Services",
+    "banner_desc": "From gentle childbirth to advanced laparoscopic operative gynecology, delivering world-class surgical precision and empathetic care.",
+    "cat1_title": "Obstetric & Delivery Care",
+    "cat1_desc": "Safe maternal management for mother and newborn",
+    "s1_title": "Normal & Painless Vaginal Delivery",
+    "s1_desc": "Natural labor support in a calm, mother-centric environment. We offer painless epidural analgesia administered by specialized anesthesiologists, enabling smooth, comfortable labor with continuous CTG fetal heart surveillance.",
+    "s2_title": "Cesarean Delivery (LSCS)",
+    "s2_desc": "Elective and emergency Lower Segment Cesarean Sections (LSCS) performed in tertiary hospital theatres with full neonatal resuscitation and NICU backup. Cosmetically closed with hidden subcuticular sutures.",
+    "cat2_title": "Advanced Gynecologic Surgery",
+    "cat2_desc": "Specialized surgical care for uterine fibroids, prolapse, and abnormal bleeding",
+    "s3_title": "Myomectomy & Uterine Sparing Surgery",
+    "s3_desc": "Surgical removal of uterine fibroids while meticulously preserving the uterus for future childbearing and hormone balance. Performed via cosmetic mini-laparotomy or laparoscopic approach.",
+    "s4_title": "Hysterectomy (Abdominal & Vaginal)",
+    "s4_desc": "Total or subtotal hysterectomy for definitive management of severe adenomyosis, resistant abnormal bleeding, and pelvic organ prolapse with minimal blood loss and rapid recovery.",
+    "cat3_title": "Minimally Invasive Laparoscopy",
+    "cat3_desc": "Keyhole surgical precision with rapid recovery and cosmetic incisions",
+    "s5_title": "Diagnostic & Operative Laparoscopy",
+    "s5_desc": "Direct high-definition visual examination of pelvic organs for chronic pelvic pain, unexplained infertility, tubal patency evaluation, and endometriosis ablation.",
+    "s6_title": "Laparoscopic Ovarian Cystectomy",
+    "s6_desc": "Keyhole removal of ovarian cysts (chocolate cysts, dermoid cysts, serous cystadenomas) with maximal preservation of surrounding healthy ovarian tissue and reserve.",
+    "preop_title": "Patient Pre-Operative Preparation",
+    "preop_desc": "Essential guidelines to follow prior to your scheduled surgical admission.",
+    "postop_title": "Post-Operative Recovery Protocols",
+    "postop_desc": "Evidence-based post-surgical guidelines to ensure comfortable, speedy recuperation."
   },
   "credentials": {
     "tag": "Credentials & Training",
@@ -99,48 +161,6 @@ const DEFAULT_SITE_CONTENT = {
     "form_subtitle": "Our chamber assistant will confirm your serial and arrival time slot via phone.",
     "notice": "For immediate emergency delivery, sudden labor pain, or hemorrhage, please go directly to Dinajpur Medical College, Hospital Emergency OT triage counter."
   },
-  "about": {
-    "banner_tag": "Surgeon Biography & Background",
-    "bio_heading": "Dedicated to Safe Deliveries & Advanced Gynecological Care",
-    "bio_p1": "Dr. Rabeya Basri is an experienced Consultant Obstetrician and Gynecologist with over 15 years of surgical excellence in maternal-fetal medicine and operative gynecology. Having completed her FCPS from the Bangladesh College of Physicians and Surgeons (BCPS) and Master of Surgery (MS), she has dedicated her career to providing compassionate, evidence-based care to women across all stages of life.",
-    "bio_p2": "Dr. Rabeya has performed thousands of successful surgical deliveries, including routine and high-risk Cesarean sections, complex repeat C-sections (previous 2 and 3 scars), and multi-fetal pregnancies. She is a strong advocate for natural and painless delivery, ensuring mothers receive the highest standard of labor support, epidural analgesia, and fetal monitoring.",
-    "bio_p3": "In gynecological surgery, she is recognized for her expertise in uterine preservation techniques (abdominal and laparoscopic myomectomy for fibroids), laparoscopic ovarian cystectomies, and minimally invasive hysterectomies. Her surgical philosophy is rooted in meticulous technique, minimal blood loss, cosmetic incision closure, and rapid postoperative recovery.",
-    "pillar1_title": "🌸 Gentle Birth Advocacy",
-    "pillar1_desc": "Encouraging natural and painless labor whenever clinically safe for mother and baby.",
-    "pillar2_title": "🔬 Precision Surgery",
-    "pillar2_desc": "Minimally invasive keyhole techniques for faster recovery and reduced pain.",
-    "pillar3_title": "🛡️ High Safety Protocols",
-    "pillar3_desc": "Strict infection control, comprehensive blood loss prevention, and fetal surveillance.",
-    "pillar4_title": "🤝 Empathetic Patient Care",
-    "pillar4_desc": "Personalized maternal counseling and attentive post-operative follow-up."
-  },
-  "services": {
-    "banner_tag": "Clinical Procedures & Care",
-    "banner_title": "Surgical & Obstetric Services",
-    "banner_desc": "From gentle childbirth to advanced laparoscopic operative gynecology, delivering world-class surgical precision and empathetic care.",
-    "cat1_title": "Obstetric & Delivery Care",
-    "cat1_desc": "Safe maternal management for mother and newborn",
-    "s1_title": "Normal & Painless Vaginal Delivery",
-    "s1_desc": "Natural labor support in a calm, mother-centric environment. We offer painless epidural analgesia administered by specialized anesthesiologists, enabling smooth, comfortable labor with continuous CTG fetal heart surveillance.",
-    "s2_title": "Cesarean Delivery (LSCS)",
-    "s2_desc": "Elective and emergency Lower Segment Cesarean Sections (LSCS) performed in tertiary hospital theatres with full neonatal resuscitation and NICU backup. Cosmetically closed with hidden subcuticular sutures.",
-    "cat2_title": "Advanced Gynecologic Surgery",
-    "cat2_desc": "Specialized surgical care for uterine fibroids, prolapse, and abnormal bleeding",
-    "s3_title": "Myomectomy & Uterine Sparing Surgery",
-    "s3_desc": "Surgical removal of uterine fibroids while meticulously preserving the uterus for future childbearing and hormone balance. Performed via cosmetic mini-laparotomy or laparoscopic approach.",
-    "s4_title": "Hysterectomy (Abdominal & Vaginal)",
-    "s4_desc": "Total or subtotal hysterectomy for definitive management of severe adenomyosis, resistant abnormal bleeding, and pelvic organ prolapse with minimal blood loss and rapid recovery.",
-    "cat3_title": "Minimally Invasive Laparoscopy",
-    "cat3_desc": "Keyhole surgical precision with rapid recovery and cosmetic incisions",
-    "s5_title": "Diagnostic & Operative Laparoscopy",
-    "s5_desc": "Direct high-definition visual examination of pelvic organs for chronic pelvic pain, unexplained infertility, tubal patency evaluation, and endometriosis ablation.",
-    "s6_title": "Laparoscopic Ovarian Cystectomy",
-    "s6_desc": "Keyhole removal of ovarian cysts (chocolate cysts, dermoid cysts, serous cystadenomas) with maximal preservation of surrounding healthy ovarian tissue and reserve.",
-    "preop_title": "Patient Pre-Operative Preparation",
-    "preop_desc": "Essential guidelines to follow prior to your scheduled surgical admission.",
-    "postop_title": "Post-Operative Recovery Protocols",
-    "postop_desc": "Evidence-based post-surgical guidelines to ensure comfortable, speedy recuperation."
-  },
   "footer": {
     "brand_title": "Dr. Rabeya Basri",
     "about_text": "Consultant Obstetrician, Gynecologist & Laparoscopic Surgeon dedicated to compassionate, high-safety healthcare for women.",
@@ -167,7 +187,7 @@ async function getSiteContent() {
     // Expected on file:/// or offline
   }
 
-  // 2. User edits saved locally in this browser (preserved and never wiped out by static file)
+  // 2. User edits saved locally in this browser
   const localData = localStorage.getItem('site_content_data');
   if (localData) {
     try {
@@ -180,7 +200,7 @@ async function getSiteContent() {
     }
   }
 
-  // 3. Cloud storage (Supabase) if connected (authoritative across all visitors/devices)
+  // 3. Cloud storage (Supabase) if connected
   const sb = window.getSupabase ? window.getSupabase() : null;
   if (sb) {
     try {
@@ -192,7 +212,6 @@ async function getSiteContent() {
 
       if (!error && data && data.content && typeof data.content === 'object') {
         result = deepMerge(result, data.content);
-        // Cache verified cloud version
         localStorage.setItem('site_content_data', JSON.stringify(result));
       }
     } catch (e) {
@@ -209,7 +228,7 @@ async function getSiteContent() {
 async function saveSiteContent(content) {
   content._updated_at = new Date().toISOString();
 
-  // 1. Save to localStorage immediately (instant browser vault)
+  // 1. Save to localStorage immediately
   localStorage.setItem('site_content_data', JSON.stringify(content));
 
   let savedToDisk = false;
@@ -230,7 +249,7 @@ async function saveSiteContent(content) {
       }
     }
   } catch (e) {
-    // Normal when running purely on static host without local python server
+    // Normal when running purely on static host
   }
 
   // 3. Save to Supabase cloud database if connected
@@ -362,7 +381,7 @@ function getChambersList(content) {
 async function applySiteContentToPage() {
   const content = await getSiteContent();
 
-  // Find all elements marked with data-cms="section.field"
+  // 1. Find all elements marked with data-cms="section.field"
   document.querySelectorAll('[data-cms]').forEach(el => {
     const path = el.getAttribute('data-cms');
     if (!path) return;
@@ -392,45 +411,117 @@ async function applySiteContentToPage() {
     }
   });
 
-  // Dynamic doctor name replacement in brand and meta
-  if (content.doctor && content.doctor.name) {
-    document.querySelectorAll('.brand-name').forEach(b => b.textContent = content.doctor.name);
-    if (window.APP_CONFIG) {
-      window.APP_CONFIG.DOCTOR_NAME = content.doctor.name;
+  // 2. Handle Section Visibility Toggles (Controlled by Admin Panel)
+  if (content.sections_visibility) {
+    const visibilityMap = {
+      'section-hero': content.sections_visibility.section1_hero !== false,
+      'section-about': content.sections_visibility.section2_about !== false,
+      'section-specialties': content.sections_visibility.section3_specialties !== false,
+      'section-services': content.sections_visibility.section4_services !== false,
+      'section-credentials': content.sections_visibility.section5_credentials !== false,
+      'section-chambers': content.sections_visibility.section6_chambers !== false,
+      'section-appointment': content.sections_visibility.section7_appointment !== false,
+      'section-footer': content.sections_visibility.section8_footer !== false
+    };
+
+    const sectionAnchorMap = {
+      'section-hero': ['#home', '#hero', '#section-hero'],
+      'section-about': ['#about', '#section-about'],
+      'section-specialties': ['#specialties', '#section-specialties'],
+      'section-services': ['#services', '#section-services'],
+      'section-credentials': ['#credentials', '#section-credentials'],
+      'section-chambers': ['#chambers', '#section-chambers'],
+      'section-appointment': ['#appointment', '#section-appointment'],
+      'section-footer': ['#footer', '#section-footer']
+    };
+
+    Object.entries(visibilityMap).forEach(([secId, isVisible]) => {
+      const secEl = document.getElementById(secId);
+      if (secEl) {
+        secEl.style.display = isVisible ? '' : 'none';
+      }
+
+      // Also handle anchor dummy divs if any (e.g. #home)
+      if (secId === 'section-hero') {
+        const homeEl = document.getElementById('home');
+        if (homeEl) homeEl.style.display = isVisible ? '' : 'none';
+      }
+
+      // Toggle navigation links pointing to this section
+      const anchors = sectionAnchorMap[secId] || ['#' + secId.replace('section-', ''), '#' + secId];
+      anchors.forEach(anc => {
+        document.querySelectorAll(`a[href="${anc}"]`).forEach(navLink => {
+          if (!navLink.classList.contains('btn-doctor-portal') && !navLink.classList.contains('btn-emergency')) {
+            navLink.style.display = isVisible ? '' : 'none';
+          }
+        });
+      });
+    });
+  }
+
+  // 3. Dynamic doctor phone/hotline/email links
+  if (content.doctor) {
+    if (content.doctor.name) {
+      document.querySelectorAll('.brand-name').forEach(b => b.textContent = content.doctor.name);
+      if (window.APP_CONFIG) {
+        window.APP_CONFIG.DOCTOR_NAME = content.doctor.name;
+      }
+    }
+
+    if (content.doctor.primary_phone) {
+      const cleanPhone = content.doctor.primary_phone.replace(/[^+\d]/g, '');
+      document.querySelectorAll('a[data-cms-href="doctor.primary_phone"]').forEach(a => {
+        a.setAttribute('href', `tel:${cleanPhone}`);
+      });
+    }
+
+    if (content.doctor.emergency_hotline) {
+      const cleanHotline = content.doctor.emergency_hotline.replace(/[^+\d]/g, '');
+      document.querySelectorAll('a[data-cms-href="doctor.emergency_hotline"]').forEach(a => {
+        a.setAttribute('href', `tel:${cleanHotline}`);
+      });
+    }
+
+    if (content.doctor.email) {
+      document.querySelectorAll('a[data-cms-href="doctor.email"]').forEach(a => {
+        a.setAttribute('href', `mailto:${content.doctor.email}`);
+      });
     }
   }
 
-  // Dynamic Chambers rendering
+  // 4. Dynamic Chambers rendering
   const chambersList = getChambersList(content);
 
-  // 1. Render chamber cards on contact.html
+  // Render chamber cards grid
   const chambersGrid = document.getElementById('publicChambersGrid') || document.querySelector('[data-cms-chambers-grid]');
   if (chambersGrid && chambersList.length > 0) {
     chambersGrid.innerHTML = chambersList.map(ch => `
-      <div class="service-card">
-        <div style="font-size: 0.775rem; text-transform: uppercase; color: var(--primary); font-weight: 700; margin-bottom: 0.5rem;">
-          ${escapeHtml(ch.badge || 'Chamber')}
+      <div class="service-card chamber-display-card">
+        <div style="font-size: 0.775rem; text-transform: uppercase; color: var(--primary); font-weight: 700; margin-bottom: 0.5rem; letter-spacing: 0.05em;">
+          🏥 ${escapeHtml(ch.badge || 'Visiting Chamber')}
         </div>
-        <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--slate-900); margin-bottom: 0.5rem;">
+        <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--slate-900); margin-bottom: 0.5rem;">
           ${escapeHtml(ch.name)}
         </h3>
-        <div style="font-size: 0.875rem; color: var(--slate-600); margin-bottom: 1rem;">
+        <div style="font-size: 0.875rem; color: var(--slate-600); margin-bottom: 1rem; line-height: 1.5;">
           📍 ${escapeHtml(ch.address)}
         </div>
-        <div style="background: var(--slate-50); padding: 0.85rem; border-radius: var(--radius-md); margin-bottom: 1rem; font-size: 0.85rem;">
-          <div><strong>Visiting Days:</strong> ${escapeHtml(ch.days)}</div>
-          <div><strong>Consultation Hours:</strong> ${escapeHtml(ch.hours)}</div>
+        <div style="background: var(--slate-50); padding: 0.85rem 1rem; border-radius: var(--radius-md); margin-bottom: 1rem; font-size: 0.85rem; border: 1px solid var(--slate-200);">
+          <div style="margin-bottom: 0.35rem;"><strong>🗓️ Visiting Days:</strong> ${escapeHtml(ch.days)}</div>
+          <div><strong>⏰ Consultation Hours:</strong> ${escapeHtml(ch.hours)}</div>
         </div>
         ${ch.phone ? `
-          <div style="font-size: 0.85rem; font-weight: 600; color: var(--secondary);">
-            📞 Serial Desk: ${escapeHtml(ch.phone)}
+          <div style="margin-top: auto; padding-top: 0.5rem;">
+            <a href="tel:${escapeHtml(ch.phone.replace(/[^+\d]/g, ''))}" class="btn btn-outline-primary btn-sm" style="width: 100%; justify-content: center; font-weight: 700;">
+              📞 Serial Desk: ${escapeHtml(ch.phone)}
+            </a>
           </div>
         ` : ''}
       </div>
     `).join('');
   }
 
-  // 2. Render timeline items on index.html
+  // Render timeline items
   const timeline = document.getElementById('homepageChambersTimeline') || document.querySelector('[data-cms-chambers-timeline]');
   if (timeline && chambersList.length > 0) {
     timeline.innerHTML = chambersList.map((ch, idx) => `
@@ -442,12 +533,12 @@ async function applySiteContentToPage() {
     `).join('');
   }
 
-  // 3. Update appointment booking dropdowns across all pages
+  // Update appointment booking dropdowns across all pages
   document.querySelectorAll('select[name="chamber_location"]').forEach(sel => {
     if (chambersList.length > 0) {
       const currentVal = sel.value;
       sel.innerHTML = chambersList.map(ch => `
-        <option value="${escapeHtml(ch.name)}">${escapeHtml(ch.name)}</option>
+        <option value="${escapeHtml(ch.name)}">${escapeHtml(ch.name)} (${escapeHtml(ch.badge || 'Chamber')})</option>
       `).join('');
       if (chambersList.some(ch => ch.name === currentVal)) {
         sel.value = currentVal;
@@ -455,7 +546,7 @@ async function applySiteContentToPage() {
     }
   });
 
-  // 4. Update hospitalSuggestions datalist in dashboard
+  // Update hospitalSuggestions datalist in dashboard
   const datalist = document.getElementById('hospitalSuggestions');
   if (datalist && chambersList.length > 0) {
     datalist.innerHTML = chambersList.map(ch => `
@@ -467,7 +558,7 @@ async function applySiteContentToPage() {
     }
   }
 
-  // 5. Update footer chambers lists
+  // Update footer chambers lists
   document.querySelectorAll('[data-cms-chambers-footer]').forEach(ul => {
     if (chambersList.length > 0) {
       ul.innerHTML = chambersList.map(ch => `
@@ -483,7 +574,6 @@ if (document.readyState === 'loading') {
     applySiteContentToPage();
   });
 } else {
-  // Document is already interactive or complete
   applySiteContentToPage();
 }
 

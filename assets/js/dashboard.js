@@ -803,6 +803,25 @@ function initEventListeners() {
 
       const updatedContent = {
         ...currentContent,
+        sections_visibility: {
+          section1_hero: getCheckbox('cms_toggle_section1_hero'),
+          section2_about: getCheckbox('cms_toggle_section2_about'),
+          section3_specialties: getCheckbox('cms_toggle_section3_specialties'),
+          section4_services: getCheckbox('cms_toggle_section4_services'),
+          section5_credentials: getCheckbox('cms_toggle_section5_credentials'),
+          section6_chambers: getCheckbox('cms_toggle_section6_chambers'),
+          section7_appointment: getCheckbox('cms_toggle_section7_appointment'),
+          section8_footer: getCheckbox('cms_toggle_section8_footer')
+        },
+        section_labels: {
+          sec1_badge: getVal('cms_sec1_badge') || 'Section 1 • Welcome',
+          sec2_badge: getVal('cms_sec2_badge') || 'Section 2 • Biography',
+          sec3_badge: getVal('cms_sec3_badge') || 'Section 3 • Specialties',
+          sec4_badge: getVal('cms_sec4_badge') || 'Section 4 • Surgical Services',
+          sec5_badge: getVal('cms_sec5_badge') || 'Section 5 • Credentials',
+          sec6_badge: getVal('cms_sec6_badge') || 'Section 6 • Chambers',
+          sec7_badge: getVal('cms_sec7_badge') || 'Section 7 • Appointments'
+        },
         doctor: {
           ...currentContent.doctor,
           name: getVal('cms_doctor_name') || currentContent.doctor?.name,
@@ -1054,7 +1073,26 @@ async function populateCmsEditorForm() {
     pendingBanner.style.display = 'none';
   }
 
-  // Section 1: Doctor Profile & Global Contact
+  // Section Visibility Toggles (Controlled by Admin Panel)
+  setCheckbox('cms_toggle_section1_hero', content.sections_visibility?.section1_hero !== false);
+  setCheckbox('cms_toggle_section2_about', content.sections_visibility?.section2_about !== false);
+  setCheckbox('cms_toggle_section3_specialties', content.sections_visibility?.section3_specialties !== false);
+  setCheckbox('cms_toggle_section4_services', content.sections_visibility?.section4_services !== false);
+  setCheckbox('cms_toggle_section5_credentials', content.sections_visibility?.section5_credentials !== false);
+  setCheckbox('cms_toggle_section6_chambers', content.sections_visibility?.section6_chambers !== false);
+  setCheckbox('cms_toggle_section7_appointment', content.sections_visibility?.section7_appointment !== false);
+  setCheckbox('cms_toggle_section8_footer', content.sections_visibility?.section8_footer !== false);
+
+  // Section Badges / Labels
+  setVal('cms_sec1_badge', content.section_labels?.sec1_badge || 'Section 1 • Welcome');
+  setVal('cms_sec2_badge', content.section_labels?.sec2_badge || 'Section 2 • Biography');
+  setVal('cms_sec3_badge', content.section_labels?.sec3_badge || 'Section 3 • Specialties');
+  setVal('cms_sec4_badge', content.section_labels?.sec4_badge || 'Section 4 • Surgical Services');
+  setVal('cms_sec5_badge', content.section_labels?.sec5_badge || 'Section 5 • Credentials');
+  setVal('cms_sec6_badge', content.section_labels?.sec6_badge || 'Section 6 • Chambers');
+  setVal('cms_sec7_badge', content.section_labels?.sec7_badge || 'Section 7 • Appointments');
+
+  // Global Doctor Profile & Contact
   setVal('cms_doctor_name', content.doctor?.name);
   setVal('cms_doctor_title', content.doctor?.title);
   setVal('cms_doctor_subtitle', content.doctor?.subtitle);
@@ -1066,7 +1104,7 @@ async function populateCmsEditorForm() {
   setVal('cms_doctor_email', content.doctor?.email);
   setVal('cms_doctor_emergency_hotline', content.doctor?.emergency_hotline);
 
-  // Section 2: Homepage Hero & Stats
+  // Section 1: Hero & Stats
   setVal('cms_hero_pill_text', content.hero?.pill_text);
   setVal('cms_hero_badge_status', content.hero?.badge_status);
   setVal('cms_hero_title_main', content.hero?.title_main);
@@ -1395,6 +1433,18 @@ function setVal(id, val) {
 function getVal(id) {
   const el = document.getElementById(id);
   return el ? el.value.trim() : '';
+}
+
+function setCheckbox(id, checked) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.checked = !!checked;
+  }
+}
+
+function getCheckbox(id) {
+  const el = document.getElementById(id);
+  return el ? el.checked : true;
 }
 
 /**
