@@ -5,22 +5,25 @@
    ========================================================================== */
 
 :root {
-  /* Color Palette */
-  --primary: #D85A7F;           /* Soft surgical rose / feminine clinical accent */
-  --primary-hover: #C2456C;
-  --primary-light: #FDF2F4;
-  --primary-subtle: #FBE5EB;
-  --primary-glow: rgba(216, 90, 127, 0.18);
+  /* Curated Medical Color Palette */
+  --primary: #BE185D;           /* Deep surgical rose / luxury medical accent */
+  --primary-hover: #9D174D;
+  --primary-light: #FDF2F8;
+  --primary-subtle: #FCE7F3;
+  --primary-glow: rgba(190, 24, 93, 0.20);
+  --primary-gradient: linear-gradient(135deg, #BE185D 0%, #D85A7F 100%);
 
   --secondary: #0E7490;         /* Trustworthy surgical teal / cyan */
   --secondary-hover: #155E75;
   --secondary-light: #ECFEFF;
   --secondary-subtle: #CFFAFE;
+  --secondary-glow: rgba(14, 116, 144, 0.18);
+  --secondary-gradient: linear-gradient(135deg, #0F766E 0%, #0E7490 100%);
 
   --accent-sage: #0D9488;        /* Calming clinical sage */
   --accent-sage-light: #F0FDF4;
 
-  --slate-900: #0F172A;         /* Primary headings */
+  --slate-900: #0B0F19;         /* High-contrast luxury headings */
   --slate-800: #1E293B;         /* Body text / dark cards */
   --slate-700: #334155;
   --slate-600: #475569;         /* Subtitles and labels */
@@ -33,7 +36,7 @@
 
   --white: #FFFFFF;
   --surface: #FFFFFF;
-  --surface-alt: #FAFCFD;
+  --surface-alt: #F8FAFC;
 
   /* Clinical Status Colors */
   --status-success: #10B981;
@@ -56,29 +59,30 @@
   --status-purple-bg: #F5F3FF;
   --status-purple-border: #DDD6FE;
 
-  /* Typography */
-  --font-sans: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  /* Modern Editorial & Medical Typography */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading: 'Outfit', 'Plus Jakarta Sans', sans-serif;
   --font-serif: 'Playfair Display', Georgia, serif;
 
-  /* Shadows */
+  /* Elevated Shadows */
   --shadow-xs: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
-  --shadow-sm: 0 1px 3px 0 rgba(15, 23, 42, 0.08), 0 1px 2px -1px rgba(15, 23, 42, 0.04);
-  --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
-  --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
-  --shadow-xl: 0 20px 25px -5px rgba(15, 23, 42, 0.09), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
-  --shadow-soft: 0 15px 35px rgba(216, 90, 127, 0.09);
+  --shadow-sm: 0 2px 4px 0 rgba(15, 23, 42, 0.06), 0 1px 2px -1px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 6px 12px -2px rgba(15, 23, 42, 0.08), 0 3px 6px -3px rgba(15, 23, 42, 0.05);
+  --shadow-lg: 0 14px 24px -4px rgba(15, 23, 42, 0.09), 0 6px 10px -5px rgba(15, 23, 42, 0.04);
+  --shadow-xl: 0 24px 38px -8px rgba(15, 23, 42, 0.12), 0 10px 16px -6px rgba(15, 23, 42, 0.05);
+  --shadow-soft: 0 15px 35px rgba(190, 24, 93, 0.10);
 
-  /* Radii */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
+  /* Glassmorphism & Radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 26px;
   --radius-full: 9999px;
 
   /* Transitions */
-  --transition-fast: 0.15s ease;
-  --transition-normal: 0.25s ease;
-  --transition-slow: 0.4s ease;
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ==========================================================================
@@ -129,6 +133,14 @@ button {
   background: none;
 }
 
+/* Headings Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--slate-900);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
 /* Container */
 .container {
   width: 100%;
@@ -154,10 +166,11 @@ button {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--slate-200);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.85);
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
   transition: all var(--transition-normal);
 }
 
@@ -180,13 +193,19 @@ button {
   width: 44px;
   height: 44px;
   border-radius: var(--radius-md);
-  background: linear-gradient(135deg, var(--primary) 0%, #B83A64 100%);
+  background: var(--primary-gradient);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--white);
-  box-shadow: 0 4px 10px rgba(216, 90, 127, 0.35);
+  box-shadow: 0 4px 14px var(--primary-glow);
   flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  transition: transform var(--transition-fast);
+}
+
+.brand-link:hover .brand-icon {
+  transform: scale(1.04);
 }
 
 .brand-text {
@@ -195,10 +214,11 @@ button {
 }
 
 .brand-name {
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 800;
   color: var(--slate-900);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   line-height: 1.2;
 }
 
@@ -495,20 +515,23 @@ button {
 }
 
 /* ==========================================================================
-   Hero Section
+   Hero Section (Refined Medical Aesthetic)
    ========================================================================== */
 .hero-section {
   position: relative;
   overflow: hidden;
-  padding: 4.5rem 0 5rem;
-  background: radial-gradient(100% 100% at 50% 0%, #FFF5F7 0%, #F8FAFC 100%);
+  padding: 5rem 0 5.5rem;
+  background: 
+    radial-gradient(ellipse at 85% 15%, rgba(190, 24, 93, 0.12) 0%, transparent 45%),
+    radial-gradient(ellipse at 15% 85%, rgba(14, 116, 144, 0.10) 0%, transparent 45%),
+    radial-gradient(100% 100% at 50% 0%, #FFF5F7 0%, #F8FAFC 100%);
   border-bottom: 1px solid var(--slate-200);
 }
 
 .hero-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 3rem;
+  gap: 3.5rem;
   align-items: center;
 }
 
@@ -521,7 +544,7 @@ button {
 .hero-content {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.35rem;
 }
 
 .hero-pill {
@@ -529,41 +552,43 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.4rem 0.95rem;
+  padding: 0.45rem 1.05rem;
   border-radius: var(--radius-full);
-  background: var(--white);
-  border: 1px solid var(--primary-subtle);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(190, 24, 93, 0.25);
   color: var(--primary);
   font-size: 0.825rem;
   font-weight: 700;
-  box-shadow: var(--shadow-xs);
+  box-shadow: 0 4px 12px rgba(190, 24, 93, 0.08);
+  backdrop-filter: blur(4px);
 }
 
 .hero-title {
-  font-size: 2.45rem;
+  font-family: var(--font-heading);
+  font-size: 2.65rem;
   font-weight: 800;
-  line-height: 1.15;
+  line-height: 1.12;
   color: var(--slate-900);
-  letter-spacing: -0.025em;
+  letter-spacing: -0.03em;
 }
 
 @media (min-width: 768px) {
   .hero-title {
-    font-size: 3.25rem;
+    font-size: 3.45rem;
   }
 }
 
 .hero-title span.text-highlight {
-  background: linear-gradient(135deg, var(--primary) 0%, #B83A64 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .hero-subtitle {
-  font-size: 1.125rem;
+  font-size: 1.15rem;
   color: var(--slate-600);
-  line-height: 1.65;
-  max-width: 580px;
+  line-height: 1.7;
+  max-width: 600px;
 }
 
 .hero-actions {
@@ -575,30 +600,46 @@ button {
 }
 
 .hero-credentials-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  padding-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 1rem;
+  padding-top: 1.75rem;
   border-top: 1px solid var(--slate-200);
   margin-top: 0.5rem;
 }
 
 .hero-stat-item {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: var(--shadow-xs);
   display: flex;
   flex-direction: column;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.hero-stat-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+  border-color: var(--primary-subtle);
 }
 
 .hero-stat-num {
-  font-size: 1.65rem;
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
   font-weight: 800;
   color: var(--secondary);
   line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
 .hero-stat-label {
-  font-size: 0.8rem;
+  font-size: 0.775rem;
   color: var(--slate-500);
-  font-weight: 500;
+  font-weight: 600;
+  margin-top: 0.2rem;
 }
 
 /* Hero Doctor Portrait Card */
@@ -644,30 +685,60 @@ button {
 
 .doctor-badge-floating {
   position: absolute;
-  bottom: -15px;
-  left: 20px;
-  right: 20px;
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(8px);
+  bottom: -18px;
+  left: 16px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
   padding: 0.85rem 1.15rem;
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-lg);
-  border: 1px solid var(--slate-200);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12);
+  border: 1px solid rgba(226, 232, 240, 0.9);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 0.5rem;
 }
 
 .badge-info-name {
-  font-size: 0.925rem;
-  font-weight: 700;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 800;
   color: var(--slate-900);
+  line-height: 1.2;
 }
 
 .badge-info-role {
   font-size: 0.775rem;
   color: var(--primary);
   font-weight: 600;
+}
+
+.badge-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--status-success);
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  animation: statusDotPulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+  display: inline-block;
+  margin-right: 0.25rem;
+  flex-shrink: 0;
+}
+
+@keyframes statusDotPulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
 }
 
 /* ==========================================================================
@@ -1487,6 +1558,10 @@ textarea.form-control {
   transition: all var(--transition-fast);
 }
 
+.btn-icon span {
+  display: none;
+}
+
 .btn-icon:hover {
   background: var(--slate-200);
   color: var(--slate-900);
@@ -1667,17 +1742,21 @@ textarea.form-control {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(100% 100% at 50% 0%, #FFF5F7 0%, #F1F5F9 100%);
+  background: 
+    radial-gradient(ellipse at 85% 15%, rgba(190, 24, 93, 0.12) 0%, transparent 45%),
+    radial-gradient(ellipse at 15% 85%, rgba(14, 116, 144, 0.10) 0%, transparent 45%),
+    radial-gradient(100% 100% at 50% 0%, #FFF5F7 0%, #F1F5F9 100%);
   padding: 1.5rem;
 }
 
 .login-card {
   width: 100%;
   max-width: 440px;
-  background: var(--white);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
   border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-xl);
-  border: 1px solid var(--slate-200);
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.14);
+  border: 1px solid rgba(226, 232, 240, 0.85);
   padding: 2.5rem;
 }
 
@@ -1690,17 +1769,19 @@ textarea.form-control {
   width: 58px;
   height: 58px;
   border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, var(--primary) 0%, #B83A64 100%);
+  background: var(--primary-gradient);
   color: var(--white);
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 1.25rem;
-  box-shadow: 0 8px 16px rgba(216, 90, 127, 0.3);
+  box-shadow: 0 8px 18px var(--primary-glow);
+  border: 1px solid rgba(255, 255, 255, 0.35);
 }
 
 .login-title {
-  font-size: 1.5rem;
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
   font-weight: 800;
   color: var(--slate-900);
 }
@@ -2075,24 +2156,53 @@ textarea.form-control {
 .section-badge-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  font-size: 0.75rem;
+  gap: 0.5rem;
+  font-family: var(--font-heading);
+  font-size: 0.775rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  padding: 0.32rem 0.9rem;
+  padding: 0.35rem 0.95rem;
   border-radius: var(--radius-full);
-  background: linear-gradient(135deg, var(--primary-light) 0%, #FEE2E2 100%);
+  background: linear-gradient(135deg, rgba(253, 242, 248, 0.95) 0%, rgba(254, 226, 226, 0.85) 100%);
   color: var(--primary);
-  border: 1px solid rgba(216, 90, 127, 0.25);
-  box-shadow: 0 2px 8px rgba(216, 90, 127, 0.12);
-  margin-bottom: 0.75rem;
+  border: 1px solid rgba(190, 24, 93, 0.3);
+  box-shadow: 0 2px 10px rgba(190, 24, 93, 0.12);
+  margin-bottom: 0.85rem;
   transition: all var(--transition-fast);
+  backdrop-filter: blur(4px);
+}
+
+.section-badge-pill::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 0 0 rgba(190, 24, 93, 0.7);
+  animation: badgePulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+@keyframes badgePulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(190, 24, 93, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(190, 24, 93, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(190, 24, 93, 0);
+  }
 }
 
 .section-badge-pill:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(216, 90, 127, 0.2);
+  box-shadow: 0 4px 14px rgba(190, 24, 93, 0.22);
 }
 
 /* ==========================================================================
@@ -2406,28 +2516,362 @@ textarea.form-control {
     text-align: center;
   }
 
-  /* Admin panel phone view */
-  .dashboard-header-inner {
-    height: auto;
-    padding: 0.75rem 0;
-    gap: 0.75rem;
+  /* ==========================================================================
+     ADMIN PANEL MOBILE VIEW & APP DOCK UX (Screens < 768px)
+     ========================================================================== */
+  body.dashboard-layout {
+    padding-bottom: 84px !important; /* Space for admin mobile dock */
   }
 
+  /* Compact Admin Header on Phones */
+  .dashboard-header-inner {
+    height: 58px;
+    padding: 0 0.25rem;
+    gap: 0.5rem;
+  }
+
+  .dashboard-header .brand-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .dashboard-header .brand-name {
+    font-size: 1rem;
+  }
+
+  .dashboard-header .brand-sub {
+    display: none !important;
+  }
+
+  .dashboard-actions {
+    gap: 0.4rem;
+  }
+
+  .dashboard-actions .btn-ghost span,
+  .dashboard-actions #btnOpenAddSurgery span {
+    display: none;
+  }
+
+  .dashboard-actions #btnOpenAddSurgery {
+    padding: 0.45rem 0.65rem;
+    font-size: 0.8rem;
+  }
+
+  .dashboard-actions #btnOpenAddSurgery::after {
+    content: 'Add';
+    display: inline;
+    font-weight: 700;
+  }
+
+  .doctor-profile-chip {
+    gap: 0;
+  }
+
+  .doctor-chip-avatar {
+    width: 34px;
+    height: 34px;
+    font-size: 0.775rem;
+  }
+
+  /* Admin Secondary Tabs Scroll on Mobile */
   .admin-tabs-wrapper {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    padding-bottom: 0.5rem;
+    padding: 0.4rem 0.25rem;
+    scrollbar-width: none;
+  }
+
+  .admin-tabs-wrapper::-webkit-scrollbar {
+    display: none;
   }
 
   .admin-tab-btn {
-    padding: 0.65rem 0.9rem;
-    font-size: 0.825rem;
+    padding: 0.55rem 0.85rem;
+    font-size: 0.8rem;
     white-space: nowrap;
+    border-radius: var(--radius-full);
   }
 
+  /* Admin Mobile Bottom Navigation Dock (Native App Style) */
+  .admin-mobile-dock {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid var(--slate-200);
+    display: flex !important;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 0.5rem calc(env(safe-area-inset-bottom, 0px) + 2px);
+    z-index: 150;
+    box-shadow: 0 -4px 18px rgba(15, 23, 42, 0.08);
+  }
+
+  .admin-dock-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    background: none;
+    border: none;
+    color: var(--slate-500);
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.35rem 0.5rem;
+    position: relative;
+    flex: 1;
+    cursor: pointer;
+    transition: color var(--transition-fast);
+  }
+
+  .admin-dock-item.active {
+    color: var(--primary);
+    font-weight: 700;
+  }
+
+  .admin-dock-item.active svg {
+    stroke: var(--primary);
+    stroke-width: 2.3;
+  }
+
+  .admin-dock-item .dock-badge {
+    position: absolute;
+    top: 2px;
+    right: 20%;
+    background: var(--primary);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 0.1rem 0.35rem;
+    border-radius: 999px;
+    min-width: 16px;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  .admin-dock-add-btn {
+    margin-top: -18px;
+  }
+
+  .dock-add-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--primary-gradient);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 16px rgba(190, 24, 93, 0.4);
+    border: 3px solid white;
+    transition: transform var(--transition-fast);
+  }
+
+  .dock-add-circle:active {
+    transform: scale(0.92);
+  }
+
+  /* Admin Overview Stat Cards on Phones */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.85rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .stat-card {
+    padding: 1rem 1.15rem !important;
+  }
+
+  .stat-value {
+    font-size: 1.5rem !important;
+  }
+
+  .stat-icon {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .counter-card-hero {
+    padding: 1.75rem 1.25rem !important;
+  }
+
+  .counter-number-hero {
+    font-size: 2.75rem !important;
+  }
+
+  .chart-canvas-wrapper {
+    height: 220px !important;
+  }
+
+  /* Filters Toolbar on Phones */
+  .filters-toolbar {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem !important;
+  }
+
+  .search-input-box {
+    grid-column: 1 / -1;
+    min-width: 100% !important;
+  }
+
+  .filter-select {
+    width: 100% !important;
+    font-size: 16px !important; /* Prevent iOS zoom */
+    min-height: 44px;
+  }
+
+  /* TRANSFORM DATA TABLES INTO NATIVE MOBILE CARDS */
+  .records-section {
+    border-radius: var(--radius-md) !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .records-header {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--slate-200);
+    padding: 1.25rem !important;
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .table-responsive {
+    overflow: visible !important;
+  }
+
+  .data-table thead {
+    display: none !important;
+  }
+
+  .data-table,
+  .data-table tbody,
+  .data-table tr,
+  .data-table td {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  .data-table tr {
+    background: var(--white);
+    border: 1px solid var(--slate-200);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem !important;
+    margin-bottom: 1rem !important;
+    box-shadow: var(--shadow-sm);
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.65rem !important;
+    transition: transform var(--transition-fast), border-color var(--transition-fast);
+  }
+
+  .data-table tr:hover {
+    border-color: var(--primary-subtle);
+  }
+
+  .data-table td {
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+  }
+
+  .data-table td:last-child {
+    margin-top: 0.5rem;
+    padding-top: 0.75rem !important;
+    border-top: 1px solid var(--slate-100) !important;
+  }
+
+  .data-table .action-buttons {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+  }
+
+  .data-table .action-buttons .btn-icon {
+    width: auto !important;
+    height: 38px !important;
+    padding: 0 0.85rem !important;
+    border-radius: var(--radius-md) !important;
+    font-size: 0.8rem;
+    font-weight: 600;
+    gap: 0.35rem;
+  }
+
+  /* Full Screen Mobile Bottom Sheet for Modal */
+  .modal-backdrop {
+    padding: 0 !important;
+    align-items: flex-end !important;
+  }
+
+  .modal-dialog {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 94vh !important;
+    max-height: 94vh !important;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0 !important;
+    margin: 0 !important;
+    transform: translateY(100%) !important;
+    transition: transform var(--transition-normal) !important;
+  }
+
+  .modal-backdrop.open .modal-dialog {
+    transform: translateY(0) !important;
+  }
+
+  .modal-header {
+    padding: 1.15rem 1.25rem !important;
+    position: sticky;
+    top: 0;
+    background: var(--white);
+    z-index: 10;
+    border-bottom: 1px solid var(--slate-200);
+  }
+
+  .modal-body {
+    padding: 1.25rem !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+    flex: 1;
+  }
+
+  .modal-dialog-footer {
+    position: sticky;
+    bottom: 0;
+    background: var(--white);
+    padding: 1rem 1.25rem !important;
+    border-top: 1px solid var(--slate-200);
+    z-index: 10;
+    box-shadow: 0 -4px 12px rgba(15, 23, 42, 0.05);
+  }
+
+  /* Tab 6: CMS Subnav & Sticky Save Bar on Mobile */
   .cms-subnav-bar {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+  }
+
+  .cms-subnav-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cms-section-card {
+    padding: 1.25rem !important;
+  }
+
+  /* Sticky Save Button Bar in CMS above Mobile Dock */
+  #cmsContentForm > div:last-child {
+    bottom: calc(68px + env(safe-area-inset-bottom, 0px)) !important;
+    padding: 0.85rem 1rem !important;
+    border-radius: var(--radius-md) !important;
   }
 }
 

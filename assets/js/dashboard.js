@@ -97,34 +97,54 @@ function setupDoctorHeader(user) {
 }
 
 /**
- * Initialize Admin Tabs Navigation
+ * Initialize Admin Tabs Navigation & Mobile Dock Synchronization
  */
 function initAdminTabs() {
-  const tabButtons = document.querySelectorAll('.admin-tab-btn');
-  tabButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const targetTabId = btn.getAttribute('data-tab');
-      if (!targetTabId) return;
+  const allNavTriggers = document.querySelectorAll('.admin-tab-btn, .admin-dock-item[data-tab]');
 
-      // Update button active state
-      tabButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  function activateTab(targetTabId) {
+    if (!targetTabId) return;
 
-      // Update pane active state
-      document.querySelectorAll('.admin-tab-pane').forEach(pane => {
-        pane.classList.remove('active');
-      });
-
-      const targetPane = document.getElementById(targetTabId);
-      if (targetPane) {
-        targetPane.classList.add('active');
-      }
-
-      // Re-render charts when overview is clicked to ensure correct canvas sizing
-      if (targetTabId === 'tab-overview') {
-        setTimeout(renderCharts, 50);
+    // Synchronize both top tabs and mobile dock items
+    allNavTriggers.forEach(b => {
+      if (b.getAttribute('data-tab') === targetTabId) {
+        b.classList.add('active');
+      } else {
+        b.classList.remove('active');
       }
     });
+
+    // Update active pane
+    document.querySelectorAll('.admin-tab-pane').forEach(pane => {
+      pane.classList.remove('active');
+    });
+
+    const targetPane = document.getElementById(targetTabId);
+    if (targetPane) {
+      targetPane.classList.add('active');
+    }
+
+    // Smooth scroll to top on mobile tab switch
+    if (window.innerWidth < 768) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Re-render charts when overview is clicked to ensure correct canvas sizing
+    if (targetTabId === 'tab-overview') {
+      setTimeout(renderCharts, 60);
+    }
+  }
+
+  allNavTriggers.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetTabId = btn.getAttribute('data-tab');
+      activateTab(targetTabId);
+    });
+  });
+
+  // Connect Mobile Dock "Add Case" button directly to modal
+  document.getElementById('btnDockAddSurgery')?.addEventListener('click', () => {
+    openAddSurgeryModal();
   });
 }
 
@@ -151,11 +171,16 @@ async function loadDashboardData() {
     renderSurgeriesTable();
     renderAppointmentsTable();
 
-    // Update Tab Badges
+    // Update Top Tab Badges & Mobile Dock Badges
     const surgBadge = document.getElementById('tabBadgeSurgeriesCount');
     const apptBadge = document.getElementById('tabBadgeApptsCount');
     if (surgBadge) surgBadge.textContent = allSurgeries.length;
     if (apptBadge) apptBadge.textContent = allAppointments.length;
+
+    const dockSurgBadge = document.getElementById('dockBadgeSurgeriesCount');
+    const dockApptBadge = document.getElementById('dockBadgeApptsCount');
+    if (dockSurgBadge) dockSurgBadge.textContent = allSurgeries.length;
+    if (dockApptBadge) dockApptBadge.textContent = allAppointments.length;
 
     // Populate CMS Content Editor fields
     await populateCmsEditorForm();
@@ -391,22 +416,23 @@ function renderSurgeriesTable() {
                        (item.baby_count && item.baby_count > 0);
 
     return `
-      <tr>
-        <td>
+      <tr class="surgery-row-card">
+        <td class="cell-case-header">
           <span class="case-id-badge">${escapeHtml(item.case_id)}</span>
+          <span class="badge ${outcomeBadgeClass}">${escapeHtml(item.outcome)}</span>
         </td>
-        <td>
-          <div style="font-weight: 600; color: var(--slate-900);">${formatDate(item.surgery_date)}</div>
-          <div style="font-size: 0.775rem; color: var(--slate-500);">${item.surgery_time ? formatTime(item.surgery_time) : '-'}</div>
+        <td class="cell-date">
+          <div style="font-weight: 600; color: var(--slate-900); font-size: 0.9rem;">📅 ${formatDate(item.surgery_date)}</div>
+          <div style="font-size: 0.775rem; color: var(--slate-500); margin-top: 0.1rem;">⏰ ${item.surgery_time ? formatTime(item.surgery_time) : '-'}</div>
         </td>
-        <td>
-          <div style="font-weight: 700; color: var(--slate-900);">${escapeHtml(item.procedure_type)}</div>
-          <div style="font-size: 0.775rem; color: var(--slate-500);">
+        <td class="cell-procedure">
+          <div style="font-weight: 700; color: var(--slate-900); font-size: 1rem;">${escapeHtml(item.procedure_type)}</div>
+          <div style="font-size: 0.775rem; color: var(--slate-500); margin-top: 0.15rem;">
             ${item.duration_minutes ? item.duration_minutes + ' mins' : ''} 
             ${item.anesthesia_type ? '• ' + escapeHtml(item.anesthesia_type) : ''}
           </div>
         </td>
-        <td>
+        <td class="cell-category">
           <div style="display: flex; gap: 0.35rem; flex-wrap: wrap;">
             <span class="badge ${categoryBadgeClass}">${escapeHtml(item.category)}</span>
             <span class="badge ${urgencyBadgeClass}">${escapeHtml(item.urgency)}</span>
@@ -417,38 +443,41 @@ function renderSurgeriesTable() {
             </div>
           ` : ''}
         </td>
-        <td>
-          <div style="font-weight: 600; color: var(--slate-800); max-width: 180px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${escapeHtml(item.hospital_name)}">
-            ${escapeHtml(item.hospital_name)}
+        <td class="cell-hospital">
+          <div style="font-weight: 600; color: var(--slate-800); font-size: 0.85rem;" title="${escapeHtml(item.hospital_name)}">
+            🏥 ${escapeHtml(item.hospital_name)}
           </div>
         </td>
-        <td>
+        <td class="cell-outcome">
           <span class="badge ${outcomeBadgeClass}">${escapeHtml(item.outcome)}</span>
           ${item.outcome === 'Complication' && item.complication_details ? `
-            <div style="font-size: 0.725rem; color: #B45309; max-width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${escapeHtml(item.complication_details)}">
+            <div style="font-size: 0.75rem; color: #B45309; margin-top: 0.2rem;" title="${escapeHtml(item.complication_details)}">
               ⚠️ ${escapeHtml(item.complication_details)}
             </div>
           ` : ''}
         </td>
-        <td>
+        <td class="cell-actions">
           <div class="action-buttons">
             <button class="btn-icon" onclick="viewSurgeryDetails('${item.id}')" title="View Surgical Note">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                 <circle cx="12" cy="12" r="3"></circle>
               </svg>
+              <span>View</span>
             </button>
             <button class="btn-icon" onclick="openEditSurgeryModal('${item.id}')" title="Edit Record">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                 <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"></path>
               </svg>
+              <span>Edit</span>
             </button>
             <button class="btn-icon btn-icon-danger" onclick="confirmDeleteSurgery('${item.id}')" title="Delete Record">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="3 6 5 6 21 6"></polyline>
                 <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path>
               </svg>
+              <span>Delete</span>
             </button>
           </div>
         </td>
@@ -470,7 +499,7 @@ function renderAppointmentsTable() {
         <td colspan="7">
           <div class="table-empty-state">
             <h4 style="font-size: 1.05rem; color: var(--slate-800);">No patient appointments yet</h4>
-            <p style="font-size: 0.85rem;">Patient requests submitted from your contact & chamber pages will appear here.</p>
+            <p style="font-size: 0.85rem;">Patient requests submitted from your website will appear here.</p>
           </div>
         </td>
       </tr>
@@ -485,30 +514,28 @@ function renderAppointmentsTable() {
     if (a.status === 'Cancelled') statusClass = 'badge-danger';
 
     return `
-      <tr>
-        <td>
-          <div style="font-weight: 700; color: var(--slate-900);">${escapeHtml(a.patient_name)}</div>
-          <div style="font-size: 0.775rem; color: var(--slate-500);">${a.created_at ? formatDate(a.created_at.split('T')[0]) : ''}</div>
-        </td>
-        <td>
-          <a href="tel:${escapeHtml(a.patient_phone)}" style="color: var(--secondary); font-weight: 600;">
-            📞 ${escapeHtml(a.patient_phone)}
-          </a>
-        </td>
-        <td>
-          <div style="font-weight: 600;">${formatDate(a.preferred_date)}</div>
-        </td>
-        <td>
-          <div style="font-size: 0.85rem; color: var(--slate-700);">${escapeHtml(a.chamber_location || 'Main Chamber')}</div>
-        </td>
-        <td>
-          <div style="font-size: 0.85rem; font-weight: 600; color: var(--slate-800);">${escapeHtml(a.service_type || 'Consultation')}</div>
-          ${a.message ? `<div style="font-size: 0.75rem; color: var(--slate-500); max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${escapeHtml(a.message)}">${escapeHtml(a.message)}</div>` : ''}
-        </td>
-        <td>
+      <tr class="appointment-row-card">
+        <td class="cell-case-header">
+          <div>
+            <div style="font-weight: 700; color: var(--slate-900); font-size: 1.05rem;">${escapeHtml(a.patient_name)}</div>
+            <div style="font-size: 0.775rem; color: var(--slate-500); margin-top: 0.1rem;">Received: ${a.created_at ? formatDate(a.created_at.split('T')[0]) : 'Recent'}</div>
+          </div>
           <span class="badge ${statusClass}">${escapeHtml(a.status || 'Pending')}</span>
         </td>
-        <td>
+        <td class="cell-phone">
+          <a href="tel:${escapeHtml(a.patient_phone)}" class="btn btn-sm btn-outline-secondary" style="display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 700; padding: 0.4rem 0.85rem; border-radius: var(--radius-md);">
+            📞 <span>${escapeHtml(a.patient_phone)}</span>
+          </a>
+        </td>
+        <td class="cell-date">
+          <div style="font-weight: 600; font-size: 0.875rem; color: var(--slate-800);">📅 Date: ${formatDate(a.preferred_date)}</div>
+          <div style="font-size: 0.775rem; color: var(--slate-500); margin-top: 0.1rem;">🏥 Chamber: ${escapeHtml(a.chamber_location || 'Main Chamber')}</div>
+        </td>
+        <td class="cell-service">
+          <div style="font-size: 0.85rem; font-weight: 600; color: var(--slate-800);">🩺 ${escapeHtml(a.service_type || 'Consultation')}</div>
+          ${a.message ? `<div style="font-size: 0.775rem; color: var(--slate-600); margin-top: 0.35rem; background: var(--slate-50); padding: 0.45rem 0.65rem; border-radius: var(--radius-sm); border: 1px solid var(--slate-200);">${escapeHtml(a.message)}</div>` : ''}
+        </td>
+        <td class="cell-actions">
           <div class="action-buttons">
             <button class="btn btn-sm btn-ghost" onclick="updateAppointmentStatusAction('${a.id}', 'Confirmed')" title="Confirm Appointment">
               ✅ Confirm
