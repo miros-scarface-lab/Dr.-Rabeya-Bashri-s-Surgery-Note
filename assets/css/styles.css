@@ -4,14 +4,16 @@
    Colors: Soft Rose / Medical Teal / Warm Slate / Crisp Porcelain
    ========================================================================== */
 
-:root {
-  /* Curated Medical Color Palette */
+:root,
+html[data-theme="rose"] {
+  /* Curated Signature Obstetrics & Gynecology Color Palette */
   --primary: #BE185D;           /* Deep surgical rose / luxury medical accent */
   --primary-hover: #9D174D;
   --primary-light: #FDF2F8;
   --primary-subtle: #FCE7F3;
-  --primary-glow: rgba(190, 24, 93, 0.20);
-  --primary-gradient: linear-gradient(135deg, #BE185D 0%, #D85A7F 100%);
+  --primary-glow: rgba(190, 24, 93, 0.22);
+  --primary-gradient: linear-gradient(135deg, #BE185D 0%, #D85A7F 50%, #FB7185 100%);
+  --primary-gradient-subtle: linear-gradient(135deg, #FFF1F2 0%, #FDF2F8 100%);
 
   --secondary: #0E7490;         /* Trustworthy surgical teal / cyan */
   --secondary-hover: #155E75;
@@ -37,6 +39,13 @@
   --white: #FFFFFF;
   --surface: #FFFFFF;
   --surface-alt: #F8FAFC;
+  --surface-card: #FFFFFF;
+  --border-color: #E2E8F0;
+  --border-subtle: rgba(226, 232, 240, 0.85);
+
+  --hero-mesh-1: rgba(190, 24, 93, 0.12);
+  --hero-mesh-2: rgba(14, 116, 144, 0.10);
+  --hero-bg: radial-gradient(100% 100% at 50% 0%, #FFF5F7 0%, #F8FAFC 100%);
 
   /* Clinical Status Colors */
   --status-success: #10B981;
@@ -70,7 +79,7 @@
   --shadow-md: 0 6px 12px -2px rgba(15, 23, 42, 0.08), 0 3px 6px -3px rgba(15, 23, 42, 0.05);
   --shadow-lg: 0 14px 24px -4px rgba(15, 23, 42, 0.09), 0 6px 10px -5px rgba(15, 23, 42, 0.04);
   --shadow-xl: 0 24px 38px -8px rgba(15, 23, 42, 0.12), 0 10px 16px -6px rgba(15, 23, 42, 0.05);
-  --shadow-soft: 0 15px 35px rgba(190, 24, 93, 0.10);
+  --shadow-soft: 0 15px 35px rgba(190, 24, 93, 0.12);
 
   /* Glassmorphism & Radii */
   --radius-sm: 8px;
@@ -83,6 +92,105 @@
   --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   THEME 2: OCEAN SAPPHIRE & CYRILLIC SURGICAL BLUE
+   ========================================================================== */
+html[data-theme="ocean"] {
+  --primary: #2563EB;
+  --primary-hover: #1D4ED8;
+  --primary-light: #EFF6FF;
+  --primary-subtle: #DBEAFE;
+  --primary-glow: rgba(37, 99, 235, 0.22);
+  --primary-gradient: linear-gradient(135deg, #1D4ED8 0%, #2563EB 50%, #38BDF8 100%);
+  --primary-gradient-subtle: linear-gradient(135deg, #EFF6FF 0%, #E0F2FE 100%);
+
+  --secondary: #0D9488;
+  --secondary-hover: #0F766E;
+  --secondary-light: #F0FDFA;
+  --secondary-subtle: #CCFBF1;
+  --secondary-glow: rgba(13, 148, 136, 0.18);
+  --secondary-gradient: linear-gradient(135deg, #0F766E 0%, #06B6D4 100%);
+
+  --accent-sage: #059669;
+  --accent-sage-light: #ECFDF5;
+
+  --slate-900: #0A1128;
+  --slate-800: #1E293B;
+  --slate-700: #334155;
+  --slate-600: #475569;
+  --slate-500: #64748B;
+  --slate-400: #94A3B8;
+  --slate-300: #CBD5E1;
+  --slate-200: #E2E8F0;
+  --slate-100: #F0F7FF;
+  --slate-50:  #F8FAFC;
+
+  --white: #FFFFFF;
+  --surface: #FFFFFF;
+  --surface-alt: #F0F7FF;
+  --surface-card: #FFFFFF;
+  --border-color: #E2E8F0;
+  --border-subtle: rgba(226, 232, 240, 0.85);
+
+  --shadow-soft: 0 15px 35px rgba(37, 99, 235, 0.12);
+
+  --hero-mesh-1: rgba(37, 99, 235, 0.12);
+  --hero-mesh-2: rgba(6, 182, 212, 0.10);
+  --hero-bg: radial-gradient(100% 100% at 50% 0%, #EFF6FF 0%, #F8FAFC 100%);
+}
+
+/* ==========================================================================
+   THEME 3: MIDNIGHT MEDICAL DARK MODE (High Contrast & Modern Glow)
+   ========================================================================== */
+html[data-theme="dark"] {
+  --primary: #F43F5E;
+  --primary-hover: #FB7185;
+  --primary-light: #2D1424;
+  --primary-subtle: #3E1B32;
+  --primary-glow: rgba(244, 63, 94, 0.35);
+  --primary-gradient: linear-gradient(135deg, #E11D48 0%, #F43F5E 50%, #FDA4AF 100%);
+  --primary-gradient-subtle: linear-gradient(135deg, #1E121E 0%, #291526 100%);
+
+  --secondary: #14B8A6;
+  --secondary-hover: #2DD4BF;
+  --secondary-light: #0B292A;
+  --secondary-subtle: #113D3E;
+  --secondary-glow: rgba(20, 184, 166, 0.30);
+  --secondary-gradient: linear-gradient(135deg, #0F766E 0%, #14B8A6 100%);
+
+  --accent-sage: #10B981;
+  --accent-sage-light: #064E3B;
+
+  --slate-900: #F8FAFC;
+  --slate-800: #E2E8F0;
+  --slate-700: #CBD5E1;
+  --slate-600: #94A3B8;
+  --slate-500: #64748B;
+  --slate-400: #475569;
+  --slate-300: #334155;
+  --slate-200: #1E293B;
+  --slate-100: #131D2F;
+  --slate-50:  #0B0F19;
+
+  --white: #131D2F;
+  --surface: #0E1626;
+  --surface-alt: #080D1A;
+  --surface-card: #131D2F;
+  --border-color: #1E293B;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+
+  --shadow-xs: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 3px 6px 0 rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 8px 18px -2px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 16px 32px -4px rgba(0, 0, 0, 0.7);
+  --shadow-xl: 0 28px 50px -8px rgba(0, 0, 0, 0.85);
+  --shadow-soft: 0 15px 35px rgba(244, 63, 94, 0.18);
+
+  --hero-mesh-1: rgba(244, 63, 94, 0.18);
+  --hero-mesh-2: rgba(20, 184, 166, 0.14);
+  --hero-bg: radial-gradient(100% 100% at 50% 0%, #151022 0%, #080D1A 100%);
 }
 
 /* ==========================================================================
@@ -3206,4 +3314,455 @@ textarea.form-control {
     margin-right: 0 !important;
   }
 }
+
+/* ==========================================================================
+   INTERACTIVE THEME SWITCHER COMPONENT & THEME UI
+   ========================================================================== */
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-full);
+  background: var(--slate-100);
+  border: 1px solid var(--border-color);
+  color: var(--slate-800);
+  font-size: 0.825rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.theme-toggle-btn:hover {
+  background: var(--surface);
+  border-color: var(--primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.theme-btn-icon {
+  font-size: 1.05rem;
+  line-height: 1;
+  display: inline-block;
+  transition: transform var(--transition-fast);
+}
+
+.theme-toggle-btn:active .theme-btn-icon {
+  transform: scale(1.25) rotate(25deg);
+}
+
+.theme-btn-label {
+  display: inline-block;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 640px) {
+  .theme-toggle-btn {
+    padding: 0.4rem 0.6rem;
+    min-height: 38px;
+  }
+  .theme-btn-label {
+    display: none;
+  }
+}
+
+/* Theme Option Cards in Admin Settings */
+.theme-options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+
+.theme-option-card {
+  padding: 1.15rem;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--border-color);
+  background: var(--white);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  user-select: none;
+}
+
+.theme-option-card:hover {
+  border-color: var(--primary-subtle);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.theme-option-card.active {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px var(--primary-glow) !important;
+  background: var(--primary-light) !important;
+}
+
+.theme-option-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--slate-900);
+}
+
+.theme-swatches {
+  display: flex;
+  gap: 6px;
+  margin-top: 0.25rem;
+}
+
+.theme-swatch {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================================================
+   COMPLETE DARK MODE SURFACE & COMPONENT OVERRIDES
+   ========================================================================== */
+html[data-theme="dark"] body {
+  background-color: #080D1A !important;
+  color: #CBD5E1 !important;
+}
+
+html[data-theme="dark"] .site-header,
+html[data-theme="dark"] .dashboard-header,
+html[data-theme="dark"] .admin-nav-bar,
+html[data-theme="dark"] .admin-mobile-dock,
+html[data-theme="dark"] .mobile-quick-dock {
+  background: rgba(14, 22, 38, 0.94) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+}
+
+html[data-theme="dark"] .mobile-nav-drawer {
+  background: #111827 !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+html[data-theme="dark"] .mobile-nav-drawer .nav-link {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: #E2E8F0 !important;
+}
+
+html[data-theme="dark"] .service-card,
+html[data-theme="dark"] .specialty-card,
+html[data-theme="dark"] .chamber-card,
+html[data-theme="dark"] .contact-form-card,
+html[data-theme="dark"] .contact-info-panel,
+html[data-theme="dark"] .chart-card,
+html[data-theme="dark"] .records-section,
+html[data-theme="dark"] .records-header,
+html[data-theme="dark"] .vault-card,
+html[data-theme="dark"] .vault-action-box,
+html[data-theme="dark"] .cms-section-card,
+html[data-theme="dark"] .cms-group-box,
+html[data-theme="dark"] .doctor-photo-manager-box,
+html[data-theme="dark"] .theme-option-card {
+  background: #131D2F !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: #CBD5E1 !important;
+}
+
+html[data-theme="dark"] .hero-stat-item {
+  background: rgba(19, 29, 47, 0.85) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html[data-theme="dark"] .hero-stat-label {
+  color: #94A3B8 !important;
+}
+
+html[data-theme="dark"] .data-table tr {
+  background: #131D2F !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html[data-theme="dark"] .data-table th {
+  background: #0E1626 !important;
+  color: #94A3B8 !important;
+  border-color: #1E293B !important;
+}
+
+html[data-theme="dark"] .data-table td {
+  border-color: #1E293B !important;
+  color: #CBD5E1 !important;
+}
+
+html[data-theme="dark"] .form-control,
+html[data-theme="dark"] select.form-control,
+html[data-theme="dark"] textarea.form-control,
+html[data-theme="dark"] .filter-select,
+html[data-theme="dark"] .search-input-box input {
+  background-color: #0E1626 !important;
+  border-color: #334155 !important;
+  color: #F8FAFC !important;
+}
+
+html[data-theme="dark"] .form-label {
+  color: #E2E8F0 !important;
+}
+
+html[data-theme="dark"] .form-hint {
+  color: #94A3B8 !important;
+}
+
+html[data-theme="dark"] .modal-dialog,
+html[data-theme="dark"] .modal-header,
+html[data-theme="dark"] .modal-footer {
+  background: #131D2F !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: #F8FAFC !important;
+}
+
+html[data-theme="dark"] .site-footer {
+  background: #060A14 !important;
+  border-top-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html[data-theme="dark"] .cms-sticky-save-bar {
+  background: rgba(19, 29, 47, 0.96) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+html[data-theme="dark"] .privacy-notice-box {
+  background: rgba(20, 184, 166, 0.12) !important;
+  border-color: rgba(20, 184, 166, 0.28) !important;
+  color: #5EEAD4 !important;
+}
+
+html[data-theme="dark"] .btn-ghost {
+  background: rgba(255, 255, 255, 0.06);
+  color: #E2E8F0;
+}
+
+html[data-theme="dark"] .btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+}
+
+html[data-theme="dark"] .admin-tab-btn {
+  background: #0E1626;
+  border-color: #1E293B;
+  color: #94A3B8;
+}
+
+html[data-theme="dark"] .admin-tab-btn.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #FFFFFF;
+}
+
+html[data-theme="dark"] .theme-toggle-btn {
+  background: #131D2F;
+  border-color: #334155;
+  color: #E2E8F0;
+}
+
+html[data-theme="dark"] .theme-toggle-btn:hover {
+  background: #1E293B;
+  border-color: var(--primary);
+}
+
+/* ==========================================================================
+   ADVANCED MOBILE ADMIN PANEL UX REFINEMENTS (iPhone & Android 360px-480px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Prevent horizontal page bounce */
+  html, body {
+    overflow-x: hidden;
+  }
+
+  .dashboard-main {
+    padding-top: 1rem !important;
+  }
+
+  /* Admin Header */
+  .dashboard-header-inner {
+    padding: 0 0.65rem !important;
+    gap: 0.35rem !important;
+  }
+
+  .dashboard-header .brand-name {
+    font-size: 0.95rem !important;
+    max-width: 145px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .dashboard-actions {
+    display: flex !important;
+    gap: 0.35rem !important;
+  }
+
+  /* Secondary Tabs Bar - Horizontal Momentum Scroll */
+  .admin-nav-bar {
+    top: 56px !important;
+    padding: 0.35rem 0.5rem !important;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05) !important;
+  }
+
+  .admin-tabs-wrapper {
+    display: flex !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x proximity;
+    gap: 0.45rem !important;
+    padding: 0.2rem 0.25rem !important;
+    scrollbar-width: none;
+  }
+
+  .admin-tab-btn {
+    scroll-snap-align: start;
+    padding: 0.4rem 0.85rem !important;
+    font-size: 0.775rem !important;
+    min-height: 38px !important;
+  }
+
+  /* Overview Hero Counter */
+  .counter-card-hero {
+    padding: 1.25rem 1rem !important;
+    border-radius: var(--radius-lg) !important;
+  }
+
+  .hero-counter-title {
+    font-size: 0.85rem !important;
+    font-weight: 700 !important;
+  }
+
+  .hero-counter-number {
+    font-size: clamp(2rem, 9vw, 2.75rem) !important;
+    line-height: 1.1 !important;
+    margin: 0.35rem 0 !important;
+  }
+
+  .hero-mini-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.5rem !important;
+    margin-top: 1rem !important;
+  }
+
+  .hero-mini-stat {
+    padding: 0.65rem 0.5rem !important;
+  }
+
+  .hero-mini-num {
+    font-size: 1.2rem !important;
+  }
+
+  /* 2x2 Compact KPI Stats Grid on Phones */
+  .stats-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.65rem !important;
+  }
+
+  .stat-card {
+    padding: 0.85rem 0.75rem !important;
+    min-height: 86px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.65rem !important;
+  }
+
+  .stat-icon {
+    width: 38px !important;
+    height: 38px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .stat-value {
+    font-size: 1.25rem !important;
+    line-height: 1.1 !important;
+  }
+
+  .stat-label {
+    font-size: 0.7rem !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Registry Card Views on Mobile */
+  .data-table tr {
+    padding: 1rem !important;
+    gap: 0.55rem !important;
+    border-radius: var(--radius-lg) !important;
+  }
+
+  .cell-patient-info {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.65rem !important;
+  }
+
+  .patient-avatar-mini {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 50% !important;
+    background: var(--primary-light) !important;
+    color: var(--primary) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 0.8rem !important;
+    font-weight: 800 !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Registry Filters Toolbar */
+  .filters-toolbar {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.5rem !important;
+  }
+
+  .search-input-box {
+    grid-column: 1 / -1 !important;
+  }
+
+  /* Add Surgery Modal - Native Mobile Bottom Sheet */
+  .modal-dialog {
+    height: 92vh !important;
+    max-height: 92vh !important;
+    border-radius: 24px 24px 0 0 !important;
+  }
+
+  .modal-body {
+    padding: 1rem !important;
+  }
+
+  .modal-footer {
+    padding: 0.75rem 1rem !important;
+    position: sticky !important;
+    bottom: 0 !important;
+  }
+
+  .modal-footer .btn {
+    min-height: 48px !important;
+  }
+
+  /* Mobile App Bottom Dock */
+  .admin-mobile-dock {
+    height: 62px !important;
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 2px) !important;
+  }
+
+  .admin-dock-item {
+    min-height: 46px !important;
+    font-size: 0.68rem !important;
+  }
+
+  .dock-add-circle {
+    width: 50px !important;
+    height: 50px !important;
+    box-shadow: 0 4px 16px var(--primary-glow) !important;
+  }
+}
+
 

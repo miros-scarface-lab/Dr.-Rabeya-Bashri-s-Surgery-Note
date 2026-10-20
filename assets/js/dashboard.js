@@ -109,6 +109,11 @@ function initAdminTabs() {
     allNavTriggers.forEach(b => {
       if (b.getAttribute('data-tab') === targetTabId) {
         b.classList.add('active');
+        if (b.classList.contains('admin-tab-btn')) {
+          try {
+            b.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          } catch (e) {}
+        }
       } else {
         b.classList.remove('active');
       }
@@ -140,6 +145,13 @@ function initAdminTabs() {
       const targetTabId = btn.getAttribute('data-tab');
       activateTab(targetTabId);
     });
+  });
+
+  // Re-render charts when theme changes (light/ocean/dark)
+  window.addEventListener('themechange', () => {
+    if (typeof renderCharts === 'function') {
+      setTimeout(renderCharts, 50);
+    }
   });
 
   // Connect Mobile Dock "Add Case" button directly to modal

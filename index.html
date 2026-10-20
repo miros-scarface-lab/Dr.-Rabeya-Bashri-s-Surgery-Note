@@ -101,6 +101,9 @@
   <!-- Stylesheet -->
   <link rel="stylesheet" href="assets/css/styles.css">
 
+  <!-- Visual Theme Engine (Rose & Teal / Ocean Sapphire / Midnight Dark) -->
+  <script src="assets/js/theme.js"></script>
+
   <!-- Supabase JS CDN (Official) -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -136,8 +139,13 @@
           <a href="#appointment" class="nav-link">Book Visit</a>
         </nav>
 
-        <!-- Header Actions: Doctor Portal, Booking & Mobile Toggle -->
+        <!-- Header Actions: Theme Toggle, Doctor Portal, Booking & Mobile Toggle -->
         <div class="header-actions">
+          <button type="button" class="theme-toggle-btn" id="themeToggleBtn" title="Change Theme (Rose / Ocean / Dark)" aria-label="Toggle Theme">
+            <span class="theme-btn-icon">🌸</span>
+            <span class="theme-btn-label">Theme</span>
+          </button>
+
           <a href="login.html" class="btn-doctor-portal" title="Doctor Secure Login">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
               stroke-linecap="round" stroke-linejoin="round">
@@ -159,6 +167,14 @@
 
     <!-- Mobile Navigation Drawer -->
     <div class="mobile-nav-drawer" id="mobileNavDrawer">
+      <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-color);">
+        <span style="font-weight: 800; font-size: 0.9rem; color: var(--slate-900);">🎨 Visual Theme</span>
+        <button type="button" class="theme-toggle-btn" title="Change Theme">
+          <span class="theme-btn-icon">🌸</span>
+          <span class="theme-btn-label">Switch Theme</span>
+        </button>
+      </div>
+
       <a href="#home" class="nav-link active">
         <span style="font-size: 0.75rem; color: var(--primary); font-weight: 700; display: block;">SECTION 1</span>
         🏠 Home

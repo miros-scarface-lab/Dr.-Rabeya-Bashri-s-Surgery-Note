@@ -12,6 +12,9 @@
   
   <link rel="stylesheet" href="assets/css/styles.css">
   
+  <!-- Visual Theme Engine (Rose & Teal / Ocean Sapphire / Midnight Dark) -->
+  <script src="assets/js/theme.js"></script>
+  
   <!-- Supabase JS CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <!-- Chart.js CDN -->
@@ -40,6 +43,11 @@
 
         <!-- Doctor Profile & Logout -->
         <div class="dashboard-actions">
+          <button type="button" class="theme-toggle-btn" id="adminThemeToggleBtn" title="Change Theme (Rose / Ocean / Dark)" aria-label="Toggle Theme">
+            <span class="theme-btn-icon">🌸</span>
+            <span class="theme-btn-label">Theme</span>
+          </button>
+
           <a href="index.html" class="btn btn-ghost btn-sm" target="_blank" title="View Public Practice Website">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
@@ -562,6 +570,61 @@
             <div class="form-group">
               <label class="form-label" for="settingClinicEmail">Clinical Notification Email</label>
               <input type="email" id="settingClinicEmail" class="form-control" value="dr.rabeyabasri@example.com">
+            </div>
+
+            <!-- Practice Visual Theme Selector -->
+            <div class="form-group" style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--slate-200);">
+              <label class="form-label" style="font-size: 1rem; font-weight: 800;">
+                🎨 Practice Visual Theme &amp; Color Scheme
+              </label>
+              <div class="form-hint" style="margin-bottom: 0.75rem;">
+                Select your preferred visual aesthetic. Changes apply immediately across both your public website and admin suite:
+              </div>
+
+              <div class="theme-options-grid">
+                <div class="theme-option-card active" data-theme-option="rose">
+                  <div class="theme-option-header">
+                    <span>🌸 Signature Rose &amp; Teal</span>
+                    <span style="font-size: 0.75rem; color: var(--primary); font-weight: 700;">Default</span>
+                  </div>
+                  <div style="font-size: 0.8rem; color: var(--slate-600);">
+                    Deep surgical rose with clinical teal &amp; warm porcelain. Perfect for Obstetrics &amp; Gynecological surgical branding.
+                  </div>
+                  <div class="theme-swatches">
+                    <span class="theme-swatch" style="background: #BE185D;"></span>
+                    <span class="theme-swatch" style="background: #0E7490;"></span>
+                    <span class="theme-swatch" style="background: #FDF2F8;"></span>
+                  </div>
+                </div>
+
+                <div class="theme-option-card" data-theme-option="ocean">
+                  <div class="theme-option-header">
+                    <span>💎 Ocean Sapphire &amp; Cyan</span>
+                  </div>
+                  <div style="font-size: 0.8rem; color: var(--slate-600);">
+                    Royal sapphire clinical blue with operative cyan &amp; frosty porcelain. High-tech surgical precision.
+                  </div>
+                  <div class="theme-swatches">
+                    <span class="theme-swatch" style="background: #2563EB;"></span>
+                    <span class="theme-swatch" style="background: #0D9488;"></span>
+                    <span class="theme-swatch" style="background: #EFF6FF;"></span>
+                  </div>
+                </div>
+
+                <div class="theme-option-card" data-theme-option="dark">
+                  <div class="theme-option-header">
+                    <span>🌙 Midnight Medical Dark</span>
+                  </div>
+                  <div style="font-size: 0.8rem; color: var(--slate-600);">
+                    Ultra-sleek dark obsidian theme with glowing rose &amp; cyan neon accents. Reduced eye strain on mobile.
+                  </div>
+                  <div class="theme-swatches">
+                    <span class="theme-swatch" style="background: #0B0F19;"></span>
+                    <span class="theme-swatch" style="background: #F43F5E;"></span>
+                    <span class="theme-swatch" style="background: #14B8A6;"></span>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">
