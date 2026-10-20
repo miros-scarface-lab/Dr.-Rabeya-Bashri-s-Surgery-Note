@@ -467,9 +467,9 @@ function calculateSurgeryStats(surgeries = [], appointments = []) {
   const complicationCount = outcomeBreakdown.Complication || 0;
   const complicationRate = total > 0 ? ((complicationCount / total) * 100).toFixed(1) : "0.0";
 
-  // Career baseline counter (defaults to 4500 if configured) + live database surgeries + appointments
+  // Career baseline counter (defaults to 15000 if configured) + live database surgeries + appointments
   const storedBase = localStorage.getItem('career_patients_base_count');
-  const baseCount = storedBase !== null ? parseInt(storedBase, 10) : (window.APP_CONFIG.CAREER_PATIENTS_BASE_COUNT || 4500);
+  const baseCount = storedBase !== null ? parseInt(storedBase, 10) : (window.APP_CONFIG.CAREER_PATIENTS_BASE_COUNT || 15000);
   const totalPatientsServed = baseCount + total + (appointments ? appointments.length : 0);
 
   return {

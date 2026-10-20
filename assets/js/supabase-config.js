@@ -17,7 +17,8 @@ window.APP_CONFIG = {
   // Doctor Practice Metadata (Change these to match your practice)
   DOCTOR_NAME: "Dr. Rabeya Basri",
   DOCTOR_TITLE: "Trainee Obstetrician & Gynecologist, Laparoscopic Surgeon",
-  DOCTOR_DEGREES: "MBBS, FCPS(Obstetrics & Gynaecology) ",
+  DOCTOR_DEGREES: "MBBS, FCPS Trainee (Obs & Gynae)",
+  CAREER_PATIENTS_BASE_COUNT: 15000,
   CLINIC_PHONE: "+880 1700-000000",
   CLINIC_EMAIL: "dr.rabeya.chamber@example.com",
   HOSPITALS: [
